@@ -1,6 +1,6 @@
 #dsa #tree
 ## Definition
-A Binary tree is a tree where each node has at most two children
+A Binary tree is a [[Tree]] where each node has at most two children
 ```python
 @dataclass
 class TreeNode:
