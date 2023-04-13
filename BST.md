@@ -1,8 +1,10 @@
-#dsa #tree 
+#dsa #tree
 
 ## Definition
 
-A Binary Search Tree (BST) is a [[Binary tree]] where, for each node, the left child and its descendants have a lower value AND the right child and its descendants have a greater value. There are no duplicate values in a BST
+A Binary Search Tree (BST) is a [[Binary tree]] where, for each node, the left child
+and its descendants have a lower value AND the right child and its descendants
+have a greater value. There are no duplicate values in a BST
 
 ```
       5
@@ -70,8 +72,8 @@ This is also why we return None when l == r.
 
 ## Insertion
 
-Insertion works like look up but we progress until we reach a leaf node and then add the
-value
+Insertion works like look up but we progress until we reach a node who does not have
+the corresponding child and then add the value
 
 ```python
 # val assumed not in tree
