@@ -23,7 +23,7 @@
 ```
 
 ```python
-def sort(arr):
+def msort(arr):
     if len(arr) <= 1:
         return arr
     mid = len(arr) // 2
