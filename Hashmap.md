@@ -139,7 +139,9 @@ class Hashmap:
 
 #### Open addressing
 
-- When a collision occurs, find the next empty spot in the array and store the value here
+- When a collision occurs, find the next empty spot in the array and store the value here (go back to beginning of array if necessary)
+- On deletion, put a sentinel value where the deletion occurs so that we don't stop searching too early for previously stored values
+- when resizing, discard the sentinels
 
 ```python
 
