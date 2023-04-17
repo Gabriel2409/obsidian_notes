@@ -30,7 +30,7 @@ Summary: To know which rotation to do
  - triangle (>) : rotate middle in direction of initial line and then top in opposite direction
  - line (/) : rotate top in opposite direction of line
 
-```
+```text
 A                             A
  \                             \
   B    => left rotate A         B => right rotate B then left rotate A
@@ -44,7 +44,7 @@ A                             A
 - Left rotation : right child of root becomes left child of root.right AND left child of root.right becomes root
 - Right rotation : left child of root becomes right child of root.left AND right child of root.left becomes root
 
-```
+```text
      5             9
     / \           / \
    A   9         5   C
@@ -79,7 +79,7 @@ These cases occur when balance of child is opposite sign of balance of parent.
 
 - Right Left rotate: apply right rotation on root.right then left rotation on root
 
-```
+```text
   1         1             2
     \       ↳\↰          / \
      3        2         1  3
@@ -89,7 +89,7 @@ These cases occur when balance of child is opposite sign of balance of parent.
 
 - Left right rotate: apply left rotation on root.left and right rotation on root
 
-```
+```text
         3         3         2
        /        ↱/↲        / \
       1         2         1  3

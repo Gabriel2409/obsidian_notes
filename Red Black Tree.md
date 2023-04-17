@@ -69,13 +69,13 @@ It means that parent is not root and therefore node has an uncle (which can be n
 
 recolor G U and P and apply same function on grand parent
 
-```
+```text
 
-3a.     G             [G]
-       / \            / \
-     [U] [P] =>      U   P      => apply insert_fixup on grand parent
- 		   \              \
-    	   [N]            [N]
+3a.     G         [G]
+       / \        / \
+     [U] [P] =>  U   P  => apply insert_fixup on G
+ 		   \          \
+    	   [N]        [N]
 
 ```
 
@@ -87,7 +87,7 @@ Note this can not occur on the first inserted node but it can happen after case 
 
 Do a rotation on grand parent opposite to the line then recolor parent and grand parent
 
-```
+```text
 3b1.
      |               |                  |
      G              [P]                 P
@@ -102,7 +102,7 @@ Do a rotation on grand parent opposite to the line then recolor parent and grand
 
 Do a rotation on parent same side as the line then perform 3b1
 
-```
+```text
 3b2.
      |               |
      G               G
@@ -126,7 +126,7 @@ Note: the initial fix up can not occur on root as we perform it on a child of th
 
 #### Case 1: node to delete does not have two children
 
-```
+```text
 P         P
  \         \   => perform fix up on N
   D  =>     N
@@ -136,13 +136,14 @@ P         P
 ```
 
 #### Case 2: node to delete has children
-
-```
+Here D value is exchanged with M value and M is removed (M is min node starting from Y )
+Because M has no left child (see deletion of BST), we are back to case 1 and perform the fix up on M right child
+```text
    P
     \
      D
-    / \   => Here D value is exchanged with M value and M is removed (M is min node starting from Y, )
-    X  Y     Because M has no left child (see deletion of BST), we are back to case 1 and perform the fix up on M right child
+    / \   => case 1, with N as M right child and M as D  
+   X   Y    
       /
      M
 ```
@@ -159,7 +160,7 @@ It guarantees parent is black. and children of sibling are also black.
 - Do a rotation on sibling (if it is right child of parent => right rotation, else left rotation)
 - Set parent to red and sibling to black. Then update sibling and proceed to case 2
 
-```
+```text
      |             |            |
      P             P           [P]
    /  \    =>     / \   =>     / \  => L is new sibling, continue with case 2
@@ -178,7 +179,7 @@ It guarantees parent is black. and children of sibling are also black.
 - If P was red, color it black (fixes balance at P.parent level) and STOP
 - If P was black, balance can not be fixed at this step => apply fix up algorithm on P
 
-```
+```text
         |                |
         P?               P
       /   \    =>       / \   => if P was already black, balance is not fixed at P.parent level
@@ -196,7 +197,7 @@ It guarantees parent is black. and children of sibling are also black.
 - Recolor left child to black and sibling to red
 - Proceed with case 2c2
 
-```
+```text
         |                 |              |
         P?                P?             P?
       /   \     =>       / \      =>    / \
@@ -215,14 +216,13 @@ It guarantees parent is black. and children of sibling are also black.
 - Color P and R to black. Color S to original P color. Balance of R == balance of L + 1. Because P is black, balanced is fixed at S level and at S.parent level
 - Note: if S becomes root, color it to black to fix root property.
 
-```
+```text
         |                 |             |
         P?                S             S?
       /   \     =>       / \      =>   /  \
 	 N     S            P?  [R]       P    R
 	      / \          / \           / \
 	     L? [R]       N   L?        N  L?
-
 
 ```
 
