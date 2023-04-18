@@ -108,8 +108,8 @@ Do a rotation on parent same side as the line then perform 3b1
      G               G
     /  \     =>     /  \      =>      apply 3b1. on P
    U   [P]         U   [N]
-        /         /      \
-      [N]       U        [P]
+        /                \
+      [N]                [P]
 
 
 ```
@@ -153,22 +153,25 @@ Because M has no left child (see deletion of BST), we are back to case 1 and per
 Similarly to insertion, Fix up algorithm guarantees a maximum of 2 rotations to fix the red black tree.
 Note: Only case 2c1 necessitates going up the tree and repeating the operation. Other cases stop the deletion algorithm
 
+
+#### Case 0: node is red
+Color node black and STOP
+
+
 #### Case 1: Sibling is red
 
 It guarantees parent is black. and children of sibling are also black.
 
-- Do a rotation on sibling (if it is right child of parent => right rotation, else left rotation)
+- Do a rotation on parent (if it is right child of parent => left rotation, else right rotation)
 - Set parent to red and sibling to black. Then update sibling and proceed to case 2
 
 ```text
      |             |            |
-     P             P           [P]
-   /  \    =>     / \   =>     / \  => L is new sibling, continue with case 2
-  N   [S]        N   L        N   L
-      / \           / \            \
-     L  R          [S] R            S
-                                     \
-                                      R
+     P            [S]           S
+    / \    =>     / \   =>     / \  => L is new sibling, continue with case 2
+   N  [S]        P   R       [P]   R
+      / \       / \          / \
+     L   R     N   L        N   L  
 ```
 
 #### Case 2: Sibling is black
@@ -206,8 +209,6 @@ It guarantees parent is black. and children of sibling are also black.
 	     [L] R                S             [S]
 	                           \              \
 	                            R              R
-
-
 ```
 
 ##### Case 2c1: child on the right is red (for right sibling) OR child on the left is red (for left sibling)
