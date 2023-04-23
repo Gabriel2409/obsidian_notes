@@ -1,4 +1,4 @@
-#dsa
+#dsa #graph
 
 A [[Graph]] can sometimes be represented as matrix. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. It following the same logic as [[Adjacency list traversal]] bit there are more edges cases to watch out for.
 
