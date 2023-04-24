@@ -2,7 +2,7 @@
 
 ## Definition
 
-Union-Find is a useful tool for keeping track of nodes connected in a graph and detecting cycles in a graph. Note that this can usually be done with dfs as well but while dfs works well with a static graph,
+Union-Find is a useful tool for keeping track of nodes connected in a [[Graph]] and detecting cycles in a graph. Note that this can usually be done with dfs as well (see [[Matrix traversal]] and [[Adjacency list traversal]]) but while dfs works well with a static graph,
 union find shines when we are adding edges overtime
 
 Union find operates on disjoint sets. To perform a union on two vertices, we must ensure that they are not already connected
