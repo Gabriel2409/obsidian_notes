@@ -57,9 +57,9 @@ grid = [[0,0,1,0],
 
 ## Adjacency matrix
 
-Here elements in the matrix represent the vertex directly .
-For ex `adjMarix[i][j] == 1` means there is a connection between vertex I and j.
-Contrary to simple matrix, every node vacances be connected.
+Here elements in the matrix represent the vertex directly.
+For ex `adjMarix[i][j] == 1` means there is a connection between vertex i and j.
+Contrary to simple matrix, every pair of nodes can be connected.
 
 - weight can be represented as well (value in the matrix)
 - If graph is undirected, `adjMatrix[i][j] == adjMatrix[j][i]`

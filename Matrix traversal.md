@@ -42,7 +42,7 @@ def bfs(grid):
             if i == len(grid) - 1 and j == len(grid[0]) -1:
                 return tot
             for r,c in [(i,j+1), (i,j-1), (i+1,j), (i-1,j)]:
-                if (r,c) not in visit and r >=0 and c >=0 and r < len(grid) and c < len(grid[0]):
+                if (r,c) not in visit and r >=0 and c >=0 and r < len(grid) and c < len(grid[0]) and grid[r][c]  == 0:
                     q.append((r,c))
                     visit.append((r,c))
         tot += 1

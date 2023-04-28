@@ -12,3 +12,4 @@ D-->E
 D-->F
 E-->G
 ```
+In a Tree, E = V - 1

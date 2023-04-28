@@ -195,7 +195,7 @@ def hpush(arr, val):
     percolate_up(arr, len(arr) - 1)
 ```
 
-### Heap sort
+## Heap sort
 
 - Necessitates a small modification to the percolate function so that it takes a max index
 - Works best with a max heap (a min heap will give the result in reverse order)
@@ -216,3 +216,13 @@ def heap_sort(arr):
 	arr = reverse(arr) # not needed with a max heap
     return arr
 ```
+
+## Example application
+
+### Finding median
+
+If we want to keep track of the median of a set of value, we can use an array. Retrieving the median is O(1) but inserting new elements is O(n).
+
+By using two heap, a min heap keeping track of the larges values, and a max heap keeping track of the smaller values, we can reduce insertion time to O(logn)
+
+#todo

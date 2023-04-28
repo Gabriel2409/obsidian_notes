@@ -1,6 +1,6 @@
 #dsa #graph
 
-A [[Graph]] can sometimes be as an adjacency list. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. This is easier than [[Matrix traversal]] as there are less edges cases.
+A [[Graph]] can sometimes be represented as an adjacency list. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. This is easier than [[Matrix traversal]] as there are less edge cases.
 
 ## Depth first search
 
