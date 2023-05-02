@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-02
+sr-interval: 3
+sr-ease: 250
+---
+
 #dsa #tree
 
 ## Definition

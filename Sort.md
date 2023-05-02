@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-02
+sr-interval: 4
+sr-ease: 270
+---
+
 #dsa #sort
 
 Sorting an array means arranging them in a given order.

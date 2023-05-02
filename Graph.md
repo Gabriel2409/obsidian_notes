@@ -1,15 +1,21 @@
+---
+sr-due: 2023-05-07
+sr-interval: 8
+sr-ease: 250
+---
+
 #dsa #graph
 
 ## Definition
 
 Data structure made up of connected nodes
 
-Vertices = nodes
-Edges = pointers to other nodes
-
-Directed graph = edges have a direction
-Undirected graph = connections are bidirectional
-E <= V^2
+- Vertices = nodes
+- Edges = pointers to other nodes
+- Directed graph = edges have a direction
+- Undirected graph = connections are bidirectional
+- weighted graph: edges have an associated weight
+- E <= V^2
 
 ## Typical representations
 
@@ -35,11 +41,20 @@ edges = [[src, dest, weight],[...]]
 - It is easy to build an adjacency list from the edges
 
 ```python
-adj = defaultdict(list)
+adj = {}
 for s,d,w in edges:
+	if s not in adj:
+		adj[s] = []
+
+	if d not in adj: # should be used both for directed and undirected
+		adj[d] = []
+
     adj[s].append((d,w))
-    adj[d].append((s,w)) #if undirected
+    adj[d].append((s,w)) # undirected graph only
 ```
+
+Note: the reason we want to add d to the list of keys even in directed graphs is for cases when
+we iterate over the adj keys. That way all the nodes are in the dict.
 
 ### Matrix
 

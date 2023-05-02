@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-04
+sr-interval: 3
+sr-ease: 252
+---
+
 #dsa #sort
 
 - Method to [[Sort]] an array by switching adjascent elements to ensure the greater

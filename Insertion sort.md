@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-05
+sr-interval: 3
+sr-ease: 252
+---
+
 #dsa #sort
 
 - Method to [[Sort]] an array where each element is moved to the

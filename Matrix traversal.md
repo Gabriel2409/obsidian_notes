@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-09
+sr-interval: 7
+sr-ease: 224
+---
+
 #dsa #graph
 
 A [[Graph]] can sometimes be represented as matrix. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. It following the same logic as [[Adjacency list traversal]] bit there are more edges cases to watch out for.
@@ -10,7 +16,7 @@ Example problem: count the number of paths from top left to bottom right (must o
 def dfs(grid, i, j, visit = None):
     if not visit:
         visit = set()
-    if (i,j) in visit or i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]):
+    if (i,j) in visit or i < 0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] == 1:
         return 0
     if i == len(grid) - 1 and j == len(grid[0])-1:
         return 1

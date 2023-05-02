@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-08
+sr-interval: 8
+sr-ease: 250
+---
+
 #dsa #tree
 In graph theory, a tree is an unidirected [[Graph]] in which any two vertices are connected by exactly one path
 

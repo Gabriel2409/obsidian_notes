@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-11
+sr-interval: 10
+sr-ease: 269
+---
+
 #dsa #tree
 
 ## Definition
@@ -35,9 +41,6 @@ Index of first leaf node: len(arr)//2
 Index of children of a node of index i: 2*i + 1 and 2*i + 2 (if they exist)
 Index of parent of node i > 0:  (i+1)//2 - 1
 ```
-
-
-
 
 ## Height
 

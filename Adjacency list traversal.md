@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-06
+sr-interval: 4
+sr-ease: 210
+---
+
 #dsa #graph
 
 A [[Graph]] can sometimes be represented as an adjacency list. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. This is easier than [[Matrix traversal]] as there are less edge cases.

@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-10
+sr-interval: 9
+sr-ease: 269
+---
+
 #dsa #tree
 
 ## Definition
@@ -65,15 +71,14 @@ def helper(arr, l, r):
     return node
 ```
 
-Starting r at len(arr) instead of the last index allows to have the extra
-element in the left subtree when the nb of elements in the array are even.
+Starting r at len(arr) instead of the last index allows to have the extra element in the left subtree when the nb of elements in the array are even.
 It also behaves similarly as passing arr[l:r]
 This is also why we return None when l == r.
 
 ## Insertion
 
-Insertion works like look up but we progress until we reach a node who does not have
-the corresponding child and then add the value
+Insertion works like look up but we progress until we reach a node that does not have
+the needee child and then add the value
 
 ```python
 # val assumed not in tree
@@ -83,7 +88,7 @@ def insert(root, val):
     if val > root.val:
         root.right = insert(root.right, val)
     elif val < root.val:
-        root.left = insert(root.left,val)
+        root.left = insert(root.left, val)
     return root
 ```
 
@@ -93,7 +98,7 @@ Note: This version of insertion does not maintain the balance of a balanced BST
 
 - Scenario 1: node to delete has 0 or 1 child => Replace it with its child (or none if no child)
 - Scenario 2: node has 2 children =>
-  - Go to right child then to the left until you reach a node without left child (=final node)
+  - Go to right child then to the left until you reach a node without left child (= final node)
   - Replace initial node value with value of final node (which basically holds the smallest value above the one we want to delete)
   - Apply the remove algorithm to the right child of the initial node with the final value. It will remove the now obsolete final node using scenario 1 (easy deletion) because the final node has at most one child
 
@@ -113,14 +118,13 @@ def remove(root, val):
     else:
         if root.left is None:
             return root.right
-        elif root.left is None:
+        elif root.right is None:
             return root.left
         else:
             min_node = get_min_node(root.right)
             root.val = min_node.val
             root.right = remove(root.right, min_node.val)
     return root
-
 ```
 
 Note: This version of deletion does not maintain the balance of a balanced BST

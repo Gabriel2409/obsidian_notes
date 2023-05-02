@@ -1,4 +1,10 @@
-#dsa #todo
+---
+sr-due: 2023-05-04
+sr-interval: 3
+sr-ease: 250
+---
+
+#dsa
 
 ## Definition
 
@@ -89,4 +95,6 @@ def fib(n):
 
 - Space complexity: O(1)
 
-````
+
+## Example applications
+#todo
