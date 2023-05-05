@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-07
+sr-interval: 3
+sr-ease: 252
+---
+
 #dsa #sort
 
 - Method to [[Sort]] an array where we first divide each part of the array

@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-06
+sr-interval: 2
+sr-ease: 244
+---
+
 #dsa #graph
 
 ## Definition
@@ -25,10 +31,10 @@ In the example below, we join node 0 and 1:
   Then we join 1 and 2:
 - 1 and 2 both have the same parent, nothing happens
 
-```markdown
+```text
 0 1 2 => 0 2 => 0
-| / \
-1 1 2
+         |     / \
+         1     1 2
 ```
 
 ### Find
@@ -37,7 +43,7 @@ Find could take a long time if we did not update the parent.
 For ex, below, finding the ancestor of 4 takes three steps. In order to make the find operation faster,
 we implement a path compression. Each time we try to find the parent, we move the parent to point to the grandparent
 
-```
+```text
 0       0            0
 |       |          /   \
 1  =>   1   =>    1     2
@@ -49,7 +55,7 @@ we implement a path compression. Each time we try to find the parent, we move th
 4
 ```
 
-Next time we call the path function on 4 we will get
+Next time we call the find function on 4 we will get
 
 ```
      0

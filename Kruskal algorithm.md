@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-07
+sr-interval: 3
+sr-ease: 250
+---
+
 #dsa #graph
 
 ## Definition
@@ -29,7 +35,7 @@ def kruskal(edges, n):
 		heapq.heappush(h, (w, s, d))
 
 	nb_edges = 0
-	while nb_edges < n:
+	while nb_edges < n - 1:
 		w,s,d = heapq.heappop(h)
 		if uf.union(s, d):
 			final.append([s, d])
