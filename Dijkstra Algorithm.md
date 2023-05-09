@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-03
-sr-interval: 2
-sr-ease: 244
+sr-due: 2023-06-01
+sr-interval: 24
+sr-ease: 264
 ---
 
 #dsa #graph
@@ -27,19 +27,19 @@ for s,d,w in edges:
 ### Main algorithm
 
 ```python
-def dijkstra(src, adj)
-h = []
-shortest = {}
-heap.heappush(h, (0, src))
-while h:
-    weight, node = heap.heappop()
-    if node in shortest:
-        continue
-    shortest[node] = weight
-    for d, w in adj[node]:
-        if d not in shortest:
-            heap.heappush(h, (weight + w, d))
-return shortest
+def dijkstra(src, adj):
+    h = []
+    shortest = {}
+    heap.heappush(h, (0, src))
+    while h:
+        weight, node = heap.heappop()
+        if node in shortest:
+            continue
+        shortest[node] = weight
+        for d, w in adj[node]:
+            if d not in shortest:
+                heap.heappush(h, (weight + w, d))
+    return shortest
 ```
 
 - Time complexity: O(ElogE)

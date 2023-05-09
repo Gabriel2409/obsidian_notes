@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-04
-sr-interval: 3
-sr-ease: 250
+sr-due: 2023-06-05
+sr-interval: 27
+sr-ease: 270
 ---
 
 #dsa
@@ -17,7 +17,6 @@ To get to the ideal solution, you can often go through the following steps:
 - Bottom up with space optimisation
 
 ## Illustration with fibonnaci number
-
 
 ### Top down Brute force
 
@@ -67,7 +66,7 @@ By using an iterative approach, we can get rid of the recursion stack. This is u
 
 ```python
 def fib(n):
-	dp = [[]] * (n +1)
+	dp = [[] for _ in range(n +1)]
 	dp[0] = 0
 	dp[1] = 1
 
@@ -95,6 +94,6 @@ def fib(n):
 
 - Space complexity: O(1)
 
-
 ## Example applications
+
 #todo

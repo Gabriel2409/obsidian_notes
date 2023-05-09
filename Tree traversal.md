@@ -1,14 +1,14 @@
 ---
-sr-due: 2023-05-01
-sr-interval: 2
-sr-ease: 243
+sr-due: 2023-06-08
+sr-interval: 31
+sr-ease: 263
 ---
 
 #dsa #tree
 
 ## Definition
 
-Traversal corresponds to the way to visit all the notes in a Tree.
+Traversal corresponds to the way to visit all the nodes in a Tree.
 This note focuses on [[Binary tree]].
 
 ## Depth first search (dfs)
@@ -157,11 +157,11 @@ def dfs(root:TreeNode):
 
 2 stack solution:
 
-- Create two stacks to track nodes and if they were already visited, initialised with root and False
+- Create two stacks to track nodes and if they were already visited
+- Initialise with root and False
 - Each time you pop the stacks, check if the node was visited.
   - If yes, it means you already went right and you can safely add the current value.
-  - If no, put back the element in the stack and add True to the visited stack. Then add
-    right and left children to stack with visited set to False
+  - If no, put back the element in the stack and add True to the visited stack. Then add right and left children to stack with visited set to False
 
 ```python
 def dfs(root:TreeNode):
@@ -195,8 +195,7 @@ Repeat:
 - start on root and add it to stack. If root has a right child, add it to stack
   then go left until there is no left child
 - pop the stack:
-  - If last element of stack is right child of current, put back current in
-    stack and go right.
+  - If last element of stack is right child of current, put back current in stack and go right.
   - Else use current value and set root to null
 
 ```python

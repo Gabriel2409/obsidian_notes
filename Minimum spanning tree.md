@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-09
+sr-interval: 1
+sr-ease: 230
+---
+
 #dsa #graph
 
 ## Definition

@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-02
-sr-interval: 3
-sr-ease: 250
+sr-due: 2023-06-09
+sr-interval: 32
+sr-ease: 270
 ---
 
 #dsa #tree
@@ -41,14 +41,14 @@ If a max heap is needed, the most simple solution is to multiply all the priorit
 
 ## Array implementation (min heap)
 
-### Percolate
+### Percolate (sift)
 
 - Satisfying the order property for the whole heap is the same as satisfying it for non leaf nodes.
 - In order for a given node to satisfy the order property, we can either
-  - percolate down
+  - percolate down (sift down)
     - we suppose all the index **AFTER** the one we want to percolate already satisfy the heap property and we want the node at index i to satisfy it as well.
     - we compare the node with its children. If it is larger than the smallest of its children, we swap and repeat on the children node (which now contains the swapped value)
-  - percolate up
+  - percolate up (sift up)
     - we suppose all the index **BEFORE** the one we want to percolate already satisfy the heap property and we want the node at index i to satisfy it as well.
     - we compare the node with its parent. If it is smaller than the parent, we swap and repeat on the parent node (which now contains the swapped value)
 
@@ -224,11 +224,7 @@ def heap_sort(arr):
 ```
 
 ## Example application
+- [[MedianFinder (2 heaps)]]
 
-### Finding median
 
-If we want to keep track of the median of a set of value, we can use an array. Retrieving the median is O(1) but inserting new elements is O(n).
 
-By using two heap, a min heap keeping track of the larges values, and a max heap keeping track of the smaller values, we can reduce insertion time to O(logn)
-
-#todo

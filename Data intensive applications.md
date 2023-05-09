@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-07
+sr-interval: 1
+sr-ease: 230
+---
+
 #sd #todo #incomplete
 
 - Data intensive vs compute intensive (CPU is bottleneck)

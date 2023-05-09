@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-09
+sr-interval: 3
+sr-ease: 252
+---
+
 #dsa #tree #todo
 
 ## Definition
@@ -5,8 +11,8 @@
 Red black trees are [[BST]] that maintain a loose balance by coloring the nodes and rotating some nodes on insertion / deletion
 Contrary to [[AVL Tree]] they are not strictly balanced but they still allow look ups, insertions and deletion in O(logn) time.
 Code here: https://github.com/msambol/youtube/blob/master/trees/red_black_tree.py => TODO: implement
-```python
 
+```python
 class RedBlackNode:
    def __init__(self, val):
       self.val = val
@@ -52,7 +58,7 @@ color it black to fix **Root property**
 
 #### Case 2 : parent is black
 
-no constraint is violated, do nothing
+No constraint is violated, do nothing
 
 ```
 2.  P
@@ -61,7 +67,7 @@ no constraint is violated, do nothing
 
 ```
 
-#### case 3: parent is red.
+#### Case 3: parent is red.
 
 It means that parent is not root and therefore node has an uncle (which can be null). Moreover it guarantees grand parent is black
 
@@ -135,15 +141,17 @@ P         P
 
 ```
 
-#### Case 2: node to delete has children
+#### Case 2: node to delete has two children
+
 Here D value is exchanged with M value and M is removed (M is min node starting from Y )
 Because M has no left child (see deletion of BST), we are back to case 1 and perform the fix up on M right child
+
 ```text
    P
     \
      D
-    / \   => case 1, with N as M right child and M as D  
-   X   Y    
+    / \   => case 1, with N as M right child and M as D
+   X   Y
       /
      M
 ```
@@ -153,10 +161,9 @@ Because M has no left child (see deletion of BST), we are back to case 1 and per
 Similarly to insertion, Fix up algorithm guarantees a maximum of 2 rotations to fix the red black tree.
 Note: Only case 2c1 necessitates going up the tree and repeating the operation. Other cases stop the deletion algorithm
 
-
 #### Case 0: node is red
-Color node black and STOP
 
+Color node black and STOP
 
 #### Case 1: Sibling is red
 
@@ -171,7 +178,7 @@ It guarantees parent is black. and children of sibling are also black.
     / \    =>     / \   =>     / \  => L is new sibling, continue with case 2
    N  [S]        P   R       [P]   R
       / \       / \          / \
-     L   R     N   L        N   L  
+     L   R     N   L        N   L
 ```
 
 #### Case 2: Sibling is black

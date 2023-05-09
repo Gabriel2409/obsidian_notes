@@ -1,3 +1,9 @@
+---
+sr-due: 2023-05-09
+sr-interval: 3
+sr-ease: 252
+---
+
 #dsa #tree 
 
 ## Definition
@@ -95,8 +101,6 @@ These cases occur when balance of child is opposite sign of balance of parent.
       1         2         1  3
       ↳\↰      /
         2     1
-
-Left right rotate: apply left rotation on root.left and right rotation on root
 ```
 
 ## Insertion and deletion
@@ -109,7 +113,7 @@ Note: contrary to classic BST, insertion and deletion can modify the root of the
 
 ### Rebalancing on insertion
 
-As insertion puts the node at the end of the Tree, we vcan use the value to know what type of rotation to perform.
+As insertion puts the node at the end of the Tree, we can use the value to know what type of rotation to perform.
 
 - If balance > 1 (more nodes on the left)
   - if inserted_value > node.left.val, we are in the left-right case [<]
@@ -153,7 +157,7 @@ Instead, once we get an unbalanced node, we look at the balance of its child to 
 - If balance > 1
   - If balance root.left >=0, a right rotation is enough [ / ]
   - else we must perform a left right rotation [<]
-    If balance < -1
+- If balance < -1
   - If balance root.right <=0, a left rotation is enough [ \\ ]
   - else we must perform a right left rotation [>]
 
