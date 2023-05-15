@@ -31,7 +31,7 @@ def get_median(minH, maxH):
 
 - Insert in the max heap
 - check first elements of two heaps. If it is larger in max heap, pop it and add popped value to min heap.
-- Balance so that there is at most à diff of 1 in the length
+- Balance so that there is at most a diff of 1 in the length
 
 ```python
 

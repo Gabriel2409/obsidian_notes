@@ -10,7 +10,7 @@ sr-ease: 230
 
 Segment trees allow to easily calculate the sum over a range of values.
 In a standard array, updating a value is O(1) but calculating the sum of values over
-a given range is O(n).
+a given range is O(n). Similarly in [[Prefix sums]], updates are costly because all the prefixes must be recalculated.
 Segment tress make update and sum over range calculation both O(logn)
 
 ```python

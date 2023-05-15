@@ -9,7 +9,7 @@ sr-ease: 270
 ## Definition
 
 Binary search allows to search for a given value in a sorted array by eliminating
-half of the possibilities at each step. This leads to a time complexity of O(logn).
+half of the possibilities at each step using a [[Two pointers]] approach. This leads to a time complexity of O(logn).
 
 ### Recursive implementation
 

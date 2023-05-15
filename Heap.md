@@ -224,7 +224,7 @@ def heap_sort(arr):
 ```
 
 ## Example application
-- [[MedianFinder (2 heaps)]]
+- [[MedianFinder (Two heaps)]]
 
 
 
