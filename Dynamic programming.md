@@ -100,3 +100,4 @@ def fib(n):
 
 - [[Knapsack]]
 - [[Longest Common Substring (LCS)]]
+- [[Longest palindromic substring]]
