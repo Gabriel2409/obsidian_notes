@@ -32,7 +32,7 @@ dfs(0, C)
 
 - At each step, we decide whether to including current item and decrease the remaining capacity or not including it. Then we move to next item
 - Note: for Unbounded, replace `dfs(i+1, capacity - weight[i])` with `dfs(i, capacity - weight[i])` because when we décide to including an item, we don't automatically move to the next item
-- Time complexity = O(2^n)
+- Time complexity = O(2^n), space = O(n)
 
 ## Top down with memoization
 
