@@ -1,8 +1,14 @@
+---
+sr-due: 2023-05-16
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 ## Definition
 
-Even if a system is [[Reliability | Reliable]] today does not mean it will be reliable tomorrow. Scalability is the system ability to cope with increased load.
+Even if a system is [[Reliability | Reliable]] today, it does not mean it will be reliable tomorrow. Scalability is the system ability to cope with increased load.
 
 ## Load
 

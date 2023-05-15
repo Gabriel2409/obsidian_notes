@@ -97,3 +97,5 @@ def fib(n):
 ## Example applications
 
 #todo
+
+- [[Knapsack]]
