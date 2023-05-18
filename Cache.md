@@ -33,5 +33,5 @@ See [[CDN]]
 ## Eviction policy
 
 - FIFO: elements cached first are deleted first
-- LRU cache (least recently used) cache: elements accessed the longest time ago are deleted first
+- [[LRU Cache]] (least recently used) cache: elements accessed the longest time ago are deleted first
 - LFU cache (least frequently used cache): elements accessed the least are removed first

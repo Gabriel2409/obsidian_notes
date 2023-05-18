@@ -1,27 +1,20 @@
+---
+sr-due: 2023-05-16
+sr-interval: 1
+sr-ease: 230
+---
+
 #dsa #todo
 
-## Summary
 
-### Static array
+- images from https://www.bigocheatsheet.com/
+## Big-O Complexity Chart
+![[cheatsheet_bigo_chart.png]]
 
-- Look up: O(n)
-- Insertion / Deletion : O(n) / O(1) at the end
 
-### Dynamic Array
+## Common Data Structure Operations
 
-- Same as static but Insertion is amortized O(1)
+![[cheatsheet_bigo_ds.png]]
 
-### Stack
-
-- Peek (look up last element): O(1)
-- Push / Pop: O(1)
-
-### Linked list
-
-- Look up: O(n)
-- Insertion / Deletion : O(1) assuming you have the reference to the node
-
-### Queue
-
-- Enqueue: O(1)
-- Dequeue: O(1)
+## Array Sorting Algorithms
+![[cheatsheet_bigo_sort.png]]
