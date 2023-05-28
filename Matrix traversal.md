@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-09
-sr-interval: 7
-sr-ease: 224
+sr-due: 2023-05-25
+sr-interval: 8
+sr-ease: 204
 ---
 
 #dsa #graph

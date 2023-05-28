@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-11
-sr-interval: 10
-sr-ease: 269
+sr-due: 2023-08-18
+sr-interval: 86
+sr-ease: 289
 ---
 
 #dsa #tree

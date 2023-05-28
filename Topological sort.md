@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-05-07
-sr-interval: 3
-sr-ease: 250
+sr-due: 2023-05-20
+sr-interval: 4
+sr-ease: 230
 ---
 
 #dsa #graph
@@ -61,7 +61,7 @@ def dfs(node, adj, final, visit):
 		return
 	visit.add(node)
 	for dest in adj[node]:
-		dfs(node)
+		dfs(node, adj, final, visit)
 	final.append(node)
 
 ```

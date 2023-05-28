@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-05-10
-sr-interval: 9
+sr-due: 2023-07-06
+sr-interval: 43
 sr-ease: 269
 ---
 
@@ -47,7 +47,7 @@ def search(root, target):
 
 ## Build from a sorted array (balanced)
 
-In a sorted array, [[Binary search]] allows a lookup in O(n) Time.
+In a sorted array, [[Binary search]] allows a lookup in O(logn) Time.
 Similarly it is possible to build a balanced BST following a similar logic:
 
 - Start with middle element as root

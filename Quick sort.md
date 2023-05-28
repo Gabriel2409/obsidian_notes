@@ -1,14 +1,15 @@
 ---
-sr-due: 2023-05-07
-sr-interval: 3
+sr-due: 2023-06-07
+sr-interval: 21
 sr-ease: 252
 ---
 
 #dsa #sort
+
 Quick sort is an algorithm to [[Sort]] an array:
 
 1. Choose a pivot (for ex the last element of the array)
-2. Move the elements smaller than the pivot on the left of the array and the elements
+2. Move the elements smaller than the pivot on the left of the array 
    - keep a pointer on first element and start looping from here while ignoring the pivot
    - each time you encounter an element smaller or equal to pivot, switch it with pointed element and increment the pointer.
    - Once the loop is finished, switch pointed element with pivot

@@ -1,10 +1,10 @@
 ---
-sr-due: 2023-05-09
-sr-interval: 3
+sr-due: 2023-06-14
+sr-interval: 23
 sr-ease: 252
 ---
 
-#dsa #tree 
+#dsa #tree
 
 ## Definition
 
@@ -33,8 +33,9 @@ def get_balance(root):
 Rotations are operations that are used to make a node more balanced while keeping the BST properties.
 
 Summary: To know which rotation to do
- - triangle (>) : rotate middle in direction of initial line and then top in opposite direction
- - line (/) : rotate top in opposite direction of line
+
+- triangle (>) : rotate middle in direction of initial line and then top in opposite direction
+- line (/) : rotate top in opposite direction of line
 
 ```text
 A                             A
