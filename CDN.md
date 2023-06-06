@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-04
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 ## Definition
@@ -6,7 +12,7 @@ A Content delivery network is a globally distributed network of proxy servers se
 The site DNS resolution will tell clients which CDN to contact
 
 - CDN can increase [[Reliability]] and availability: if a server is down, client can ask another server in the CDN network.
-- CDN can decrease latency because static content is server from closer locations
+- CDN can decrease latency because static content is served from closer locations
 
 ## Push CDNs
 
@@ -17,7 +23,7 @@ Sites with a small amount of traffic or sites with content that isn't often upda
 
 ## Pull CDNs
 
-- When a user requests content, CDN first tries to serve it. If it is not found (similar behavior to [[Cache]] MISS), it retrieves it from the server and stores it before serving it to the client. It is then available for other clients. That way, different machines in the CDN don't necessarily stores the same content
+- When a user requests content, CDN first tries to serve it. If it is not found (similar behavior to [[Cache]] MISS), it retrieves it from the server and stores it before serving it to the client. It is then available for other clients. That way, different machines in the CDN don't necessarily store the same content
 - The Cache-Control header tells the CDN if it can cache the content (if it is set to public)
 - A time-to-live (TTL) determines how long content is cached. Pull CDNs minimize storage space on the CDN, but can create redundant traffic if files expire and are pulled before they have actually changed.
 

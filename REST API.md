@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-03
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 ## Definition
 
@@ -7,5 +13,6 @@
 - Most common format is JSON
 
 ## Design
-- When designing a public facing API, we must be careful to be backwards compatible when possible. For ex, when introducing a new parameter, we van make it Optional. If it is not possible, that's when versionning comes in.Example endpoint: `https://api.twitter.com/v1.0/tweet - POST`
+- When designing a public facing API, we must be careful to be backwards compatible when possible. For ex, when introducing a new parameter, we can make it Optional. If it is not possible, that's when versionning comes in.
+- Example endpoint: `https://api.twitter.com/v1.0/tweet - POST`
 - handle pagination with two parameters : limit and offset

@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-05-16
-sr-interval: 1
+sr-due: 2023-06-20
+sr-interval: 20
 sr-ease: 230
 ---
 
@@ -88,7 +88,7 @@ def cycle_start(head):
 		slow = slow.next
 		fast = fast.next.next
 		if slow == fast:
-			return break
+			break
 
 	slow = slow.next
 	slow2 = head
