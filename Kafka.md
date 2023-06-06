@@ -37,39 +37,44 @@ https://kafka.apache.org/intro
 #### Important properties
 
 Acknowledgement (acks)
+
 - `acks=0`: producers consider messages as written successfully the moment the message was sent. If the broker goes offline or and exception happens, we can lose data. However, we have the highest throughput
 - `acks=1`: producers consider messages as written successfully when it was acknowledged by the leader. Replication is not guaranteed if the broker goes offline before the replication. If the ack is not received, the producer retries the request
-- `acks=all (or acks=-1)`: safest kind of guarantee (default in kafka): message must be accepted by all in sync replicas: Producer sends data to leader. Leader sends to all ISR and wait for acknowledgement. Once it is received, leader responds to producer.  
-- When using`acks=all`, you must also specify `min.insync.replicas`. For ex, if  `min.insync.replicas=2`, the leader must wait for an ISR to ack before sending ack to producer. Note that `min.insync.replicas` must be lower than `replication.factor`
-**To have the safest guarantees: `replication_factor=3` and `min.insync.replicas=2`**
+- `acks=all (or acks=-1)`: safest kind of guarantee (default in kafka): message must be accepted by all in sync replicas: Producer sends data to leader. Leader sends to all ISR and wait for acknowledgement. Once it is received, leader responds to producer.
+- When using`acks=all`, you must also specify `min.insync.replicas`. For ex, if `min.insync.replicas=2`, the leader must wait for an ISR to ack before sending ack to producer. Note that `min.insync.replicas` must be lower than `replication.factor`
+  **To have the safest guarantees: `replication_factor=3` and `min.insync.replicas=2`**
 
 Retries:
+
 - max nb of retries: `retries`, defaults to very high number
-- time before next retry:`retry.backoff.ms`, defaults to 100ms 
+- time before next retry:`retry.backoff.ms`, defaults to 100ms
 - timeout on retries: `delivery.timeout.ms`, defaults to 120000=2min. Records will be failed if they are not acknowledged before the timeout
 
 Idempotence:
+
 - In case of network error, we can have duplicate messages (for ex if the message was committed but the ack was not received by the producer, leading to a retry)
 - With Idempotent producer, kafka is able to detect if there is a duplicate message. Set the property: `enable.idempotence` to `true`
 
 Compression:
 
- - Producer side: `compression.type` can be `none`, `gzip`, `lz4`, `snappy`, and `zstd` and is performed by the producer.
- - Compression can also be enable **broker-side**  at the topic level (or for all topics)
-	 - default is `compression.type=producer`: writes the compressed message as is
-	 - `compression.type=<compression>`: If `<compression>` matches the compression on the broker side, it is written as is. If not, the broker decompress and recompress in the correct format
-	 - `compression.type=none`: the broker decompresses the message before storing it
-	 - Enabling compression broker-side will consume extra CPU cycles (if it does not match producer compression) to perform the compression
+- Producer side: `compression.type` can be `none`, `gzip`, `lz4`, `snappy`, and `zstd` and is performed by the producer.
+- Compression can also be enable **broker-side** at the topic level (or for all topics)
+  - default is `compression.type=producer`: writes the compressed message as is
+  - `compression.type=<compression>`: If `<compression>` matches the compression on the broker side, it is written as is. If not, the broker decompress and recompress in the correct format
+  - `compression.type=none`: the broker decompresses the message before storing it
+  - Enabling compression broker-side will consume extra CPU cycles (if it does not match producer compression) to perform the compression
 
 Batching mechanism:
+
 - By default, kafka try to send records as soon as possible. `max.in.flight.requests.per.connection=5` means at most 5 unacknowledged message batches being sent between producer and broker. When all flights are busy, kafka will start batching the incoming messages so that they can be ready for the next batch send.
 - `linger.ms` (default 0): how long to wait until we send a batch. Adding a small number helps add more message in the batch but increases latency
 - `batch.size`: if a batch is filled before `linger.ms`, send the batch
- 
-#### Key hashing
-Process to mapping a key (when not null) to a partition
-- By default, kafka uses the murmur2 algorithm: `targetPartition` = `Murmur2(keyBytes) % (numPartitions)`. Which means adding / removing partitions shifts where a message with the same key goes. It may be better to create a new topic. 
 
+#### Key hashing
+
+Process to mapping a key (when not null) to a partition
+
+- By default, kafka uses the murmur2 algorithm: `targetPartition` = `Murmur2(keyBytes) % (numPartitions)`. Which means adding / removing partitions shifts where a message with the same key goes. It may be better to create a new topic.
 
 ### Consumers
 
@@ -84,27 +89,33 @@ Process to mapping a key (when not null) to a partition
 - Note that if no consumer group is specified, kafka will create one for the individual consumer. This group is temporary
 
 - Rebalance = moving partitions between consumers
-	- When
-		- a consumer leaves of joins a group
-		-  an admin adds a new partition into a topic
-	- Strategy:
-		- Eager Rebalance: all consumers stop, give up their membership of partition, then rejoin the group and get a new partition assignment (no guarantee they will get back the same partition)
-		- Cooperative Rebalance (or Incremental rebalance)
-			- Reassign a small subset of the partitions from one consumer to another
-			- Other consumers are not interrupted
-			- can go through several iterations to find a stable alignment
+
+  - When
+    - a consumer leaves of joins a group
+    - an admin adds a new partition into a topic
+  - Strategy:
+    - Eager Rebalance: all consumers stop, give up their membership of partition, then rejoin the group and get a new partition assignment (no guarantee they will get back the same partition)
+    - Cooperative Rebalance (or Incremental rebalance)
+      - Reassign a small subset of the partitions from one consumer to another
+      - Other consumers are not interrupted
+      - can go through several iterations to find a stable alignment
 
 - Static group membership
-	- By default, when a consumer leaves a group, its partitions are revoked and reassigned. It will get a new member ID when rejoining
-	- However, we can specify a group.instance.id to make it a static member. If it leaves and comes back within the session.timeout.ms, it will get its partition back (without triggering a rebalance)
+  - By default, when a consumer leaves a group, its partitions are revoked and reassigned. It will get a new member ID when rejoining
+  - However, we can specify a group.instance.id to make it a static member. If it leaves and comes back within the session.timeout.ms, it will get its partition back (without triggering a rebalance)
 
 #### Important properties
 
 Delivery semantics
+
 - at most once: offsets are committed as soon as the message batch is received. If the processing goes wrong, the message will be lost
 - at least once: offsets are committed after the message batch is processed. This can result in duplicate processing.
 - exactly once: can be achieved with kafka to kafka workflows using the transactional API. Alternatively, this can be done with the at least once delivery if the consumer is idempotent
 
+- Consumers in a group talk to a consumer groups coordinator. To detect consumers that are down, there is a
+  - heartbeat mechanism: send hearbeat to coordinator (by default 3s)
+  - poll mechanism: poll from brokers
+- Both mechanism prove the consumer is alive => In kafka, consumers are encouraged to process data fast and poll often
 
 ## Starting kafka
 
@@ -172,7 +183,7 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 - all commands start with `kafka-topics.sh --producer.config <myconfig.config> --bootstrap-server <mycluster>` (note that we don't use command-config)
 - `--topic <mytopic>`: opens prompt to pass message to topic. If topic does not exist, a new one is created by default but good practice is to disable topic creation that way
 - `--property <key>=<value>`: specifies a property
-	- Specifying a key: `--property parse.key=true --property key.separator=:`: message is parsed and `:` is used as the separator between key and value
+  - Specifying a key: `--property parse.key=true --property key.separator=:`: message is parsed and `:` is used as the separator between key and value
 - `--producer-property <key>=<value>`: specifies a producer property. For ex:
   - `acks`: acknowledgement strategy
     - `acks=0`: do not wait for acknowledgement
@@ -196,9 +207,10 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 
 ## Java API
 
-### Java Producer 
+### Java Producer
 
-#### Basic use 
+#### Basic use
+
 ```java
 // Imports
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -206,7 +218,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer; // or other serializer
 
 
-... 
+...
 // specify properties
 Properties properties = new Properties()
 properties.setProperty("<myprop>", "<myval>") // bootstrap.servers, connection config, etc
@@ -233,6 +245,7 @@ producer.close();
 #### Better way to specify the config
 
 ProducerConfig can be used to ensure we don't make typos in the config
+
 ```java
 import org.apache.kafka.clients.producer.ProducerConfig;
 
@@ -240,12 +253,15 @@ properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers
 properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 ```
+
 #### With a key
+
 ```java
 ProducerRecord<String, String> producerRecord = new ProducerRecord<>("<topic>", "<key>", "<value>")
 ```
 
 #### With callback
+
 - we can add a callback that is executed when the producer sends a message
 
 ```java
@@ -269,6 +285,7 @@ producer.send(producerRecord, new Callback() {
 });
 
 ```
+
 ### Java consumer
 
 #### Basic use
@@ -326,6 +343,7 @@ properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
 #### Add graceful shutdown
 
 Note: to do a graceful shutdown from cli
+
 - find your pid: `ps wup $(pgrep -f <prog>)`
 - `kill -15 <pid>`
 
@@ -359,33 +377,130 @@ try {
 	log.info("Consumer gracefully shut down");
 }
 ```
+
 In case of clean shutdown, consumer rebalancing within consumer groups will work (they will be assigned the partitions of the consumer that shut down)
 
 #### Rebalance strategy
+
 In the consumer, set the partition.assignment.strategy property
+
 - Eager strategies:
-	- `RangeAssignor`: assign partition on a per topic basis
-	- `RoundRobin`: assign partition across all topics so that 
-	- `StickyAssignor`: Starts with round robin then mimizes movement
+  - `RangeAssignor`: assign partition on a per topic basis
+  - `RoundRobin`: assign partition across all topics so that
+  - `StickyAssignor`: Starts with round robin then mimizes movement
 - Cooperative rebalance
-	- `CooperativeStickyAssignor`: supports for cooperative rebalance (no need to interrupt all consumers)
+  - `CooperativeStickyAssignor`: supports for cooperative rebalance (no need to interrupt all consumers)
 
 ```java
 import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
 ...
-properties.setProperty(CooperativeStickyAssignor.class.getName()); 
+properties.setProperty(CooperativeStickyAssignor.class.getName());
 properties.setProperty("group.instance.id", "...") // only needed for static assignment
 ```
+
 By default, strategy is `[class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]`
 
 #### Auto offset commit behavior
 
 - offsets are committed on `poll` call if auto.commit.interval.ms has elapsed
 - Example: `auto.commit.interval.ms=5000` and `enable.auto.commit=true`
-	- on poll, a timer start.
-	- once the 5000ms elapsed, consumer calls `.commitAsync` behind the scences
+  - on poll, a timer start.
+  - once the 5000ms elapsed, consumer calls `.commitAsync` behind the scences
 - At least once scenario: make sure messages are all successfully processed before calling `poll` again
-- Note: we can also disable `enable.auto.commit` and from time to time call `.commitSync()` or `.commitAsync()` with the correct offset (advanced use case)
 
+```java
+// strategy 1: set enauble.auto.commit to true and process messages synchronously
+while (true) {
+	ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(3000));
+	doSomethingSynchronous(records);
+}
+```
 
+- we can also disable `enable.auto.commit` and from time to time call `.commitSync()` or `.commitAsync()` with the correct offset (advanced use case)
 
+```java
+// strategy 2: set enauble.auto.commit to false and synchronous processing of batches
+properties.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
+...
+while (true) {
+
+	batch += consumer.poll(Duration.ofMillis(3000));
+	if isReady(batch){
+	doSomethingSynchronous(batch);
+	consumer.commitAsync()
+	}
+
+}
+```
+
+- There is also the option of `enable.auto.commit=false` + storing offsets externally (need to use the `.seek()` API)
+
+#### Consumer offset reset behavior
+
+Consumer is expected to read from log continuously.
+By default Kafka retains information for 7 days. If a consumer tries to access an older offset, it will fail => if consumer is down from more than 7 days, you have a problem. This can be controlled with `offset.retention.minutes`
+
+The behavior is as follow:
+
+- `auto.offset.rest=latest`: will read from end of log
+- `auto.offset.rest=earliest`: will read from start of log
+- `auto.offset.rest=none`: will throw exception if no offset is found
+
+To replay data for a consumer group:
+
+- Take all consumers from a specific group down
+- Use `kafka-consumer-groups` command to set offset to what you want
+- Restart consumer
+
+#### Idempotent consumer
+
+To have an idempotent consumer, a strategy is to use the at least once strategy and use the unique id of the message (provided the consumer correctly handles receiving twice the same id)
+
+```java
+// method 1: kafka coordinates
+String id = record.topic() + "_" + record.partition() + "_" + record.offset();
+// method 2: use a function based on the record value
+String id = myFunctionToExtractId(record.value());
+```
+
+## Extended API
+
+- Kafka comes with high level API:
+  - Kafka Connect solves External Source => Kafka and Kafka => External Sink
+  - Kafka Streams solves transformations Kafka => Kafka
+
+### Kafka Connect
+
+https://www.confluent.io/hub/
+
+Idea: We usually import data from same sources and store them in the same sinks. Kafka connects comes with source connectors and sink connectors:
+
+```text
+source -> |Connect Cluster| -> |Kafka Cluster|
+          |               |    |             |
+          |    workers    |    |   brokers   |
+dest  <-  |               | <- |             |
+```
+
+### Kafka Streams
+
+Data processing and transformation library within Kafka
+
+- No need to create a separate cluster
+- Exactly once capabilities
+- One record at a time (no batching)
+- Useful to do operations on topics
+- Can be achieved with a producer and consumer but would be very low level
+
+### Kafka schema registry
+
+- Kafka takes bytes as input and publishes them (no data verification)
+- What if the data change (bad data from consumer, renamed field...) => consumers will break
+
+To make data evolvable, we need schemas and a schema registry:
+
+- The schema registry must be a separate component (we don't want the brokers to do the verification)
+- Producers and consumers need to talk to it
+- Schema registry must be able to reject bad data
+
+Data format used: Apache Avro (Protobuf and JSON also supported)
