@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-10
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 Comparing [[B Tree Index|B Trees]] and [[SSTable and LSM Tree |LSM Trees]]

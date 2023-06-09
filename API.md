@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-11
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 API is the acronym for **application programming interface** = a software intermediary that allows two applications to talk to each other.

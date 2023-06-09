@@ -1,0 +1,22 @@
+#sd
+
+## Definition
+
+Note: Consistency here corresponds to the C in [[CAP Theorem]] and has nothing to do with the C of ACID (even though it is unfortunately the same denomination)
+
+When we need to synchronize mutliple copies of the same data, we need to choose how the synchronization process takes place. Depending on this process, we don't provide the same consistency guarantees
+
+### Weak consistency
+
+After a write, reads may or may not see it. A best effort approach is taken. This is typically what happens if you write data to a node and read it from another node : it may or may not have processed the write. There is no guarantee that the other node will process the write.
+
+This approach can be seen in systems such as memcached
+
+### Eventual consistency
+
+After a write, reads will eventually see it. Note that there is no maximum time guarantee. It typically happens within milliseconds but it can take a very long time in some cases.
+This is typically the approach that is taken in highly available systems using asynchronous [[Replication]].
+
+### Strong consistency
+
+After a write, reads will see it. That means that a write is acknowledged only if all the replicas are successfully written to. Strong consistency works well in systems that need transaction but it makes the system les available.

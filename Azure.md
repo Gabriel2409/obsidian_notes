@@ -115,7 +115,7 @@ Custom RBAC roles:
 
 - add metadata to subscription, resource groups, resources
 - key value pairs allowing logical grouping : can be used to filter azure usage and cost management
-- Tags are not inherited. If you want to use them for cost management, they myst be there at the resource level, not the resource group level
+- Tags are not inherited. If you want to use them for cost management, they must be there at the resource level, not the resource group level
 
 ### Resource locks
 
@@ -233,3 +233,10 @@ Ex:
 - create a new dns zone
 - Add an A record
 - Run `nslookup <record-name>.<dns-name> <azure-server>` or `dig @<azure-server> <record-name>.<dns-name>` (alternatively download DNSDataView)
+
+### Private zones
+
+Azure dns are public by default. We can also create private dns zones. 
+For ex, if you have vms in two different subnets, we could create a private DNS zone with autoregistration which would automatically map each vm name to their IP address. 
+To do that, we need to create 2 virtual network link (one to each network).
+Then any vm could get the IP of any other VM by using its name and the private DNS zone. Note that it does not allow a VM from a subnet to connect to a VM from another subnet because communication is not enabled

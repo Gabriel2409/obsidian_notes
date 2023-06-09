@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-10
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 ## Definition
@@ -5,9 +11,9 @@
 Most widely used type of [[Index]], especially in SQL databases, using [[B Tree]] (or [[B+ Tree]]) datastructure.
 
 - B trees break the database down into fixed sized blocks or pages (traditionnaly 4kB) and read or write one page at a time
-- The number of references to child pages in on page of the B-Tree is called the **branching factor**
+- The number of references to child pages in one page of the B-Tree is called the **branching factor**
 - To update a value, you search for the leaf containing the value, update **in place** and write the page back to disk
-- To add a value, you search for the page whose range encompasses the new key and, if there is not enough space, split the page into two. This ensures the tree remains balanced and access is in O(n)
+- To add a value, you search for the page whose range encompasses the new key and, if there is not enough space, split the page into two. This ensures the tree remains balanced and access is in O(logn)
 
 ## Considerations
 
