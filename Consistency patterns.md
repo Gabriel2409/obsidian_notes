@@ -20,3 +20,8 @@ This is typically the approach that is taken in highly available systems using a
 ### Strong consistency
 
 After a write, reads will see it. That means that a write is acknowledged only if all the replicas are successfully written to. Strong consistency works well in systems that need transaction but it makes the system les available.
+
+
+### Combining approaches
+
+- It is possible to adopt a mixed approach where you keep some In sync replicas for better consistency while writing to the others asynchronously. For ex [[Kafka]] can do that with the correct settings.

@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-05-24
-sr-interval: 3
+sr-due: 2023-07-05
+sr-interval: 24
 sr-ease: 210
 ---
 
@@ -33,7 +33,7 @@ def subsets(nums: List[int]) -> List[List[int]]:
 
 	def dfs(i):
 		if i == len(nums):
-			res.append(stack.copy())
+			final.append(stack.copy())
 			return
 		# decision to include nums[i]
 		stack.append(nums[i])

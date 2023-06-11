@@ -11,7 +11,7 @@ sr-ease: 230
 AND: `&`
 OR: `|`
 XOR: `^`
-Shifht right: `>>`
+Shift right: `>>`
 Shift left: `<<`
 
 ## Counting bits

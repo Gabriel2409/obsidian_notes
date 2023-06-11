@@ -18,5 +18,5 @@ https://grpc.io/
 
 ## Design
 
-- In REST, we access resources (/users, /docs) and the HTTP Method detrrmines the action (GET, POST)
+- In REST, we access resources (/users, /docs) and the HTTP Method determines the action (GET, POST)
 - In gRPC, each endpoint has an action associated (ex: sayHello)
