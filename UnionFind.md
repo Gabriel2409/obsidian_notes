@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-02
-sr-interval: 17
+sr-due: 2023-08-07
+sr-interval: 55
 sr-ease: 244
 ---
 
@@ -8,14 +8,14 @@ sr-ease: 244
 
 ## Definition
 
-Union-Find is a useful tool for keeping track of nodes connected in a [[Graph]] and detecting cycles in a graph. Note that this can usually be done with dfs as well (see [[Matrix traversal]] and [[Adjacency list traversal]]) but while dfs works well with a static graph,
-union find shines when we are adding edges overtime
+UnionFind is a useful tool for keeping track of nodes connected in a [[Graph]] and detecting cycles in a graph. Note that this can usually be done with DFS as well (see [[Matrix traversal]] and [[Adjacency list traversal]]) but while DFS works well with a static graph,
+UnionFind shines when we are adding edges overtime
 
-Union find operates on disjoint sets. To perform a union on two vertices, we must ensure that they are not already connected
+UnionFind operates on disjoint sets. To perform a union on two vertices, we must ensure that they are not already connected
 
 ## Implementation
 
-Initially, all nodes point to themselves (they are their own parent in the unionfind sense).
+Initially, all nodes point to themselves (they are their own parent in the UnionFind sense).
 Each node comes with a rank which is initially set to 0
 
 ### Union

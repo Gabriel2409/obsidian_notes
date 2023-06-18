@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-05-31
-sr-interval: 18
+sr-due: 2023-08-13
+sr-interval: 61
 sr-ease: 250
 ---
 
@@ -17,14 +17,14 @@ sr-ease: 250
 - To insert a given key-value pair in a hashmap, we first use a hash function that converts our key to an integer.
 - Then we use the modulo operator to place it in the array
 
-```
+```text
 Ex: We start with an empty hashmap. Associated array capacity is 4. We want to insert A:1 in the hashmap
 A -> hashing -> 47 % 4 -> 3 -> we store A:1 at index 3 of the array
 ```
 
 ### Resizing
 
-In order to ensure that the key:value pair ends up in a vacant spot, we keep track of how many spots were occupied in the array.
+In order to ensure that the `key:value` pair ends up in a vacant spot, we keep track of how many spots were occupied in the array.
 When we occupy more than half of the capacity, we resize the array.
 This operation is a lot similar to what happens under the hood when resizing dynamic arrays:
 

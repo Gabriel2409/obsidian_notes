@@ -1,157 +1,9 @@
-#tuto #todo
+#azure
 
-## Azure AD
+https://learn.microsoft.com/en-us/certifications/exams/az-104/
 
-- `az login`
-- OR go to `>Azure Active Directory`
-
-Azure AD is a managed cloud based identity and directory management service enabling access to Azure services and other SaaS solutions
-
-### Concepts
-
-- Identity = any object that can be authenticated (user, group, managed identity, service principals)
-- Account = Identity + data attributes
-- Azure AD account = accounts created in Azure AD
-- Azure AD tenant or directory = Dedicated instance of Azure AD created during sign up of any subscription. Note that tenants can have multiple subscriptions
-
-### User accounts
-
-Click on `Manage|Users`
-
-- Type of users:
-  - Cloud Identities = users that only exist in azure AD
-  - Guest Accounts = users that exist outside of azure that can be invited (microsoft accounts for ex)
-  - Directory Synced Identities = synchronized from on permises Windows AD. Can not be created
-- Possibility to do bulk operations by uploading a csv
-
-### Groups
-
-Click on `Manage|Groups`
-Groups can be used for easier set up of RBAC. Users that are part of a group inherit its permissions
-
-- Type of groups:
-
-  - Security Group: standard groups
-  - Microsoft 365 groups: asssign a shared mailbox, calendar, sharepoint site, etc
-
-- Membership type:
-  - Assigned: add manually users to a group
-  - Dynamic User: join group based on user attributes
-  - Dynamic Device: join group based on device attributes
-
-### Azure AD Join
-
-- Make sure devices are secure and follow corporate rules
-- offers SSO, device management, access to on-prems apps, etc
-
-### Self service password reset (SSPR)
-
-Click on `Manage>Users>Password reset` (premium feature)
-
-- set up multiple methods to reset password without having to go through IT help desk
-
-### Multi tenant environment
-
-Go to `Overview_Manage tenants`
-Each tenant is fully independant: no parent-child relationship
-
-## Subscriptions and Governance
-
-### Managing Subscriptions
-
-- logical container that defines billing boundary and usage (has a unique id)
-- Deployed Resources are mapped to a subscription
-- An account can have multiple subscription
-
-Note: tenant vs subscription
-**A tenant is an Azure Active Directory (Azure AD) entity. It’s the directory in which users, groups, and applications are stored. A subscription is a billing entity that you use to organize access to cloud resources. You can have multiple subscriptions in a single tenant.**
-
-### Hierarchy
-
-RBAC, policy management logs, etc... can be defined at several levels:
-
-- Management groups: scope above subscripton. There is a root management group that can contain several management groups
-- Subscriptions: By default, they are part of the root management group, but we can choose which management group they are part of
-- Resource groups
-- Resources
-
-Each scope inherits the permission of its parents.
-
-### RBAC
-
-Enables admins to grant acces to azure resources
-
-- Who: Security Principal: any identity requesting access
-- What: Role definition: set of operation a role can perform (written in JSON)
-- Where: Scope: limit of access, boundaries
-  Combination of 3: role definition atached to a service principal and a scope) = **role assignment** (max 2000 per subscription)
-
-Azure RBAC:
-
-- Used to manage access to azure resources
-- scope include management groups, subscriptions, resource groups and resources
-- example of roles: owner, contributor, reader,...
-
-Azure AD Roles:
-
-- Used to manage azure AD features
-- scope is at the tenant level
-- example roles: Global Administrator, Billing Administrator
-
-Be sure to follow the principle of least privileges
-
-### Custom and built in roles
-
-4 main built-in roles to remember in Azure RBAC:
-
-- owner: full access to resource + can delegate access
-- contributor: same as owner but can not grant access
-- reader: read access to all resources
-- user access administrator: can give access to resources
-
-Custom RBAC roles:
-
-- needed to fine tune roles
-- must define associated scope
-
-### Azure tags
-
-- add metadata to subscription, resource groups, resources
-- key value pairs allowing logical grouping : can be used to filter azure usage and cost management
-- Tags are not inherited. If you want to use them for cost management, they must be there at the resource level, not the resource group level
-
-### Resource locks
-
-- protect resources from accidental change or deletion
-- Locks support inheritance
-- Two types:
-  - Read only locks: prevents any change to the resource
-  - Delete locks: resources can be modified but not deleted
-
-### Analyzing costs
-
-- You can save costs with Azure Reserved Instances (RI)
-- Every region has a different price
-
-### Azure policies
-
-Policies can be used to define organizational standards and identify non-compliant resources
-
-- Definition: JSON Document to describe the effect
-- Scope: Where we enforce the policy
-- Assignment: assign a policy to a scope
-- Complicance: evaluate the compliance and understand non compliant resources
-
-Example of policies:
-
-- Allowed resources types
-- Allowed virtual machines
-- Allowed locations
-- Enforce tags that need to be added
-- Inherit tags from subscription or resource group (by default it is not the case)
-- Allowed resource group locations
-
-Initiatives: group policies together
+- [[Azure - Azure AD]]
+- [[Azure - Storage]]
 
 ## Virtual network
 
@@ -252,6 +104,7 @@ Then any vm could get the IP of any other VM by using its name and the private D
 - Rules are evaluated at the subnet and the NI separately
 
 Inbound traffic: source -> Subnet NSG -> NI NSG
+
 Outbound traffic: VM -> NI NSG -> Subnet NSG
 
 At the NI level: go to the vm then networking

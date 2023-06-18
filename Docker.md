@@ -124,7 +124,7 @@ Mount a file or folder from the host machine inside the container
 - Note: Portainer allows to supervise my docker host. It works because we bind the socket of the docker daemon and portainer can then access the api of the docker daemon via this socket
 
 NOTE : be careful when mounting !!
-In the example below, we bind the root folder of our machine to the conainer and host folder of the container:
+In the example below, we bind the root folder of our machine to the container and host folder of the container:
 
 - `docker container run -v /:/host -ti alphine`
   Then in the container : -`# rm /host/bin/sh` -`# exit`
@@ -272,7 +272,7 @@ Components :
 The building of the image file system is in the opposite order of the above listed components. The file system of the image is the union of all these layers.
 Example of layer per component below :
 
-```
+```text
 OS ----------->   | /bin         Runtime --> | /usr/bin/node
                   | /dev                     | /usr/bin/npm
                   | /usr                     | /usr/lib/node_modules/npm

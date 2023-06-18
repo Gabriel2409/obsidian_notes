@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-01
-sr-interval: 24
+sr-due: 2023-08-31
+sr-interval: 79
 sr-ease: 264
 ---
 
@@ -8,7 +8,7 @@ sr-ease: 264
 
 ## Definition
 
-Bfs can be used to find the shortest path In a standard graph (see [[Matrix traversal]] and [[Adjacency list traversal]]).
+BFS can be used to find the shortest path In a standard graph (see [[Matrix traversal]] and [[Adjacency list traversal]]).
 
 Dijkstra allows to find the shortest path in a directed weighted [[Graph]].
 
@@ -32,7 +32,7 @@ def dijkstra(src, adj):
     shortest = {}
     heap.heappush(h, (0, src))
     while h:
-        weight, node = heap.heappop()
+        weight, node = heapq.heappop(h)
         if node in shortest:
             continue
         shortest[node] = weight
@@ -42,5 +42,5 @@ def dijkstra(src, adj):
     return shortest
 ```
 
-- Time complexity: O(ElogE)
+- Time complexity: O(ElogV)
 - This algorithm only works if all weights are positive. If paths can be negative, we must use [[Bellman Ford Algorithm]]

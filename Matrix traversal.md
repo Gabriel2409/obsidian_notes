@@ -1,12 +1,12 @@
 ---
-sr-due: 2023-05-25
-sr-interval: 8
+sr-due: 2023-07-19
+sr-interval: 36
 sr-ease: 204
 ---
 
 #dsa #graph
 
-A [[Graph]] can sometimes be represented as matrix. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. It following the same logic as [[Adjacency list traversal]] bit there are more edges cases to watch out for.
+A [[Graph]] can sometimes be represented as matrix. Similarly to [[Tree traversal]] it is possible to perform depth first search and Breadth first search. It follows the same logic as [[Adjacency list traversal]] bit there are more edges cases to watch out for.
 
 ## Depth first search
 
