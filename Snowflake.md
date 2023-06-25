@@ -1372,6 +1372,20 @@ LIMIT 1000;
   - Nb of overlapping micro-partitions for a table column
   - Depth of overlapping micro-partitions = nb of micro-partitions I would have to look into to find one value
 
+```sql
+-- Create a table with cluster keys
+CREATE TABLE T1 (C1 date, C2 string, C3 number) CLUSTER BY (MONTH(C1), C2)
+
+-- ALTER a table to add cluster keys
+ALTER TABLE T1 (C1 date, C2 string, C3 number) CLUSTER BY (C3)
+
+-- Suspend reclustering
+ALTER TABLE T1 SUSPEND RECLUSTER;
+-- Resume reclustering
+ALTER TABLE T1 RESUME RECLUSTER;
+
+```
+
 ```text
 Depth vs overlap
 
@@ -1397,10 +1411,16 @@ SELECT SYSTEM$clustering_information('TABLE', '(col1,col3)');
 {
 "cluster_by_keys" : "LINEAR(col1, col3)",
 "notes" : "...",
+// total nb of micropartitions in the table
 "total_partition_count" : XX,
+// how many partitions have exclusively the key combination, the higher the better
 "total_constant_partition_count" : XX,
+// measures quality of clustering, the lower the better for overlap and depth
 "average_overlaps" : XX,
 "average_depth" : XX,
+// distribution of the depth among the micropartitions
+// Each depth is associated with the number of values that have said depth
+// Ideally, we would want a high number for low depths
 "partition_depth_histogram" : {
 	"00000" : XX,
 	"00001" : XX
@@ -1416,6 +1436,61 @@ SELECT SYSTEM$clustering_information('TABLE', '(col1,col3)');
 - Clustering is better for tables that are not modified often
 - Snowflake recommends a maximum of 3 or 4 columns with a cardinality that is not too low and not too high and with the lowest cardinality selected first
 
+Example below
+
 ```sql
-CREATE TABLE T1 (C1 date, C2 string, C3 number) CLUSTER BY (MONTH(C1), C2)
+-- context
+USE ROLE SYSADMIN;
+USE DATABASE SNOWFLAKE_SAMPLE_DATA;
+USE SCHEMA TPCDS_SF100TCL;
+
+
+-- check cluster_by column to see if the table has a cluster key (will be empty if there is no cluster)
+SHOW TABLES;
+SELECT "name", "database_name", "schema_name", "cluster_by" FROM TABLE(result_scan(last_query_id()));
+
+
+-- shows how the table is clustered according to the CLUSTERED keys
+-- will throw an error if table is not clustered
+SELECT SYSTEM$clustering_information('CATALOG_SALES');
+
+-- shows how the table is clustered according to the SPECIFIED key(s)
+SELECT SYSTEM$clustering_information('CATALOG_SALES', '(cs_sold_date_sk)');
+
+-- very fast retrieval when using a good clustered key
+-- query profile shows that we only scanned 4 micropartitions
+SELECT CS_SOLD_DATE_SK, CS_SOLD_TIME_SK, CS_ITEM_SK, CS_ORDER_NUMBER FROM CATALOG_SALES
+WHERE CS_SOLD_DATE_SK = 2451092 AND CS_ITEM_SK = 140947;
+
+-- Monitor automatic clustering
+USE ROLE ACCOUNTADMIN;
+USE DATABASE SNOWFLAKE;
+USE SCHEMA ACCOUNT_USAGE;
+SELECT START_TIME, END_TIME, CREDITS_USED, NUM_BYTES_RECLUSTERED, TABLE_NAME, SCHEMA_NAME, DATABASE_NAME
+FROM AUTOMATIC_CLUSTERING_HISTORY;
+```
+
+## Search optimization service
+
+- Snowflake is best suited for analytics workload
+- However, there are scenarios where a user might need to look up an individual value in a very large table
+- The Search Optimization Service is a table level property aimed at improving the performance of selective point lookup queries, typically returning 1 or a small nb of rows: `WHERE XX = 'YY'` or `WHERE XX IN ('YY', 'ZZ')`
+- A background process creates and maintains a search access path recording metadata on the table
+- Selective lookup queries will use these metadata to find data faster than the usual pruning mechanism
+- Computes storage and compute resources
+
+```sql
+
+-- implementation is easy as it is a table level property
+ALTER TABLE MYTABLE ADD SEARCH OPTIMIZATION;
+
+-- remove it
+ALTER TABLE MYTABLE DROP SEARCH OPTIMIZATION;
+
+-- check search optimization column
+SHOW TABLES;
+SELECT "search_optimization", -- wheter service is enabled
+"search_optimization_progress", -- percentage of table optimized so far
+"search_optimization_bytes"
+FROM TABLE(result_scan(last_query_id()));
 ```
