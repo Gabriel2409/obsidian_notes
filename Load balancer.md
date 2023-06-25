@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-11
-sr-interval: 3
+sr-due: 2023-07-13
+sr-interval: 21
 sr-ease: 250
 ---
 
@@ -34,7 +34,7 @@ Note: they can usually handle very high throughput
 
 - Transport layer LB
 - Forwards network packets to and from the upstream server
-- Faster but not flexible (strategies limited to simple ones such as roibd robin, IP hashing,...)
+- Faster but not flexible (strategies limited to simple ones such as round robin, IP hashing,...)
 
 ### Layer 7 LB
 

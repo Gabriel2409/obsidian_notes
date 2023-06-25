@@ -40,3 +40,8 @@ Stateless vs stateful:
 
 - stateless systems are easier to scale: we just need to add computing resources
 - stateful systems are harder to scale: we need to synchronise the state between the machines. This is why for smaller applications, it may make sense to keep a central database on one node. However, this may be not enough but larger applications.
+
+
+- [[Shared memory architecture]]
+- [[Shared disk architecture]]
+- [[Shared nothing architecture]]

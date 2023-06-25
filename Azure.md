@@ -35,7 +35,7 @@ System routes allow us to
 
 - Communicate between VMs in the same subnet
 - Communicate between VMs in different subnets in the same network
-- Communicate from VM to Internet (No need to configure a NAT gateway like in other providers. It is blocked by defautl though)
+- Communicate from VM to Internet (No need to configure a NAT gateway like in other providers. It is blocked by default though)
 - Communicate via Site-to-Site and ExpressRoute connection while using VPN gateways
 
 Route tables allow us to create User Defined Routes and overwrite system routes to reroute the traffic

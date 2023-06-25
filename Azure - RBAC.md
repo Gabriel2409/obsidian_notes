@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-21
-sr-interval: 3
+sr-due: 2023-06-29
+sr-interval: 7
 sr-ease: 250
 ---
 
@@ -16,7 +16,7 @@ Enables admins to grant acces to azure resources
 - What: Role definition: set of operation a role can perform (written in JSON)
 - Where: Scope: limit of access, boundaries
 
-  =>Combination of 3: role definition atached to a service principal and a scope) = **role assignment** (max 2000 per subscription)
+  =>Combination of 3 (role definition atached to a service principal and a scope) = **role assignment** (max 2000 per subscription)
 
 ## Azure vs Azure AD roles
 

@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-11
-sr-interval: 3
+sr-due: 2023-07-20
+sr-interval: 25
 sr-ease: 250
 ---
 
@@ -12,7 +12,7 @@ https://grpc.io/
 - Can not be used natively in the browser: you need a proxy gRPC-web because it needs fine grain control over HTTP/2 that the browser usually does not provide
 - typically used for server to server communication
 - Faster than REST: instead of sending JSON, it sends Protocol Buffers (object with a schema where fields are ordered) that are serializable in Binary format
-- Because it is built on HTTP / 2, allows streaming (one and bidirectional), without having to reply on another protocol such as Websockets
+- Because it is built on HTTP / 2, allows streaming (one and bidirectional), without having to rely on another protocol such as Websockets
 - Less tooling than REST
 - does not use status code but error message => custom error handling needed
 

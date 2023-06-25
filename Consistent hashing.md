@@ -1,4 +1,4 @@
-#dsa
+#sd
 
 ## Problem
 
@@ -22,3 +22,5 @@ When a key is hashed, you move clockwise until you encounter a server.
 To evenly distribute load in case of à server failure, you can put virtual nodes on the cercle (each mapped to an existing server)
 
 It is also possible to implement a flush mechanism to redirect existing keys to the correct server when the number of servers change
+
+Note: Consistent hashing has NOTHING TO DO with [[Consistency patterns]] or the C of [[ACID]]

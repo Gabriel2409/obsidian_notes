@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-03
-sr-interval: 3
+sr-due: 2023-07-23
+sr-interval: 31
 sr-ease: 250
 ---
 
@@ -12,7 +12,7 @@ A LRU Cache is a type of [[Cache]] with limited capacity that keeps only the mos
 
 ## Implementation
 
-A possible implemetation is by using a hashmap as the cache and a doubly linked list to keep the values in the correct order.
+A possible implementation is by using a hashmap as the cache and a doubly linked list to keep the values in the correct order.
 At the high level:
 
 - On get:

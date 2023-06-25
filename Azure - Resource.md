@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-21
-sr-interval: 3
+sr-due: 2023-07-03
+sr-interval: 11
 sr-ease: 250
 ---
 
@@ -8,6 +8,6 @@ sr-ease: 250
 
 See [[Azure - Hierarchy]]
 
-In Azure, a resource is **an entity managed by Azure**. Resources are part of à unique [[Azure - Resource group]]
+In Azure, a resource is **an entity managed by Azure**. Resources are part of a unique [[Azure - Resource group|Resource group]]
 
 Virtual machines, virtual networks, and storage accounts are all examples of Azure resources.
