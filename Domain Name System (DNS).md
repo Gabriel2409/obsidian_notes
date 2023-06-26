@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-11
-sr-interval: 3
+sr-due: 2023-07-25
+sr-interval: 29
 sr-ease: 250
 ---
 
@@ -37,7 +37,7 @@ Notes:
 
 The DNS system needs:
 
-- The DNS protocal which will allow to exchange information about domains
+- The DNS protocol which will allow to exchange information about domains
 - A DNS server = a software able to handle DNS zones and answer DNS requests
 
 Note: Usually DNS requests are based on UDP protocol on port 53
