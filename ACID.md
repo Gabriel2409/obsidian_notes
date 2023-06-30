@@ -34,7 +34,9 @@ Isolation means that **concurrently executing transactions are isolated from eac
 Most databases are accessed by several clients at the same time. If they are accessing
 the same database records, you can run into concurrency problems (race conditions).
 
-The database ensures that when the transactions have committed, the result is the same as if they had run serially (one after another), even though in reality they may have run concurrently
+In the strongest [[Transaction Isolation levels|isolation level]],The database ensures that when the transactions have committed, the result is the same as if they had run serially (one after another), even though in reality they may have run concurrently.
+
+
 
 ## Durability
 

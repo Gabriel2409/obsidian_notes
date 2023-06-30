@@ -19,6 +19,7 @@ Among them, `Database` are organized into `Schema` which are comprised of differ
 
 - [[Snowflake - Organisation and Account]]
 - [[Snowflake - Database, Schema, Table, View]]
+- [[Snowflake - Built in functions (examples)]]
 - [[Snowflake - UDFs, external functions and procedures]]
 - [[Snowflake - Sequences]]
 - [[Snowflake - Tasks and streams]]

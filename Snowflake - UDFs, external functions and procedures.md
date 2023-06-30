@@ -8,6 +8,7 @@ sr-ease: 226
 
 see [[Snowflake - Objects]]
 
+Note: snowflake comes with built-in functions that can be useful to explore before creating custom functions: [[Snowflake - Built in functions (examples)]]
 
 ### User Defined functions(UDFs)
 

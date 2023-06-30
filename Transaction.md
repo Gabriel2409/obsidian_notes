@@ -7,6 +7,7 @@ Conceptually, all the reads and writes in a transaction are executed as one oper
 In most SQL databases, transactions statisfy the [[ACID]] safety guarantees.
 In such dbs, everything between a BEGIN TRANSACTION and a COMMIT statement is
 considered to be part of the same transaction.
+=> More details on the I of Acid here: [[Transaction Isolation levels]]
 
 Systems that do not meet the ACID criteria are sometimes called BASE, which
 stands for Basically Available, Soft state, and Eventual consistency. This is even

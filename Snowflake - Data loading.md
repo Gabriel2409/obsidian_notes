@@ -10,11 +10,13 @@ sr-ease: 230
 
 - [[Snowflake - Direct loading]]
 - [[Snowflake - Stage]]
+- [[Snowflake - Directory table]]
 - [[Snowflake - File format]]
 - [[Snowflake - Semi-structured data]]
 - [[Snowflake - Bulk loading with COPY INTO table]]
 - [[Snowflake - Continuous loading with Snowpipe]]
 - [[Snowflake - Loading semi-structured data]]
+- [[Snowflake - File Support REST API]]
 
 ### Best practices for data loading
 
