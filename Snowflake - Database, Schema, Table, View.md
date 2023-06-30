@@ -1,4 +1,10 @@
-#snowflake 
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 226
+---
+
+#snowflake
 see [[Snowflake - Objects]]
 
 ### Database and schemas
@@ -6,9 +12,10 @@ see [[Snowflake - Objects]]
 - Must have a unique identifier in an account
 
 ```sql
-CREATE DATABASE MYDATABASE; -- Basic creation
-
-CREATE DATABASE MYCLONE CLONE MYOTHERDB; -- Clone an existing db
+-- Basic creation
+CREATE DATABASE MYDATABASE;
+-- Clone an existing db
+CREATE DATABASE MYCLONE CLONE MYOTHERDB;
 
 -- create a replica of a db in another account
 CREATE DATABASE MYDB1
@@ -24,9 +31,12 @@ Schemas allow for further segmentation
 - Schemas must have a unique identifier in a database
 
 ```sql
-CREATE SCHEMA MYSCHEMA; -- Basic creation
-
-CREATE SCHEMA MYCLONE CLONE MYOTHERSCHEMA; -- Clone an existing schema
+-- switch database
+USE DATABASE MYDATABASE;
+-- Basic creation
+CREATE SCHEMA MYSCHEMA;
+-- Clone an existing schema
+CREATE SCHEMA MYCLONE CLONE MYOTHERSCHEMA;
 ```
 
 A **namespace** consists of a database and a schema together: `MYDB.MYSCHEMA`
@@ -84,7 +94,8 @@ SELECT COL1, COL2 FROM MY_TABLE;
 CREATE MATERIALIZED VIEW MYVIEW AS
 SELECT COL1, COL2 FROM MY_TABLE;
 
--- suspend a materialized view to pause the update (also makes it inaccessible)
+-- suspend a materialized view to pause the update
+-- (also makes it inaccessible)
 ALTER MATERIALIZED VIEW MYVIEW SUSPEND;
 
 -- restarts the background process
@@ -103,7 +114,7 @@ Check views with `SHOW VIEWS;` and `SHOW MATERIALIZED VIEWS`
 - set context with sql or select it from dropdown from within the script.
 
 ```sql
--- Set context so that we don't have to specify db and schema on all queries
+-- Set context
 USE ROLE ACCOUNTADMIN;
 USE WAREHOUSE COMPUTE_WH;
 USE DATABASE SNOWFLAKE_SAMPLE_DATA;
@@ -119,7 +130,8 @@ SHOW TABLES;
 SHOW TABLES LIKE 'PA%';
 
 -- show name column from before last query
-SELECT "name" FROM TABLE(result_scan(last_query_id(-2)));
+SELECT "name" FROM
+TABLE(result_scan(last_query_id(-2)));
 
 -- Create new db
 CREATE DATABASE DEMO_DB;
@@ -135,14 +147,15 @@ CREATE TABLE PERMANENT_TABLE(
 CREATE TEMPORARY TABLE TEMPORARY_TABLE(
     NAME STRING,
     AGE INT
-); -- will disappear after loging out and relogging in.
+); -- will disappear after logging out and relogging in.
 CREATE TRANSIENT TABLE TRANSIENT_TABLE(
     NAME STRING,
     AGE INT
 );
 SHOW TABLES; -- check kind (should be TABLE, TEMPORARY and TRANSIENT)
 
--- successful, see list of parameters here: https://docs.snowflake.com/en/sql-reference/parameters
+-- successful, see list of parameters here:
+-- https://docs.snowflake.com/en/sql-reference/parameters
 ALTER TABLE PERMANENT_TABLE SET DATA_RETENTION_TIME_IN_DAYS = 90;
 
 -- failure, can only be 1 or 0;
@@ -159,7 +172,8 @@ SELECT * FROM PERMANENT_TABLE;
 CREATE MATERIALIZED VIEW MATERIALIZED_VIEW AS
 SELECT * FROM PERMANENT_TABLE;
 
- -- check is_secure and is_materialized fields. text contains the view definition
+ -- check is_secure and is_materialized fields.
+ -- text contains the view definition
 SHOW VIEWS;
 SELECT "name", "database_name", "schema_name", "is_secure", "is_materialized", "text"
 FROM TABLE(result_scan(last_query_id()));

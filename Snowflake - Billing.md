@@ -1,10 +1,16 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Billing
 
 Note: snowflake credits are a billing unit of measure for compute resources
 
-- On demand (Pay as you go with min 25$) VS Pay for usage upfront (lower rate)
+- On demand (Pay as you go with min 25$ per month) VS Pay for usage upfront (lower rate)
 - There are 5 main areas where an account is billed:
   - **Virtual warehouse Service**: operations that use user managed virtual warehouses
     - Uses snowflake credits

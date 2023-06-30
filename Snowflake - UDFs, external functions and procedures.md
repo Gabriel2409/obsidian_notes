@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 226
+---
+
 #snowflake
 
 see [[Snowflake - Objects]]
@@ -35,9 +41,9 @@ CREATE FUNCTION area_of_circle(radius FLOAT)
 ```
 
 - UDFs can be called as part of a SQL statement: `SELECT area_or_circle(col1) FROM MY_TABLE;`
-- UDFs can be overloaded (we can create multiple with the same name provided nb of arguments are different)
+- UDFs can be overloaded (we can create multiple with the same name provided nb of parameters are different)
 
-- To specify a language and enable use of high level programming features:
+- possibility to specify a language and enable use of high level programming features:
 - Note: Javascript UDFs can refer to themselves recursively
 - Snowflake data types are mapped to JavaScript data types, for ex integer are mapped to double in js.
 

@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-29
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 ## Account Usage and Information schema
 
@@ -13,7 +19,7 @@
   - INFORMATION_SCHEMA: not unique to snowflake, based on SQL-92 ANSI Information Schema
     - Views for all objects contained in db
     - Metadata for account level objects (such as roles, warehouses and databases)
-    - Table functions displaying metadata for historical and usage data accros an account
+    - Table functions displaying metadata for historical and usage data across an account
     - Output of a view depends on the privileges of the user
 
 ACCOUNT_USAGE and INFORMATION_SCHEMA are quite similar BUT:

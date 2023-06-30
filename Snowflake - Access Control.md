@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-29
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Access Control
@@ -5,15 +11,15 @@
 ### RBAC and DAC
 
 - Two ways:
-  - RBAC: Privilege granted to a role granted to a user, similar to [[Azure - RBAC]],
-  - DAC (Discretionary access control): each object has its owner who in turn can grant access to that object
+  - **RBAC**: Privilege granted to a role granted to a user, similar to [[Azure - RBAC]],
+  - **DAC** (Discretionary access control): each object has its owner who in turn can grant access to that object
     - Every securable object is owned by a single role, which can be seen when running `SHOW ...`
     - the owner can grant and remove privileges, transfer ownership to another role,..
     - Access to objects is also defined by privileges granted to roles
 
 ### Role
 
-- A role is an entity to which privileges on securable objects can be granted (GRANT) or revoked (REVOKE): `GRANT USAGE ON DATABASE MYDB TO ROLE MYROLE;`
+- A role is an entity to which privileges on securable objects can be granted with`GRANT` or revoked with `REVOKE`: `GRANT USAGE ON DATABASE MYDB TO ROLE MYROLE;`
 - roles are assigned to users and a user can switch between roles within a snowflake session.
 - As roles are also securable objects, roles can be granted to other roles as well: `GRANT ROLE ROLE3 TO ROLE ROLE2`: parent roles inherit privileges of children roles
 
@@ -33,7 +39,8 @@ USERADMIN
 			   PUBLIC
 ```
 
-- System roles can not be dropped but we can add privileges to them. But this is STRONGLY discouraged. It is better to create custom roles instead. It is recommended to create a hierarchy of custom roles with the top-most custom role assigned to the `SYSADMIN` role so that `SYSADMIN` can manage the objects owned by the custom role
+- System roles can not be dropped but we can add privileges to them. But this is STRONGLY discouraged. It is better to create custom roles instead. 
+- It is recommended to create a hierarchy of custom roles with the top-most custom role assigned to the `SYSADMIN` role so that `SYSADMIN` can manage the objects owned by the custom role
 
 ### Privilege
 

@@ -1,4 +1,5 @@
 #snowflake
+
 see [[Snowflake - Data loading]] and [[Snowflake - Semi-structured data]]
 
 ## Loading semi-structured data
@@ -72,9 +73,11 @@ SKIP_BYTE_ORDER_MARK=TRUE;
 
 -- in snowsql: PUT file:////path/to/films.json @FILMS_STAGE auto_compress=false;
 
-CREATE OR REPLACE TABLE FILMS_ELT (JSON_VARIANT VARIANT);
+CREATE OR REPLACE TABLE 
+FILMS_ELT (JSON_VARIANT VARIANT);
 
-COPY INTO FILMS_ELT FROM @FILMS_STAGE/films.json
+COPY INTO FILMS_ELT 
+FROM @FILMS_STAGE/films.json
 FILE_FORMAT=JSON_FILE_FORMAT
 FORCE=TRUE -- allows reloading of the same file
 ;

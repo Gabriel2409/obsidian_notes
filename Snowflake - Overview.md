@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Overview
@@ -9,16 +15,16 @@ Data platform
 - data warehouse:
   - Structured and relational data
   - ANSI standard SQL
-  - ACID compliant transactions
+  - [[ACID]] compliant [[Transaction]]
   - Data stored in databases, schemas and tables
 - data lake:
   - scalable storage and compute
   - schema does not need to be defined upfront
   - Native processing of semi structured data formats
 - data engineering
-  - Simplify data ingestion for batch and streaming workloads (COPY INTO and Snowpipe)
+  - Simplify data ingestion for batch and streaming workloads ([[Snowflake - Bulk loading with COPY INTO table|Bulk loading]] and [[Snowflake - Continuous loading with Snowpipe|Snowpipe]])
   - Instantiate on the fly separate compute clusters to eliminate contention between ETL and analytic jobs
-  - Native objects to create data pipelines (Tasks and Streams)
+  - Native objects to create data pipelines ([[Snowflake - Tasks and streams]])
   - Data encryption at rest and in transit
 - data science:
   - Have a unique centralized storage
@@ -44,7 +50,7 @@ SaaS
 - transparent updates and patches
 - Pay as you use subscription model
 - easy to access
-- automatic optimisation (no need to specify indexes or static partitions)
+- automatic optimisation (no need to specify [[Index]] or static partitions)
 
 
 ## Snowflake editions

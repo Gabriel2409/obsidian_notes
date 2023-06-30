@@ -1,4 +1,11 @@
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 224
+---
+
 #snowflake
+
 see [[Snowflake - Data loading]]
 
 ### Bulk loading with COPY INTO table
@@ -40,7 +47,7 @@ COPY INTO MYTABLE FROM @MYSTAGE
 VALIDATION_MODE = 'RETURN_ERRORS'; -- or RETURN_N_ROWS|RETURN_ALL_ERRORS
 
 -- View all errors encountered in a previous COPY INTO execution
--- accest the job id of a previous query or the last load operation executed
+-- access the job id of a previous query or the last load operation executed
 SELECT * FROM TABLE(VALIDATE(MYTABLE,JOB_ID => '<job_id>'));
 ```
 

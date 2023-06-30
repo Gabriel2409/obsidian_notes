@@ -12,11 +12,13 @@
 
 ```sql
 -- creation
-CREATE WAREHOUSE MY_WH WAREHOUSE_SIZE='MEDIUM';
+CREATE WAREHOUSE MY_WH 
+WAREHOUSE_SIZE='MEDIUM';
 -- deletion
 DROP WAREHOUSE MY_WH;
 -- update params
-CREATE WAREHOUSE MY_WH WAREHOUSE_SIZE='SMALL';
+ALTER WAREHOUSE MY_WH 
+WAREHOUSE_SIZE='SMALL';
 
 -- get information on warehouses, such as nb of running and queued requests
 SHOW WAREHOUSES;
@@ -52,8 +54,8 @@ CREATE WAREHOUSE MY_WH INITIALLY_SUSPENDED=TRUE;
 ## Size
 
 - To choose a size, snowflake recommends experimenting with a representative query of a workload
-  - Data loading does not typically require large virtual warehouses and sizing up does not guarantee increased data loading performace.
-  - Also see billing
+  - Data loading does not typically require large virtual warehouses and sizing up does not guarantee increased data loading performance.
+  - Also see [[Snowflake - Billing]]
 
 ## Resource monitors
 
@@ -90,7 +92,8 @@ USE DATABASE SNOWFLAKE;
 USE SCHEMA ACCOUNT_USAGE;
 
 -- all information on billing
-SELECT * FROM WAREHOUSE_METERING_HISTORY WHERE WAREHOUSE_NAME = 'COMPUTE_WH';
+SELECT * FROM WAREHOUSE_METERING_HISTORY
+WHERE WAREHOUSE_NAME = 'COMPUTE_WH';
 
 -- Total credits grouped by warehouse
 SELECT WAREHOUSE_NAME, SUM(CREDITS_USED) AS TOTAL_CREDITS_USED

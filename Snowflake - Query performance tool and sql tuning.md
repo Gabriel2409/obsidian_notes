@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Query performance analysis tool
@@ -5,7 +11,7 @@
 - Activity > Query history tab displays query history for the last 14 days
 - Users can view other users queries but not view their results
 - Click on a query to have a breakdown of the actions that snowflake actually did. Each box is an operation and the line represents relationships between blocks. You can also see the nb of rows you get at each step and the % of the total time it took. Click on a box to have statistics and a profile overview
-- You can also check the query plan by running `EXPLAIN <MY QUERY>;`
+- You can also check the query plan by running `EXPLAIN <MYQUERY>;`
 
 NOTE: on the statistics you can see spilling information (nb of bytes spilled to local storage and spilled to remote storage): if there is no problem with the query, it may indicate that the warehouse in memory and then disk storage is too small
 

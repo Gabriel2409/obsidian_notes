@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 
@@ -8,7 +14,7 @@
 - The Search Optimization Service is a table level property aimed at improving the performance of selective point lookup queries, typically returning 1 or a small nb of rows: `WHERE XX = 'YY'` or `WHERE XX IN ('YY', 'ZZ')`
 - A background process creates and maintains a search access path recording metadata on the table
 - Selective lookup queries will use these metadata to find data faster than the usual pruning mechanism
-- Computes storage and compute resources
+- Uses storage and compute resources
 
 ```sql
 

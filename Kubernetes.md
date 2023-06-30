@@ -1,4 +1,4 @@
-#tuto #todo
+#tuto #todo #k8s
 
 # kubectl tricks
 
@@ -184,7 +184,7 @@ Note: In this example, install is done on VM:
 - run `microk8s status` inside the vm to see all enabled and disabled addons
 - before using cluster and deploying app, we can install CodeDNS via dns addon: `microk8s enable dns`
 
-# K3s
+## K3s
 
 Very light kubernetes distribution. Same as above, installed on a VM
 
@@ -218,7 +218,7 @@ bash -c "curl -sfL https://get.k3s.io | K3S_URL=\"https://$IP:6443\" K3S_TOKEN=\
 
 ```
 
-# K3d
+## K3d
 
 Can deploy K3s clusters such that each node runs in a docker container. Installed directly
 on local maching. Docker desktop must be running on WSL

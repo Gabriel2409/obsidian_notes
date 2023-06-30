@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Snowflake Objects
@@ -13,6 +19,6 @@ Among them, `Database` are organized into `Schema` which are comprised of differ
 
 - [[Snowflake - Organisation and Account]]
 - [[Snowflake - Database, Schema, Table, View]]
-- [[Snowflake - Functions and procedures]]
+- [[Snowflake - UDFs, external functions and procedures]]
 - [[Snowflake - Sequences]]
 - [[Snowflake - Tasks and streams]]

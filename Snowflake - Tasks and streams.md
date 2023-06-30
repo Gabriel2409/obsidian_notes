@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 224
+---
+
 #snowflake
 
 see [[Snowflake - Objects]]
@@ -35,9 +41,13 @@ AS
 - To progress the offset of a stream, insert it into a downstream table
 
 ```sql
-CREATE TABLE MYTABLE(NAME STRING,AGE INT);
+CREATE TABLE 
+MYTABLE(NAME STRING,AGE INT);
+
 INSERT INTO MYTABLE VALUES ('a', 1);
-CREATE STREAM MYSTREAM ON TABLE PERMANENT_TABLE;
+
+CREATE STREAM MYSTREAM 
+ON TABLE MYTABLE;
 
 SELECT * FROM MYSTREAM; -- does not show the initial record
 
@@ -56,7 +66,8 @@ CREATE OR REPLACE TABLE TABLE2(
     METADATA$ROW_ID STRING
 );
 
-INSERT INTO TABLE2 SELECT * FROM MYSTREAM; -- adds stream elements to table and progresses the offset
+INSERT INTO TABLE2 
+SELECT * FROM MYSTREAM; -- adds stream elements to table and progresses the offset
 
 SELECT * FROM MYSTREAM; -- empty
 SELECT SYSTEM$STREAM_HAS_DATA('MYSTREAM'); -- returns False

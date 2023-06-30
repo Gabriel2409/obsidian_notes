@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 226
+---
+
 #snowflake 
 - see [[Snowflake - Objects]]
 

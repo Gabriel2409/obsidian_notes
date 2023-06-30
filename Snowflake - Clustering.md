@@ -1,4 +1,11 @@
-#snowflake 
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 230
+---
+
+#snowflake
+
 ## Clustering
 
 - Snowflake stores data in micro partitions. If data is correctly clustered, it can help with micro-partition pruning and make queries along a clustered dimension faster. On the other hand, if we try to get result along a dimension that is poorly clustered, we have to retrieve all micro-partitions
@@ -68,7 +75,7 @@ SELECT SYSTEM$clustering_information('TABLE', '(col1,col3)');
 - Clustering can degrade, particularly if the table is large and there are a lot of DML operations
 - Snowflake support automatic clustering by designating one or more table columns as clustering keys (we can also define them on materialized views): the goal is to colocate date of the clustering key in the same micro-partitions
 - Automatic clustering is a serverless feature and uses compute and storage cost
-- Clustering should be reserved for large tables that in the multi terabyte range where typical queries filter a large part of the data
+- Clustering should be reserved for large tables in the multi terabyte range where typical queries filter a large part of the data
 - Clustering is better for tables that are not modified often
 - Snowflake recommends a maximum of 3 or 4 columns with a cardinality that is not too low and not too high and with the lowest cardinality selected first
 

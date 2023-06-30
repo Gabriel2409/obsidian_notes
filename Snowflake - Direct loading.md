@@ -1,4 +1,11 @@
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
+
 see [[Snowflake - Data loading]]
 
 ### Insert statement
@@ -41,7 +48,7 @@ SELECT * FROM FILMS;
 -- Insert  rows from another table - only works if tables are structurally identical
 INSERT INTO FILMS_2000 SELECT * FROM FILMS WHERE RELASE_DATE > DATE('2000-01-01');
 
--- removes all rows and then inserts statement
+-- Truncages table (removes all rows) and then inserts statement
 INSERT OVERWRITE INTO FILMS_2000 SELECT * FROM FILMS;
 
 ```

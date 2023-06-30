@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-29
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Network policies

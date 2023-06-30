@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-30
+sr-interval: 1
+sr-ease: 226
+---
+
 #snowflake
 
 - see [[Snowflake - Data loading]] and [[Snowflake - Data unloading]]

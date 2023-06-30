@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-28
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 see [[Snowflake - Objects]]
@@ -11,10 +17,14 @@ see [[Snowflake - Objects]]
 
 `ORGADMIN` can create accounts, enable cross-account features, monitor account usage
 
-By default, even if you have the `ORGADMIN` role, it is not enable by default.
+By default, even if you have the `ORGADMIN` role, it is not enabled by default.
 
-In snowsql, run `use role ORGADMIN;`
-`SHOW ORGANIZATION ACCOUNTS;` will show the accounts
+```sql
+-- switch role
+use role ORGADMIN;
+-- show all accounts
+SHOW ORGANIZATION ACCOUNTS;
+```
 
 ### Account
 

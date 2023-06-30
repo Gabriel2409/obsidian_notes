@@ -1,3 +1,9 @@
+---
+sr-due: 2023-06-29
+sr-interval: 1
+sr-ease: 230
+---
+
 #snowflake
 
 ## Authentication and Authorization
@@ -59,7 +65,7 @@ CREATE SECURITY INTEGRATION <name>
 ALTER USER USER1 SET RSA_PUBLIC_KEY='xxxx';
 ```
 
-- Configure key roation
+- Configure key rotation
 
 ```sql
 ALTER USER USER1 SET RSA_PUBLIC_KEY_2='yyyy';

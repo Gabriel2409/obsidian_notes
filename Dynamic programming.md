@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-05
-sr-interval: 27
+sr-due: 2023-10-08
+sr-interval: 103
 sr-ease: 270
 ---
 
@@ -66,7 +66,7 @@ By using an iterative approach, we can get rid of the recursion stack. This is u
 
 ```python
 def fib(n):
-	dp = [[] for _ in range(n +1)]
+	dp = [0 for _ in range(n +1)]
 	dp[0] = 0
 	dp[1] = 1
 
@@ -89,7 +89,7 @@ def fib(n):
 
 	for i in range(2, n+1):
 		dp[0], dp[1] = dp[1], dp[0] + dp[1]
-	return dp[2]
+	return dp[1]
 ```
 
 - Space complexity: O(1)
