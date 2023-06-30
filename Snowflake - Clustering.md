@@ -8,7 +8,7 @@ sr-ease: 230
 
 ## Clustering
 
-- Snowflake stores data in micro partitions. If data is correctly clustered, it can help with micro-partition pruning and make queries along a clustered dimension faster. On the other hand, if we try to get result along a dimension that is poorly clustered, we have to retrieve all micro-partitions
+- Snowflake stores data in [[Snowflake - Micro-partitions|micro-partitions]]. If data is correctly clustered, it can help with micro-partition pruning and make queries along a clustered dimension faster. On the other hand, if we try to get result along a dimension that is poorly clustered, we have to retrieve all micro-partitions
 - table data is partitioned and stored in the order it was loaded. If the data was ordered prior to ingestion, it will be naturally clustered along the order dimension
 - Snowflake maintains clustering metadata for the micro-partitions of a given table:
   - Total nb of micro-partitions

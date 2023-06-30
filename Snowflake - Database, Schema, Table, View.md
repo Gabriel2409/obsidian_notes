@@ -5,6 +5,7 @@ sr-ease: 226
 ---
 
 #snowflake
+
 see [[Snowflake - Objects]]
 
 ### Database and schemas
@@ -26,6 +27,10 @@ CREATE DATABASE MYDB1
 CREATE DATABASE SHARED_DB FROM SHARE UTT783.SHARE
 ```
 
+- More details on cloning: [[Snowflake - Cloning]]
+- More details on replication: [[Snowflake - Replication]]
+- More details on shares: [[Snowflake - Secure data sharing]]
+
 Schemas allow for further segmentation
 
 - Schemas must have a unique identifier in a database
@@ -46,8 +51,8 @@ A **namespace** consists of a database and a schema together: `MYDB.MYSCHEMA`
 - Permanent table:
   - Default table type
   - exists until explicitely dropped
-  - **Time travel retention period** = how long can we go into the past to restore data (up to 90 days for an enterprise account vs 1 for standard)
-  - 7 days **fail-safe**: snowflake can restore deleted data for us during this period
+  - **[[Snowflake - Time Travel and Fail Safe|Time travel retention period]]** = how long can we go into the past to restore data (up to 90 days for an enterprise account vs 1 for standard)
+  - 7 days **[[Snowflake - Time Travel and Fail Safe|fail-safe]]**: snowflake can restore deleted data for us during this period
 - Temporary table:
   - Used for transitory data
   - Persists for duration of a session
@@ -64,6 +69,7 @@ A **namespace** consists of a database and a schema together: `MYDB.MYSCHEMA`
   - no time travel or failsafe
 
 Type can be seen with `SHOW TABLES;` and checking the kind.
+Table data is stored on the storage layer across many [[Snowflake - Micro-partitions|micro-partitions]]
 
 ### View
 

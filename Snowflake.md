@@ -36,3 +36,11 @@ https://docs.snowflake.com/
 - [[Snowflake - Data unloading]]
 
 # Storage, data protection and data sharing
+
+- [[Snowflake - Micro-partitions]]
+- [[Snowflake - Time Travel and Fail Safe]]
+- [[Snowflake - Cloning]]
+- [[Snowflake - Replication]]
+- [[Snowflake - Secure data sharing]]
+- [[Snowflake - Data Marketplace]]
+- [[Snowflake - Data Exchange]]
