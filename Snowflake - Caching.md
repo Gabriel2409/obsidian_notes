@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-06-30
+sr-due: 2023-07-03
 sr-interval: 1
-sr-ease: 230
+sr-ease: 210
 ---
 
 #snowflake
@@ -52,7 +52,7 @@ SELECT COUNT(*) FROM CUSTOMER; -- returns the count
 SELECT CURRENT_USER(); -- context function
 DESCRIBE TABLE CUSTOMER; -- shows the column details
 SHOW TABLES; -- lists objects
-SELECT SYSTEM$CLUSTERING_INFORMATION('LINEITEM', ('L_ORDERKEY')); -- system function
+SELECT SYSTEM$CLUSTERING_INFORMATION('LINEITEM', '(L_ORDERKEY)'); -- system function
 
 -- Results cache --
 SELECT * FROM CUSTOMER LIMIT 1000; -- fails because warehouse is suspended

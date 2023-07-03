@@ -1,3 +1,9 @@
+---
+sr-due: 2023-07-04
+sr-interval: 1
+sr-ease: 224
+---
+
 #snowflake
 
 see [[Snowflake - Data loading]] and [[Snowflake - Semi-structured data]]

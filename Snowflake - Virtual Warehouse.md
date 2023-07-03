@@ -1,3 +1,4 @@
+#snowflake 
 ## Overview
 
 - A virtual warehouse is a named abstraction for a Massively Parallel Processing (MPP) compute cluster (see [[Snowflake - Architecture]]).

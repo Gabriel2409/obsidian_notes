@@ -13,7 +13,7 @@ sr-ease: 230
 
 Snowflake built a new architecture specifically for the cloud to do better than these two prevalent architectures: the multi cluster shared data architecture:
 
-- Data Storage layer: layer where all the data is stored
+- Data Storage layer: layer where all the data is stored.
 - Query processing layer: separate compute clusters executing the computation to process the queries using virtual warehouses that snowflake provisions and manages
 - Cloud services layers handling everything that is not storage and compute
 
@@ -30,7 +30,7 @@ Each layer is scaled independently
 - Data loaded into Snowflake is organized by databases, schemas and accessible primarily as tables
 - Snowflakes support structured and semi structured file formats (CSV, JSON, Avro, ORC, Parquet, XML)
 - When datafiles are loaded or rows inserted into a table, Snowflake reorganizes the data into its proprietary compressed, columnar table file format (optimized for OLAP workloads)
-- The data is partitioned into micro-partitions
+- The data is partitioned into [[Snowflake - Micro-partitions|micro-partitions]]
 - Storage is billed by how much is stored based on a flat rate per TB
 - Data is not directly accessible in the underlying blob storage, only via SQL commands
 

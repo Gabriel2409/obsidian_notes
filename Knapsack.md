@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-08
-sr-interval: 14
+sr-due: 2023-09-02
+sr-interval: 62
 sr-ease: 234
 ---
 
@@ -31,7 +31,7 @@ dfs(0, C)
 ```
 
 - At each step, we decide whether to including current item and decrease the remaining capacity or not including it. Then we move to next item
-- Note: for Unbounded, replace `dfs(i+1, capacity - weight[i])` with `dfs(i, capacity - weight[i])` because when we décide to including an item, we don't automatically move to the next item
+- Note: for Unbounded, replace `dfs(i+1, capacity - weight[i])` with `dfs(i, capacity - weight[i])` because when we decide to include an item, we don't automatically move to the next item
 - Time complexity = O(2^n), space = O(n)
 
 ## Top down with memoization

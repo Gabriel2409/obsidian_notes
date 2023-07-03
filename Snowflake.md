@@ -1,3 +1,9 @@
+---
+sr-due: 2023-07-03
+sr-interval: 1
+sr-ease: 217
+---
+
 #snowflake
 
 https://docs.snowflake.com/
