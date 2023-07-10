@@ -2,6 +2,7 @@
 sr-due: 2023-10-21
 sr-interval: 112
 sr-ease: 263
+reviewed: 2023-07-06
 ---
 
 #dsa #tree
@@ -274,7 +275,7 @@ def bfs_with_levels(root):
             root = q.popleft()
             final[-1].append(root.val)
             if root.left:
-                q.apend(root.left)
+                q.append(root.left)
             if root.right:
                 q.append(root.right)
     return final

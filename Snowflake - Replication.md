@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-05
+---
+
 #snowflake
 
 ## Overview
@@ -16,7 +20,7 @@
 ```sql
 -- In account1, create primary db and allow replication for account2
 ALTER DATABASE DB1
-ENABLE REPLIACTION TO ACCOUNTS ORG1.account2
+ENABLE REPLICATION TO ACCOUNTS ORG1.account2
 
 -- In account2, create your replica
 CREATE DATABASE DB1_REPLICA

@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-08
+---
+
 #snowflake
 
 ## Directory table
@@ -10,7 +14,6 @@ CREATE STAGE INT_STAGE
 DIRECTORY = (ENABLE = TRUE);
 
 -- or after
--- enables it at creation
 ALTER STAGE INT_STAGE SET
 DIRECTORY = (ENABLE = TRUE);
 ```

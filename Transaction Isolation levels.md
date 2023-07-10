@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-05
+---
+
 #sd #todo
 
 NOTE NOT FINISHED
@@ -26,7 +30,7 @@ For ex we have two identical subqueries retrieving a field for a given row but b
 
 Classic problem statement where the client reads some value from the database, modifies it, and updates it back to the database via different database Transactions. This is commonly referred to as the Read-Modify-Write cycle.
 
-For ex, client A sees value 1 in a transaction for field Counter. Then after some processing it wants to increase the counter, so he writes 2 to the Counter field.
+For ex, client A sees value 1 in a transaction for field Counter. Then after some processing it wants to increase the counter, so he writes 2 to the Counter field in another transaction.
 However at the same time client B also saw value 1 and wants to increase the counter. Final value will be 2 and not 3 (we lost the update).
 
 Write skew is a generalization of the lost update problem where a client takes a decision based on out of date data and writes back the result
@@ -79,3 +83,10 @@ Transaction 2 wants to get all dates after 2022 again: it gets a new result.
 - When a transaction is started, it gets an increasing identifier which is used to tag created_by and deleted_by fields on a row, which indicates the **Transaction** that created this row and deleted this row respectively.
 - That way a transaction will not read a value that was committed after it has started
 - Since the database maintains **multiple versions** of the rows at a given point in time, periodically the database management system runs a Garbage Collection process and removes deleted and unreferenced entries from the table freeing up space.
+
+TODO add serializable SSI and 2 phase locking
+
+## Other guarantees
+
+### Preventing lost updates
+- TODO: add atomic update

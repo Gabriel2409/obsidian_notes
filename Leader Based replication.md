@@ -1,3 +1,9 @@
+---
+sr-due: 2023-07-05
+sr-interval: 1
+sr-ease: 226
+---
+
 #sd #todo
 
 ## Overview
@@ -6,7 +12,7 @@ Also known as active/passive or master-slave replication.
 
 - One of the replicas is designated as the leader (= master / primary). When clients write to the the db, they MUST send their requests to the leader who writes to its local storage
 - The other replicas are followers (= read replicas/ slaves/ secondaries / hot standby). When the leader writes to its local storage, it also sends the data changes to all of the followers as part of a **replication log** (or **change stream**). Each follower then applies the writes in the same order as what is written on the log
-- Then when a client want to read data, it can query any of the followers
+- Then when a client wants to read data, it can query any of the followers
 
 In summary from the client point of views, followers are read only and only the leader accepts writes.
 
@@ -17,10 +23,12 @@ This mode of replication is a built-in feature of many databases and is widely u
 - Synchronous replication:
   - leader waits for acknowledgement of replica before reporting success to user.
   - Advantage: followers have up to date data (strong [[Consistency patterns|consistency]])
-  - Drawback: if follower is unavailable, write can not be processeur => it is not a good Idea to have only synchronous nodes as a crash of a single node makes the whole system unavailable
-- Asynchronous replication: - leader accepts write as soon as it receives it and does not wait for follower acknowledgement (faster write) - Followers are eventually [[Consistency patterns|consistent]] but there is no guarantee on the time it takes - Durability is weakened because we can lose data if leader crashes
-  Semi synchronous:
-- Usually one synchronous node and the rest as asynchronous node
+  - Drawback: if follower is unavailable, write can not be processed => it is not a good Idea to have only synchronous nodes as a crash of a single node makes the whole system unavailable
+- Asynchronous replication: 
+    - leader accepts write as soon as it receives it and does not wait for follower acknowledgement (faster write) - Followers are eventually [[Consistency patterns|consistent]] but there is no guarantee on the time it takes
+    - Durability is weakened because we can lose data if leader crashes
+- Semi synchronous:
+    - Usually one synchronous node and the rest as asynchronous node
 
 ## Set up new followers
 
@@ -96,5 +104,5 @@ When reading from an asynchronous follower, you can see out of date data (follow
 ### Consistent Prefix Reads
 
 - If a write depends on a previous write, because replication is asynchronous, you may see them out of order when reading from a replica
-- consistent prefix reads is a guarantee that if a sequence of writes happen in a given order, then amyone reading those writes will see them in the same order
+- consistent prefix reads is a guarantee that if a sequence of writes happen in a given order, then anyone reading those writes will see them in the same order
 - This is very hard to achieve in partitioned (sharded) databases because there is no global ordering (partitions operate independently)

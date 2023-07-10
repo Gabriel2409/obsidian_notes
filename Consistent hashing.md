@@ -1,3 +1,9 @@
+---
+sr-due: 2023-07-05
+sr-interval: 1
+sr-ease: 230
+---
+
 #sd
 
 ## Problem
@@ -19,7 +25,7 @@ Consistent hashing minimizes the traffic change when the nb of servers change.
 The idea is to map the key to a position in a circle and also map each server to a position in the circle.
 When a key is hashed, you move clockwise until you encounter a server.
 
-To evenly distribute load in case of à server failure, you can put virtual nodes on the cercle (each mapped to an existing server)
+To evenly distribute load in case of a server failure, you can put virtual nodes on the cercle (each mapped to an existing server)
 
 It is also possible to implement a flush mechanism to redirect existing keys to the correct server when the number of servers change
 

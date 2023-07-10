@@ -1,9 +1,13 @@
+---
+reviewed: 2023-07-05
+---
+
 #snowflake
 
 ## Cloning Overview
 
 - Process of creating a copy of an existing object within an account
-- Users can clone databases, schemas, tables, streams, stages, file formats, sequences, tasks and pipes (reference external stage only), see [[Snowflake - Objects]]
+- Users can clone databases, schemas, tables, streams, stages, file formats, sequences, tasks and pipes (referencing external stage only), see [[Snowflake - Objects]]
 - When cloning an object, it can allow to clone children that you can't directly clone. For ex, you can not clone a view but a cloned schemas will include the views
 - Cloning is a metadata only operation (**Zero-copy cloning**), cloning the properties, structure and configuration of its source.
   - For that reason it does NOT contribute to storage costs until data is modified or new data is added to the clone

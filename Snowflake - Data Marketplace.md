@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-06
+---
+
 #snowflake
 
 - Public area within snowsite to browse [[Snowflake - Secure data sharing|shares]] and import them into the account similary to what is done with private shares

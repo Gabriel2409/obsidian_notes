@@ -1,3 +1,10 @@
+---
+sr-due: 2023-07-05
+sr-interval: 1
+sr-ease: 230
+reviewed: 2023-07-06
+---
+
 #sd
 
 ## Definition

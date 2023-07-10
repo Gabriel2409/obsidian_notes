@@ -2,6 +2,7 @@
 sr-due: 2023-06-12
 sr-interval: 35
 sr-ease: 270
+reviewed: 2023-07-06
 ---
 
 #dsa #search
@@ -45,7 +46,10 @@ def binary_search(arr: list[int], target):
     r = len(arr) - 1
 
     while l <= r:
-        mid = l + (r - l) // 2  # avoids overflow, equivalent to (l+r)//2
+        # avoids overflow,
+        # equivalent to (l+r)//2
+        # does not apply in python though
+        mid = l + (r - l) // 2
 
         if arr[mid] < target:
             l = mid + 1

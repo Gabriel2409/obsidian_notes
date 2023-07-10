@@ -2,6 +2,7 @@
 sr-due: 2023-07-06
 sr-interval: 43
 sr-ease: 269
+reviewed: 2023-07-06
 ---
 
 #dsa #tree
@@ -77,8 +78,7 @@ This is also why we return None when l == r.
 
 ## Insertion
 
-Insertion works like look up but we progress until we reach a node that does not have
-the needee child and then add the value
+Insertion works like look up but we progress until we reach a node that does not have the needed child and then add the value
 
 ```python
 # val assumed not in tree

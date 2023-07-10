@@ -68,7 +68,7 @@ Note: the service endpoint can be seen in the vnet.
 
 With service endpoints, we are using private IP addresses but the destination is public.
 We can instead use private links to make resources not in the same VNet communicate
-Private links are one to one mapping and are truly private.
+Private links are one to one mapiping and are truly private.
 
 Example:
 

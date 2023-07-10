@@ -1,8 +1,13 @@
+---
+reviewed: 2023-07-05
+---
+
 #datascience
 
 ## Definition
 
-- Contrary to [[Random Forest]], in a forest of tree with AdaBoost, trees are usually just a node and two leaves = stump (weak learner)
+- Adaboost combines multiple [[Decision tree|decision trees]] to make predictions
+- Contrary to [[Random Forest]], in a forest of tree with AdaBoost, trees are usually just a node and two leaves = **stump (weak learner)**
 - In a random forest, each tree has an equal vote on the final classification. In contrast, in Adaboost, some stumps get more say in the final classification than others
 - In a random forest, each tree is made independently of the others. In AdaBoost, order is important; the error that a stumps makes influences how the next stump is made
 

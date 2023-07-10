@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-05
+---
+
 #snowflake
 
 ## Steps in the data lifecycle

@@ -1,3 +1,9 @@
+---
+sr-due: 2023-07-05
+sr-interval: 1
+sr-ease: 224
+---
+
 #snowflake
 
 ### Data unloading

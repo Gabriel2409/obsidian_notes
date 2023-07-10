@@ -2,6 +2,7 @@
 sr-due: 2023-08-20
 sr-interval: 53
 sr-ease: 230
+reviewed: 2023-07-08
 ---
 
 #dsa
@@ -12,7 +13,7 @@ Subset of [[Two pointers]] where we look at the subarray between left and right 
 
 ## Examples
 
-- Kadane algorithm: greedy/dynamic programming algorithm to calculate the maximum sum subarray ending at a particular position. Idea is to explore array from left to right and for each element, only include the previous sum if it is strictly positive. If it is negative, do not include it (which basically is like moving the left pointer to the current element)
+- Kadane algorithm: greedy/[[Dynamic programming]] algorithm to calculate the maximum sum subarray ending at a particular position. Idea is to explore array from left to right and for each element, only include the previous sum if it is strictly positive. If it is negative, do not include it (which basically is like moving the left pointer to the current element)
 
 ```python
 def max_subarray(nums):

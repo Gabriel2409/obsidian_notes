@@ -20,8 +20,8 @@ At each step, go left if you answered yes and right if you answered no
 
 ```mermaid
 graph TD;
-A(Good circulation)--> B(Blocked Arteries)
-A -->C(l1: 100/33)
+A(High Pressure)--> B(Pb breath)
+A -->C(l1: 10/33)
 B -->D(Chest pain)
 B-->E(l2: 13/102)
 D-->F(l3: 17/3)

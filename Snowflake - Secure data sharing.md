@@ -1,8 +1,12 @@
+---
+reviewed: 2023-07-06
+---
+
 #snowflake
 
 ## Overview
 
-- Allows an account to provide read-only access to selected database objects to other snowflake accounts WITHOUT transferring data
+- Allows an account to provide read-only access to selected database objects to other snowflake accounts **WITHOUT** transferring data
 - Other accounts will only be billed for the compute resources used to make the queries, not the storage costs
 - Sharing is enabled with an account-level SHARE object. It is created by a data provider and has 2 key configurations:
   - Grants on db objects
@@ -65,7 +69,6 @@ type = reader;
 
 -- see the reader account
 -- you can also go to Data > Private sharing in snowsite
-
 SHOW MANAGED ACCOUNTS;
 SELECT
 "url" -- url to access the reader account with the name and password
@@ -84,12 +87,13 @@ Go to the url and enter the admin name and password. You now have access to a sn
 ```sql
 USE ROLE ACCOUNTADMIN;
 -- Creates db from the share
--- here <account_locator> corresponds to the locator of the account
--- that created the share, not the reader account
+-- here <account_locator> corresponds
+-- to the locator of the account that
+-- created the share, not the reader account
 CREATE DATABASE DEMO_READER
 FROM SHARE <account_locator>.DEMO_SHARE
 
--- Grant roles to sysadmin
+
 USE ROLE SYSADMIN;
 
 -- we need a warehouse for compute
@@ -117,22 +121,25 @@ Now within the main account:
 
 ```sql
 -- Add new objects to the share
-GRANT SELECT ON VIEW DEMO_SEC_VIEW TO SHARE DEMO_SHARE;
+GRANT SELECT ON VIEW DEMO_SEC_VIEW
+TO SHARE DEMO_SHARE;
 ```
 
 Then in the reader account
 
 ```sql
--- this time it works. Added the view to the share
--- made it immediately accessible
+-- this time it works. Adding the
+-- view to the share made it
+-- immediately accessible
 SELECT * FROM DEMO_SEC_VIEW;
 ```
 
 Finally in the main account:
 
 ```sql
--- remove access to share
-ALTER SHARE DEMO_SHARE REMOVE ACCOUNTS = jw81309;
+-- remove reader account access to share
+ALTER SHARE DEMO_SHARE
+REMOVE ACCOUNTS = <reader_locator>;
 -- removes the share
 DROP SHARE DEMO_SHARE;
 -- drops the reader account
