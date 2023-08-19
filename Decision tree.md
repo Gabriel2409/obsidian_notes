@@ -1,3 +1,7 @@
+---
+reviewed: 2023-08-01
+---
+
 #datascience
 
 ## Definition
@@ -31,6 +35,12 @@ D-->G(l4: 7/22)
 - l1, l2, l3, and l4 are leaf nodes. The left value corresponds to people who have heart diseases and the right value corresponds to people who don't
 - No nodes are pure. For ex, l2 score is `1 - (13/[13+102])² - (102/[13+102])²`
 - Score of a given node is weighted average of children nodes => Score of a tree is weighted average of leaf nodes scores
+- To predict a class, go through all the nodes until you reach a leaf and take the most probable class according to this leaf
+
+General formula Gini with m classes: $H(Q_m) = \sum_\limits{k} {p_{mk}(1-p_{mk})}$
+
+General formula entropy criteria
+$H(Q_m) = -\sum_\limits{k} {p_{mk}log(p_{mk})}$
 
 ### Building the tree from sample data
 
@@ -45,7 +55,7 @@ D-->G(l4: 7/22)
 - Boolean: if parameter is a boolean, simply split on yes/no
 - Categorical data: Try a split on each category
 - Multiple choice data: Try a split on each choice and combination of choice
-- Numerical data: order the data and split on each interval. For ex if data is `1|3|4,|8`, try a split on `<2|<3.5|<6`
+- Numerical data: order the data and split on each interval. For ex if data is `1|3|4|8`, try a split on `<2|<3.5|<6`
 - Ranked data: same as numerical but split on the value itself : `<=1|<=2...`
 
 ### Feature selection

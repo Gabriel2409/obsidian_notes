@@ -2,6 +2,7 @@
 sr-due: 2023-07-05
 sr-interval: 1
 sr-ease: 230
+reviewed: 2023-07-18
 ---
 
 #sd
@@ -28,5 +29,9 @@ When a key is hashed, you move clockwise until you encounter a server.
 To evenly distribute load in case of a server failure, you can put virtual nodes on the cercle (each mapped to an existing server)
 
 It is also possible to implement a flush mechanism to redirect existing keys to the correct server when the number of servers change
+
+In the example below (1 virtual node per real node), a request is mapped to node C. If node C becomes unavailable, it will be redirected to node B
+
+![[Consistent hashing circle.excalidraw]]
 
 Note: Consistent hashing has NOTHING TO DO with [[Consistency patterns]] or the C of [[ACID]]

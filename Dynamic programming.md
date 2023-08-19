@@ -2,6 +2,7 @@
 sr-due: 2023-10-08
 sr-interval: 103
 sr-ease: 270
+reviewed: 2023-07-19
 ---
 
 #dsa
@@ -95,8 +96,6 @@ def fib(n):
 - Space complexity: O(1)
 
 ## Example applications
-
-#todo
 
 - [[Knapsack]]
 - [[Longest Common Substring (LCS)]]

@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-27
+---
+
 #sd #incomplete
 
 Disk (HDD, SSD)
