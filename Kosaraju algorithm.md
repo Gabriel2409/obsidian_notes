@@ -2,6 +2,7 @@
 sr-due: 2023-06-10
 sr-interval: 17
 sr-ease: 210
+reviewed: 2023-07-18
 ---
 
 #dsa #graph
@@ -15,7 +16,7 @@ Kosaraju algorithm is an algorithm to detect [[Strongly connected components]] I
   - Repeat operation on all nodes that were not reached to complete the stack
   - The output of this step is a stack containing all the nodes with children before parents
 - Step 2: Finding the SCCs:
-  - Pop the stack and perform a dfs on the resulting node but on the **REVERSED** graph to get a strongly connected component. Note that this dfs can be a preorder or à post order dfs, it does not matter
+  - Pop the stack and perform a dfs on the resulting node but on the **REVERSED** graph to get a strongly connected component. Note that this dfs can be a preorder or a post order dfs, it does not matter
   - Keep popping the stack to get the other components (ignore the nodes that were already visited)
 
 ```text

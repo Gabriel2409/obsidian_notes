@@ -2,6 +2,7 @@
 sr-due: 2023-06-28
 sr-interval: 1
 sr-ease: 226
+reviewed: 2023-07-12
 ---
 
 #snowflake
@@ -55,7 +56,7 @@ CREATE FUNCTION js_factorial(d double)
 	AS
 	$$
 	if (d <= 0){
-	return 1
+	    return 1
 	} else {
 		var result = 1;
 		for (var i = 2; i <= d; i++){
@@ -127,7 +128,7 @@ CREATE OR REPLACE PROCEDURE TRUNCATE_ALL_TABLES_IN_SCHEMA(DATABASE_NAME STRING, 
 		var result_set = snowflake.execute({sqlText: sql_command}); -- use snowflake js API to execute sql
 		while (result_set.next()){
 			var table_name = result_set.getColumnValue(2);
-			var truncate_result = snowflake.execute({sqlText: 'TRUCATE TABLE ' + table_name});
+			var truncate_result = snowflake.execute({sqlText: 'TRUNCATE TABLE ' + table_name});
 			result.push(namespace + '.' + table_name + ' has been successfully truncated');
 		}
 		return result.join("\n");

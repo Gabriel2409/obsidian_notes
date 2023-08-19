@@ -29,6 +29,8 @@ SELECT * FROM DIRECTORY(@INT_STAGE);
 
 - Directory tables must be refreshed to reflect the most up to date changes
 
+
+
 ```sql
 -- Look for the DIRECTORY property to see
 -- if it is enabled and when was the last refresh

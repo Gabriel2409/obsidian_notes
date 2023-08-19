@@ -1,9 +1,9 @@
 #incomplete
 
+Taille bague 53
+
 Hadoop
+
 Spark
-LLM
 
-
-
-
+Mlflow, kubeflow, airflow

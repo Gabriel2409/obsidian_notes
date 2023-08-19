@@ -2,6 +2,7 @@
 sr-due: 2023-09-06
 sr-interval: 73
 sr-ease: 250
+reviewed: 2023-07-12
 ---
 
 #dsa #graph
@@ -19,7 +20,7 @@ The idea is to place all the edges in a priority queue (based on the weight), th
 found = set()
 for s,d,w in edges:
     found.add(s)
-    found.ads(d)
+    found.add(d)
 n = len(found)
 ```
 

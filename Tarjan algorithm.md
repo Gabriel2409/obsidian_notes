@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-12
+---
+
 #dsa #todo
 See [[Strongly connected components]]
 

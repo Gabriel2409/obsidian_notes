@@ -1,3 +1,7 @@
+---
+reviewed: 2023-07-20
+---
+
 #snowflake
 
 ## Snowflake functions
@@ -177,7 +181,7 @@ SELECT * FROM MYTABLE SAMPLE ROW(5 rows);
 
 ### Unstructured File functions
 
-- `BUILD_SCOPED_FILE_URL` generates a scoped Snowflake-hosted URL to a staged file using the stage name and relative file path as inputs.
+- `BUILD_SCOPED_FILE_URL` generates a scoped Snowflake-hosted URL to a staged file using the [[Snowflake - Stage|stage]] name and relative file path as inputs.
   - A scoped URL is encoded and permits access to a specified file for a limited period of time.
 
 ```sql
