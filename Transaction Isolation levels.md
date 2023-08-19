@@ -2,9 +2,7 @@
 reviewed: 2023-07-05
 ---
 
-#sd #todo
-
-NOTE NOT FINISHED
+#sd
 
 Usually, [[Transaction|transactions]] in SQL databases are [[ACID]] compliant.
 
@@ -84,9 +82,33 @@ Transaction 2 wants to get all dates after 2022 again: it gets a new result.
 - That way a transaction will not read a value that was committed after it has started
 - Since the database maintains **multiple versions** of the rows at a given point in time, periodically the database management system runs a Garbage Collection process and removes deleted and unreferenced entries from the table freeing up space.
 
-TODO add serializable SSI and 2 phase locking
+### Serializable
+
+Strongest isolation level which protects against all anomalies (in theory)
+
+#### Serial order execution
+
+- Transactions are literally executed one after the other
+- Very slow and not used in practice
+
+#### 2 phase locking
+
+- Pessimistic approach: read Block writes and writes blocks read
+- To read, you must acquire a Shared lock on the associated rows and to write, you must acquire an Exclusive lock on the associated rows. All reads must wait for Exclusive locks to be released and all writes must wait for all the locks to be released
+- 2 phases:
+  - Expanding phase: locks are acquired and no locks are released
+  - Shrinking phase: locks are released and no locks are acquired
+- Downside: performance
+
+#### Serializable snapshot isolation
+
+- Optimistic approach
+- Built on top of snapshot isolation
+- Adds a layer of serialiazability for detecting conflicts while commiting, which then aborts the transaction
 
 ## Other guarantees
 
 ### Preventing lost updates
-- TODO: add atomic update
+
+- Many db provide atomic update operations which remove the need to implement read-modify-write cycle in the app.
+- for ex: `SELECT counters SET value = value + 1 WHERE key = 'foo'` is safe in relation to concurrency

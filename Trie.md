@@ -2,13 +2,14 @@
 sr-due: 2023-06-10
 sr-interval: 19
 sr-ease: 230
+reviewed: 2023-07-19
 ---
 
 #dsa #tree
 
 ## Definition
 
-A Trie or Prefix tree is a [[Tree]] data structure designed to find works based on a Prefix. It can do so in O(1) time.
+A Trie or Prefix tree is a [[Tree]] data structure designed to find words based on a Prefix. It can do so in O(1) time.
 More precisely:
 Insert, search and search Prefix can be done in O(1)
 
@@ -36,6 +37,7 @@ def insert(root, word):
         root.refs += 1
     root.word = True
 ```
+
 ## Delete
 
 To delete a word, we just have to remove it and decrease the refs of the parents.
@@ -47,19 +49,18 @@ def delete(root, word):
     root.refs -= 1
     if root.refs == 0:
         root.children = {}
-        root.dord = False
+        root.word = False
         return
     for c in word:
         child = root.children[c]
         child.refs -= 1
         if child.refs == 0:
-            root.childre[c] = None
+            root.children[c] = None
             return
         root = child
-            
+
     root.word = False
 ```
-
 
 ## Search
 
