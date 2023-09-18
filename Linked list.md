@@ -2,7 +2,7 @@
 sr-due: 2023-07-26
 sr-interval: 55
 sr-ease: 250
-reviewed: 2023-07-06
+reviewed: 2023-09-12
 ---
 
 #dsa #graph
@@ -10,6 +10,7 @@ reviewed: 2023-07-06
 ## Definition
 
 A linked list is **a special type of [[Graph]] where the nodes and edges form a chain-like structure**.
+
 - The nodes at the end contain only one edge while the intermediate nodes contain two
 - The list can be doubly linked (pointers in each direction)
 
@@ -26,6 +27,7 @@ class Node:
 ### Lookup
 
 To find a node with a given value, you need to traverse the whole list
+
 ```python
 def lookup(root, val):
 	while root:
@@ -34,6 +36,7 @@ def lookup(root, val):
 		root = root.next
 	return False
 ```
+
 - Time complexity: O(n)
 
 ### Insertion and deletion
@@ -47,6 +50,7 @@ next_node = root.next
 root.next = new_node
 new_node.next = next_node
 ```
+
 ```python
 # Deletion
 root.next = root.next.next

@@ -1,3 +1,7 @@
+---
+reviewed: 2023-09-06
+---
+
 #sd #hadoop
 
 - see [[Hadoop]]
@@ -7,7 +11,7 @@
 - Programming model (not language) for processing large data sets
 - 3 phases:
   - map phase
-  - souffle phase
+  - shuffle phase
   - reduce phase
 
 ## Components

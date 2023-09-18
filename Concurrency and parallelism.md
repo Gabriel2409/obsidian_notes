@@ -1,3 +1,7 @@
+---
+reviewed: 2023-09-06
+---
+
 #sd
 
 Computers use parallelism and concurrency to handle the problems of multitasking

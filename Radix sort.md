@@ -2,7 +2,7 @@
 reviewed: 2023-07-27
 ---
 
-#dsa #sort #todo
+#dsa #sort
 
 - Non-comparative sorting algorithm which does not rely on the comparison of elements to determine their order, but exploits the positional properties of the numbers being sorted.
 - Linear Time Complexity: O(nk), where "n" is the number of elements in the array, and "k" is the average number of digits in the numbers.

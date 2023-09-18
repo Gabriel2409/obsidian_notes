@@ -1,8 +1,17 @@
+---
+reviewed: 2023-09-06
+---
+
 #sd
 
 ## Definition
 
-A file system is used to navigate the data inside the storage - controls how data is stored and retrieved - metadata at files and folders - manages permission and security - manages storage efficiently
+A file system is used to navigate the data inside the storage
+
+- controls how data is stored and retrieved
+- metadata at files and folders
+- manages permission and security
+- manages storage efficiently
 
 ## Examples of local file systems
 

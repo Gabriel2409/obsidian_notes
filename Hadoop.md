@@ -1,5 +1,5 @@
 ---
-reviewed: 2023-07-13
+reviewed: 2023-09-06
 ---
 
 #hadoop #sd
@@ -65,6 +65,6 @@ Framework for distributed processing of large datasets across clusters of commod
 ## What can Hadoop do
 
 - ETL treatments on very large amount of data (petaoctect)
-  - Batch processing treatments typically lasting several hourse
+  - Batch processing treatments typically lasting several hours
 - Data analysis
 - Real time analysis

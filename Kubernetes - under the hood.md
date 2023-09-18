@@ -1,4 +1,5 @@
 #k8s
+
 # Links
 
 Certified Kubernetes Administrator: https://www.cncf.io/certification/cka/
@@ -48,14 +49,13 @@ Example 2: `kubectl run mypod --image alpine`
 
 - the kubectl utility is reaching the kube-apiserver
 - the kube-apiserver authenticates the request and validates it
-- the kube-apiser creates a pod object without assigning it to a node
-- the kube-apiserver updates the etcd cluster
-- the kube-apiserver updates the user that the pod has been created
-
+- the kube-apiserver creates a pod object without assigning it to a node.
+- the kube-apiserver updates the etcd cluster with the pod information (including the desired node)
+- the kube-apiserver updates the user that the pod has been created (here it responds to the kubectl command)
 - the kube-scheduler monitors the api-server and realises there is a new pod with no node assigned
 - the kube-scheduler identifies the right node to place the pod on and communicates it to the kube-apiserver
-- the kube-apiserver updates the information in the etcd cluster
-- the kube-apiserver then passes this information to the kubelet in the appropriate node
+- the kube-apiserver updates the information in the etcd cluster. For ex, if kube-scheduler chose a different node that the initial desired node, it will be reflected
+- the kube-apiserver then passes this information to the kubelet in the appropriate node. This is done through a continuous watch process between kubelet and apiserver called **pod watcher**
 - the kubelet creates the pod on the node and instructs the container runtime engine to deploy the image
 - the kubelet then updates the status in the api-server
 - the api-server then updates the etcd cluster

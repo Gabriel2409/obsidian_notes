@@ -2,10 +2,11 @@
 sr-due: 2023-06-20
 sr-interval: 20
 sr-ease: 230
-reviewed: 2023-07-06
+reviewed: 2023-09-12
 ---
 
 #dsa
+
 ## Definition
 
 - Method of traversing the linked list by using a slow pointer (traversing nodes one by one) and a fast pointer (traversing nodes two by two)

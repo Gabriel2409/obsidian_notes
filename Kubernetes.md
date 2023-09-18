@@ -352,7 +352,7 @@ spec:
   nodeName: <mynode>
 ```
 
-However, this can only be done before pod creating.
+However, this can only be done before pod creating. A pod with this spec will effectively bypass the kube-scheduler.
 
 2. Assign it yourself
    To assign a pending pod to a node, we must use a binding object:
@@ -369,7 +369,7 @@ target:
 ```
 
 then do a post request to the binding api: `curl --header "Content-Type:application/json --request POST --data '{<json>}' http://$SERVER/api/v1/namespaces/default/pods/<pod-name>/binding`
-where <json> represents the binding object in a json format.
+where `<json>` represents the binding object in a json format.
 This effectively mimicks what the kube-scheduler does for us.
 
 ### taints and toleration
@@ -391,12 +391,13 @@ Now if I want to deploy a pod on this node, in the pod specification file, i put
 same key and same effect as the taint.
 
 To manually add a taint to a node: `kubectl taint nodes <node-name> <key>=<value>:<taint-effect>`
-To remove a taint, same command but add a `-` after the effect
-Note: <key> and <value> can be anything but <taint-effect> is either:
+To remove a taint, `kubectl taint nodes <node-name> <key> -`
 
-- NoSchedule: pods who don't have the toleration will not be scheduled
-- PreferNoSchedule: pods can still be scheduled here but only if necessary
-- NoExecute: pods that are already on the node but that don't have the toleration will be killed
+Note: `<key>` and `<value>` can be anything but `<taint-effect>` is either:
+
+- `NoSchedule`: pods who don't have the toleration will not be scheduled
+- `PreferNoSchedule`: pods can still be scheduled here but only if necessary
+- `NoExecute`: pods that are already on the node but that don't have the toleration will be killed
 
 For a pod to be able to be scheduled on node above, it must have the following toleration (note the quotes):
 
@@ -474,13 +475,40 @@ spec:
 
 Note: the spec is hard to remember but you can run `kubectl explain po.spec.affinity.nodeAffinity --recursive=true` to retrieve the structure
 
+Note 2: what can be done with nodeSelector can be rewritten with nodeAffinity
+
+```yml
+# with nodeSelector
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+  nodeSelector:
+    environment: production
+
+# with nodeAffinity
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: environment
+            operator: In
+            values:
+            - production
+```
+
 ### podAffinity / podAntiAffinity
 
 - allows to schedule pods based on labels of other pods
 - different rules: `requiredDuringSchedulingIgnoredDuringExecution` and `preferredDuringSchedulingIgnoredDuringExecution` (same as nodeAffinity)
-- key `topologyKey` can be used to specify hostname, region, az, ... and specifies where the constraint must be applied
+- key `topologyKey` can be used to specify hostname, region, az, ... and specifies where the constraint must be applied. More generally, this key allows you to express constraints based on node topology domains, ensuring that pods are distributed or co-located in a way that aligns with your cluster's infrastructure setup.
 
-File specification example:
+File specification example where pods will be preferrably scheduled on same availability zones.
 
 ```yaml
 ..
@@ -507,7 +535,7 @@ spec:
             topologyKey: kubernetes.io/hostname
 ```
 
-### resource allocation
+### Resource allocation
 
 in the pod specification
 

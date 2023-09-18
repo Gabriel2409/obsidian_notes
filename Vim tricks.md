@@ -1,3 +1,7 @@
+---
+reviewed: 2023-08-30
+---
+
 #vim
 
 - corrections from insert mode: 
