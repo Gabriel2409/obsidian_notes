@@ -1,0 +1,2 @@
+Jupynium.nvim
+TMUX

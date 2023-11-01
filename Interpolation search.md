@@ -1,3 +1,7 @@
+---
+reviewed: 2023-09-19
+---
+
 #dsa #search
 
 - search algorithm to find target in a sorted array

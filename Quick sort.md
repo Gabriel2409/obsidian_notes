@@ -2,7 +2,7 @@
 sr-due: 2023-09-18
 sr-interval: 81
 sr-ease: 252
-reviewed: 2023-07-04
+reviewed: 2023-10-07
 ---
 
 #dsa #sort
@@ -17,7 +17,7 @@ Quick sort is an algorithm to [[Sort]] an array:
 3. Sort the left array and the right array
 4. Repeat
 
-```
+```txt
 [1,6,5,4,2,3] : pivot is 3
 1 smaller than 3, we switch 1 with 1 (first element).
 Then nothing until we encounter 2, we switch 2 with 6 (second element).
@@ -68,5 +68,5 @@ def helper(arr, l, r):
             i = i + 1
     arr[pvt_index], arr[i] = arr[i], arr[pvt_index]
     helper(arr, l, i - 1)
-    helper(arr, r, i + 1)
+    helper(arr, i + 1, r)
 ```

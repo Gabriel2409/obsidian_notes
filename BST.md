@@ -19,7 +19,7 @@ have a greater value. There are no duplicate values in a BST
     2   6
    / \
   1   4
-   \
+     /
     3
 ```
 

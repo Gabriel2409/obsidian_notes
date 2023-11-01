@@ -1,3 +1,7 @@
+---
+reviewed: 2023-09-19
+---
+
 #azure
 
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview

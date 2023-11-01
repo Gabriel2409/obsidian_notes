@@ -1,6 +1,4 @@
----
-reviewed: 2023-08-02
----
+
 
 #datascience
 
@@ -17,20 +15,21 @@ reviewed: 2023-08-02
 - For a given tree,
   - `Total error = sum of the weights associated to incorrectly classified samples`
   - `Amount of say = 1/2 * log([1 - Total_error]/ Total_error)`
+
 - To create the first stump, we give equal weight to each sample. So the process is the creation of a simple decision tree.
 - To build the next tree and all subsequent trees, we increase the weight of the incorrectly classified samples and decrease the others.
   - For incorrectly classified: `new_weight=old_weight *e ^ amount_of_say`
   - For correctly classified: `new_weight=old_weight *e ^ - amount_of_say`
   - Then we normalize the sample weights so that they add up to 1
 - In theory we could use the sample weights to calculate weighted gini indexes to determine which variable should split the next stump.
-- Alternatively
+- Alternatively, we use **weighted random sampling**
   - we start by making a new empty dataset (same size as the original)
   - Pick a number between 0 and 1 and see where it falls if you use the sample weights like a distribution
   - Add the corresponding sample
   - Repeat until new collection is the same size as previous (note that same sample can appear several times)
-  - Finally we give all of the new samples equal sample weights to build the next stump
-  - Note that samples that were not selected retain their weights for the next iteration
-
+  - Finally we give all of the new samples equal sample weights to build the next stump. NOTE: we don't actually modify the sample weight here, we only do that to build the decision tree
+  - After the stump is built, we Adjust the weight of all the samples, not just the ones used to build the stump and we can start new iteration
+ 
 ## Classification process
 
-To make a prediction, sum the amount of says for each stump predicting a given category. The final prediction corresponds to the category with the highest sum
+To make a prediction, sum the **amount of says** for each stump predicting a given category. The final prediction corresponds to the category with the highest sum

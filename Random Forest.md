@@ -1,5 +1,8 @@
 ---
 reviewed: 2023-08-02
+sr-due: 2023-10-21
+sr-interval: 3
+sr-ease: 251
 ---
 
 #datascience

@@ -14,7 +14,7 @@ def counting_sort(arr):
     max_val = max(arr)
     min_val = min(arr)
 
-     array to store the frequency of each element
+    # array to store the frequency of each element
     count = [0] * (max_val - min_val + 1)
 
     for num in arr:
