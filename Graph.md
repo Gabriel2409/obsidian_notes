@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-16
-sr-interval: 31
+sr-due: 2024-09-23
+sr-interval: 293
 sr-ease: 250
 reviewed: 2023-07-20
 ---
@@ -54,7 +54,7 @@ for s,d,w in edges:
     adj[d].append((s,w)) # undirected graph only
 ```
 
-Note: the reason we want to add d to the list of keys even in directed graphs is for cases when
+Note: the reason we want to add `d` to the list of keys even in directed graphs is for cases when
 we iterate over the adj keys. That way all the nodes are in the dict.
 
 ### Matrix

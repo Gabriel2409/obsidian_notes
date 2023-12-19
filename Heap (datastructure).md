@@ -7,6 +7,8 @@ reviewed: 2023-07-11
 
 #dsa #tree
 
+Not to be confused with heap in the context of [[Memory Allocation - Stack and heap|memory allocation]]. They are related in the sense that both involve the management of memory, but they serve different purposes and have different characteristics.
+
 ## Definition
 
 A heap is a [[Tree]] based data structure that implement an abstract data type called the priority queue.
@@ -225,7 +227,5 @@ def heap_sort(arr):
 ```
 
 ## Example application
+
 - [[MedianFinder (Two heaps)]]
-
-
-

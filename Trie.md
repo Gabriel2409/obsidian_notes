@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-10
-sr-interval: 19
+sr-due: 2024-08-14
+sr-interval: 251
 sr-ease: 230
 reviewed: 2023-07-19
 ---
@@ -55,10 +55,11 @@ def delete(root, word):
         child = root.children[c]
         child.refs -= 1
         if child.refs == 0:
+            # probably better to delete key
             root.children[c] = None
             return
         root = child
-
+    # needed?
     root.word = False
 ```
 

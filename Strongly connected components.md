@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-20
-sr-interval: 27
+sr-due: 2024-07-21
+sr-interval: 229
 sr-ease: 206
 reviewed: 2023-07-18
 ---
@@ -19,4 +19,4 @@ D ← C → E ← G → H
 [A,B,C,D] [E,F,G] [H]
 ```
 
-There components can be found with [[Kosaraju algorithm]] or [[Tarjan algorithm]]
+These components can be found with [[Kosaraju algorithm]] or [[Tarjan algorithm]]

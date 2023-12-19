@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-16
-sr-interval: 60
+sr-due: 2024-11-27
+sr-interval: 356
 sr-ease: 270
 reviewed: 2023-07-11
 ---
@@ -20,4 +20,6 @@ D-->E
 D-->F
 E-->G
 ```
-In a Tree, E = V - 1
+
+In a Tree, `E = V - 1` with `E` the nb of edges and `V` the nb of vertices
+

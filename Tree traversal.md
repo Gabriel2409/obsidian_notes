@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-10-21
-sr-interval: 112
+sr-due: 2024-11-04
+sr-interval: 343
 sr-ease: 263
 reviewed: 2023-07-06
 ---
@@ -9,7 +9,7 @@ reviewed: 2023-07-06
 
 ## Definition
 
-Traversal corresponds to the way to visit all the nodes in a Tree.
+Traversal corresponds to the way to visit all the nodes in a [[Tree]].
 This note focuses on [[Binary tree]].
 
 ## Depth first search (dfs)

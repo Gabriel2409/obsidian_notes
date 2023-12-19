@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-06
-sr-interval: 43
+sr-due: 2024-10-25
+sr-interval: 323
 sr-ease: 269
 reviewed: 2023-07-06
 ---
@@ -15,12 +15,12 @@ have a greater value. There are no duplicate values in a BST
 
 ```
       5
-     / \
-    2   6
-   / \
-  1   4
-     /
-    3
+     /  \
+    2    6
+   /  \
+  1    4
+      /
+     3
 ```
 
 ## Lookup
@@ -43,12 +43,12 @@ def search(root, target):
         return True
 ```
 
-- Average time complexity: O(logn) if the Tree is balanced
-- Worst time complexity: O(n) if Tree is completely skewed
+- Average time complexity: `O(logn)` if the Tree is balanced
+- Worst time complexity: `O(n)` if Tree is completely skewed
 
 ## Build from a sorted array (balanced)
 
-In a sorted array, [[Binary search]] allows a lookup in O(logn) Time.
+In a sorted array, [[Binary search]] allows a lookup in `O(logn)` Time.
 Similarly it is possible to build a balanced BST following a similar logic:
 
 - Start with middle element as root
@@ -73,7 +73,7 @@ def helper(arr, l, r):
 ```
 
 Starting r at len(arr) instead of the last index allows to have the extra element in the left subtree when the nb of elements in the array are even.
-It also behaves similarly as passing arr[l:r]
+It also behaves similarly as passing `arr[l:r]`
 This is also why we return None when l == r.
 
 ## Insertion

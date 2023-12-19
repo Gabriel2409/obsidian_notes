@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-12
-sr-interval: 35
+sr-due: 2026-04-16
+sr-interval: 861
 sr-ease: 270
 reviewed: 2023-07-06
 ---
@@ -10,7 +10,7 @@ reviewed: 2023-07-06
 ## Definition
 
 Binary search allows to search for a given value in a sorted array by eliminating
-half of the possibilities at each step using a [[Two pointers]] approach. This leads to a time complexity of O(logn).
+half of the possibilities at each step using a [[Two pointers]] approach. This leads to a time complexity of `O(logn)`.
 
 ### Recursive implementation
 

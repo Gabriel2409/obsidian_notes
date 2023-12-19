@@ -1,7 +1,7 @@
 ---
-sr-due: 2023-06-10
-sr-interval: 17
-sr-ease: 210
+sr-due: 2024-01-29
+sr-interval: 54
+sr-ease: 190
 reviewed: 2023-07-18
 ---
 
@@ -29,8 +29,8 @@ D ← C → E ← G → H
 Start on a random node, for ex E
 dfs => Example stack = [H, G, F, E]
 Go to a node not already visited, for ex B
-stack = [A, D, B, C]
-Final stack = [H, G, F, E, A, D, B, C]
+stack = [A, D, C, B]
+Final stack = [H, G, F, E, A, D, C, B]
 ```
 
 ```text
@@ -49,8 +49,10 @@ Time complexity: O(V + E)
 
 ## Intuition
 
-- In the first step, you do a dfs on a node X then on other non reached Nodes. So the final stack looks like this `[Nodes reachable by X, X, Nodes not reachable by X]`
-- In the second step, the graph is reversed, so the stack becomes `[Nodes that can reach X, X, Nodes that can not reach X]`. Therefore, when we arrive at X, all the nodes that can not reach it have already been visited, which guarantees that we found a SCC
+- In the first step, you do a dfs on a node X then on other non reached Nodes. So the final stack looks like this `[Nodes reachable by X, X, Nodes not reachable by X]`.
+- In the second step, the graph is reversed, so the stack becomes `[Nodes that can reach X, X, Nodes that can not reach X]`. Therefore, when we arrive at X, all the nodes that can not reach it have already been visited, which guarantees that we found a SCC. Then when you start the dfs on X, you know that each node reachable by X can also reach X, making it part of the same SCC.
+
+Note: Here, the logic can be applied to nodes that were selected to start the dfs, ie the first node then the node after the first dfs is over, then the next... IT DOES NOT WORK FOR ALL THE NODES (easy to understand with 2 nodes pointing to each other)
 
 ## Implementation
 
