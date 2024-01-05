@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-19
-sr-interval: 15
+sr-due: 2024-09-07
+sr-interval: 248
 sr-ease: 250
 reviewed: 2023-07-04
 ---
@@ -19,7 +19,7 @@ Note:
 Atomic refers to something that cannot be broken down. For ex, in multi-threaded programming, if one thread executes an atomic operation, that means there is no way that another thread could see the half-finished result of the operation.
 In the context of ACID, atomicity is NOT about concurrency (this is covered by letter I Isolation)
 
-## Consistency:
+## Consistency
 
 Consistency refers to an **application-specific notion of the database being in a good state**:
 

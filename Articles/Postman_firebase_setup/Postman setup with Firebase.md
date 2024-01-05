@@ -2,9 +2,8 @@ The goal of this article is to provide an easy guide on how you can set up Postm
 
 This article follows these 2 articles:
 
-- LINK TO Article on how to set up firebase auth in angular application
-- LINK TO Article on how to set up backend with fastapi
-
+- [[Firebase authentication in angular]]
+- [[Firebase authentication - fastapi backend]]
 As such, I assume you have a frontend application handling authentication with Firebase as well as a backend API with routes that expect Firebase-authenticated users.
 However it does not matter if you chose other languages / frameworks, Postman setup will be identical
 
@@ -13,7 +12,7 @@ However it does not matter if you chose other languages / frameworks, Postman se
 To enable Firebase Authentication, go to your Firebase console, then click on `Authentication` then `Sign-in method` and add the providers. Notably,
 `Google` and `Email/Password` providers can be activated without any extra set up.
 
-![[firebase_authentication_providers.jpg]]
+![](firebase_authentication_providers.jpg)
 
 When implementing Firebase authentication in your application, Frontend libraries make it very easy to authenticate and retrieve the ID token of an authenticated user.
 
@@ -110,8 +109,8 @@ The purpose of this section is to show how you can retrieve this token and add i
 
 Before everything, you can create a new collection in Postman.
 
-![[postman_mycollection.jpg]]
 
+![](postman_mycollection.jpg)
 In `mycollection`, each folder contains the requests to test depending on the authentication method:
 
 - `no_auth`: unauthenticated requests
@@ -123,12 +122,12 @@ Note that the `set-google-token` GET request is at the root of the collection (m
 
 Each request in a folder will inherit the authorization method from its parent folder (default behavior in Postman, see `Authorization` tab).
 In each folder, you can create a request that calls a backend route that expects an authenticated user so that you can test if the authentication is successful. For example, in my application, I have a route that returns the user id in case of success and a 401 error in case of failure. As expected if I do the request in the `no_auth` folder I get an error:
-![[postamn_not_logged_in.jpg]]
+![](postamn_not_logged_in.jpg)
 
 #### Environment
 
 Now that the collection is created, you can also create a new environment that will contain the important variables. We will set the values in `Current value` later. For now, just use the `Initial value`
-![[postman_environment.jpg]]
+![](postman_environment.jpg)
 
 Don't forget to activate the environment to be able to use variables in your requests
 
@@ -136,7 +135,7 @@ Don't forget to activate the environment to be able to use variables in your req
 
 As we saw earlier, frontend libraries make it very easy to retrieve the token. So the most simple solution is to get the token from the frontend. Either `console.log` it or, if you already configured the frontend to send the token in the authorization header, just go to the network tab in the devtools and get it from here (take the value without the `Bearer` prefix). Note that certain devtools don't show the whole value so you might need to switch the display to raw to ensure you get the whole token.
 
-![[request_authorization_header.jpg]]
+![](request_authorization_header.jpg)
 
 In Postman, paste the value in the `Current value` of the environment variable `FIREBASE_TOKEN_FROM_FRONTEND` and save. Then in the `manual` folder,
 in the `Authorization` tab, choose `Type = Bearer Token` and in the Token field, put `{{FIREBASE_TOKEN_FROM_FRONTEND}}` then save.
@@ -264,7 +263,7 @@ While you could use this client for the next part, I suggest creating a new clie
 - `Name`: `Postman`
 - Add the following redirect URI: `https://oauth.pstmn.io/v1/callback` (see explanation after)
 - Optionally, you can also customize the `OAuth consent screen` but for this setup, the only needed scope is `openid`
-  ![[create_oauth_client_id_gcp.jpg]]
+  ![](create_oauth_client_id_gcp.jpg)
 
 Note the client id and the client secret that appear after creation
 
@@ -281,7 +280,7 @@ Update the environment variables for this section:
 
 In the `set-google-token` request that was created at the root of `mycollection` (Important), go to the `Authorization` tab and choose `Type = OAuth 2.0` then fill the values.
 
-![[postman_authorization.jpg]]
+![](postman_authorization.jpg)
 
 Notes:
 
@@ -290,7 +289,7 @@ Notes:
 
 Now you can click on `Get New Access Token` to authenticate in the browser. If everything worked correctly, in the pop up that appears, click `Use Token`. Scroll up and you should see the value of the token. Note that you need to modify `Use Token Type` to `ID Token`
 
-![[postman_token.jpg]]
+![](postman_token.jpg)
 
 If you decode the JWT token, you will get something like this:
 
@@ -348,7 +347,7 @@ pm.environment.set("GOOGLE_TOKEN", token);
 
 Then we will just run the request with any destination. Here I chose `localhost:8000` but you can choose any route even if the GET request fails.
 
-![[postman_prereq_set_google_token.jpg]]
+![](postman_prereq_set_google_token.jpg)
 
 After running the request, check that the `GOOGLE_TOKEN` variable was updated before the next step.
 

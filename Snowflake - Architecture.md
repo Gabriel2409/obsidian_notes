@@ -9,7 +9,7 @@ sr-ease: 230
 ## Multi-cluster shared data architecture
 
 - [[Shared disk architecture]] was the first move away from [[Shared memory architecture|Single node architecture]] by allowing compute on several machines but keeping storage in one place
-- [[Shared nothing architecture]] is the next eveolution: no sharing of hardware. This is what we have in HADOOP
+- [[Shared nothing architecture]] is the next evolution: no sharing of hardware. This is what we have in HADOOP
 
 Snowflake built a new architecture specifically for the cloud to do better than these two prevalent architectures: the multi cluster shared data architecture:
 

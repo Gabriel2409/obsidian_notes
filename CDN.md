@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-22
-sr-interval: 30
+sr-due: 2024-10-13
+sr-interval: 283
 sr-ease: 250
 reviewed: 2023-07-20
 ---
@@ -9,7 +9,7 @@ reviewed: 2023-07-20
 
 ## Definition
 
-A Content delivery network is a globally distributed network of proxy servers serving **static content** (images, js code,...) from locations closer to the end user.
+A Content delivery network is a globally distributed network of [[Proxy]] servers serving **static content** (images, js code,...) from locations closer to the end user.
 The site DNS resolution will tell clients which CDN to contact
 
 - CDN can increase [[Reliability]] and availability: if a server is down, client can ask another server in the CDN network.

@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-05
-sr-interval: 1
+sr-due: 2024-07-28
+sr-interval: 207
 sr-ease: 226
 reviewed: 2023-07-11
 ---
@@ -88,10 +88,10 @@ As leader based replication requires all writes go to the leader, it is good for
 To create a read-scaling architecture, add more asynchronous followers.
 When reading from an asynchronous follower, you can see out of date data (followers are only eventually consistent).
 
-### Read your own rights
+### Read your own writes
 
 - If you write to the leader and immediately read from a follower, you may not see the written data because replication is asynchronous. For ex, if a user updates his profile, he may not see the updated information on his profile page.
-- To avoid that, we need read-after-write consistency. In the ex above, we could make every user read his own profile from the leader and profile of others to a follower
+- To avoid that, we need read-after-write consistency. In the ex above, we could make every user read his own profile from the leader and profile of others from a follower
 - Note that if everything can be edited by the user, we will lose the advantage of read-scaling by forcing all reads to go through the leader
 - Another possibility is to make the client remember the timestamp of his most recent write and only read from followers who have caught up to this timestamp (timestamp could be logical, such as a sequence nb)
 - There is additional complexity if a user can connect through multiple devices

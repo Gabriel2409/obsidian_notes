@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-16
-sr-interval: 15
+sr-due: 2024-09-13
+sr-interval: 253
 sr-ease: 250
 reviewed: 2023-07-08
 ---
@@ -23,3 +23,5 @@ Cons:
 
 - Storage and compute tightly coupled
 - Tendency to overprovision
+
+Note: it is also possible to expand on the concept,  see [[Snowflake - Architecture]] 

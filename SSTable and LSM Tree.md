@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-29
-sr-interval: 14
+sr-due: 2024-09-27
+sr-interval: 269
 sr-ease: 250
 reviewed: 2023-07-18
 ---
@@ -30,9 +30,7 @@ In summary:
 
 ### How to limit storage size?
 
-- From time to time, run compaction and merging of segments. Note that merging and
-  compacting is faster than in standard hash indexes because records are already sorted
-  by keys so we can combine them like it is done in the [[Merge sort]] algorithm. Storage engines that are based on this principle of merging and compacting sorted files are often called **LSM storage engines**
+From time to time, run compaction and merging of segments. Note that merging and compacting is faster than in standard hash indexes because records are already sorted by keys so we can combine them like it is done in the [[Merge sort]] algorithm. Storage engines that are based on this principle of merging and compacting sorted files are often called LSM storage engines
 
 ### How to recover after crash?
 

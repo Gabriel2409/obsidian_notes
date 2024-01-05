@@ -107,7 +107,15 @@ class UnionFind:
 			self.rank[p1] += 1
 		return True
 
-
-
-
 ```
+
+We can use it to find all the connected nodes in a undirected graph based on the edges for ex
+
+```python
+def countComponents(n: int, edges: List[List[int]]) -> int:
+    uf = UnionFind()
+    for a, b in edges:
+        uf.union(a, b)
+        return len(set(uf.find(x) for x in range(n)))
+```
+Is is also used in [[Kruskal algorithm]]
