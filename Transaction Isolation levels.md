@@ -1,5 +1,8 @@
 ---
 reviewed: 2023-07-05
+sr-due: 2024-01-12
+sr-interval: 2
+sr-ease: 246
 ---
 
 #sd
@@ -47,6 +50,11 @@ Transaction 1 adds a new date
 Transaction 1 commits
 Transaction 2 wants to get all dates after 2022 again: it gets a new result.
 
+Note:
+
+- Phantom read involves changes in the result set due to insertions or deletions by other transactions.
+- Non-repeatable read involves changes in the value of the same data due to updates by other transactions.
+
 ## Isolation level
 
 ### Read Uncommitted
@@ -90,8 +98,9 @@ Strongest isolation level which protects against all anomalies (in theory)
 
 - Transactions are literally executed one after the other
 - Very slow and not used in practice
+  Note: [[Redis]] fits there and is fast because it is very different from traditional db
 
-#### 2 phase locking
+#### 2 phase locking (Pessimistic locking)
 
 - Pessimistic approach: read Block writes and writes blocks read
 - To read, you must acquire a Shared lock on the associated rows and to write, you must acquire an Exclusive lock on the associated rows. All reads must wait for Exclusive locks to be released and all writes must wait for all the locks to be released
@@ -100,11 +109,11 @@ Strongest isolation level which protects against all anomalies (in theory)
   - Shrinking phase: locks are released and no locks are acquired
 - Downside: performance
 
-#### Serializable snapshot isolation
+#### Serializable snapshot isolation (Optimistic locking)
 
 - Optimistic approach
 - Built on top of snapshot isolation
-- Adds a layer of serialiazability for detecting conflicts while commiting, which then aborts the transaction
+- Adds a layer of serialiazability for detecting conflicts **during the commit phase**, which then aborts the transaction
 
 ## Other guarantees
 
