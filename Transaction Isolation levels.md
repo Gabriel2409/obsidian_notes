@@ -78,9 +78,9 @@ Note:
 - To write a value, a transaction must acquire a lock on the rows. Lock is released when the transaction commits/aborts
 - This lock does not block reads but it prevents other transactions from writing
 
-### Repeatable Read
+### Snapshot Isolation
 
-- Also called Snapshot Isolation
+- Also called Repeatable reads in some db
 - Prevents non repeatable reads
 
 #### Preventing non repeatable reads

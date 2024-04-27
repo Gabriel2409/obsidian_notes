@@ -11,7 +11,9 @@ reviewed: 2023-07-05
 - We do not specify a key: snowflake automatically partitions data along the natural ordering as it is inserted. (note: we can define cluster keys and recluster the data, see [[Snowflake - Clustering]])
 - Micro-partitions undergo a reorganisation process into the snowflake columnar data format
 - Micro partitions are immutable (write once and read many)
-- That means that an update operation will cause a new partition to be written. This is especially useful to implement [[Snowflake - Time Travel and Fail Safe|time travel and fail safe]]
+- That means that an update operation will cause a new partition to be written. This is especially useful to implement [[Snowflake - Time Travel and Fail Safe|time travel and fail safe]]. Indeed after an update, we still have the old micropartition and the new which contains a copy of the old with the updated records. At the service layer, metadata are updated to track the latest version.
+
+Note: Within a micro-partition, all columns for each row are stored together, at a lower level, Snowflake organizes and stores the data in a columnar format,
 
 ## Metadata
 

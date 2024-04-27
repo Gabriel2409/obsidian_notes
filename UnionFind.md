@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-08-07
-sr-interval: 55
+sr-due: 2024-12-28
+sr-interval: 340
 sr-ease: 244
 reviewed: 2023-07-19
 ---
@@ -118,4 +118,6 @@ def countComponents(n: int, edges: List[List[int]]) -> int:
         uf.union(a, b)
         return len(set(uf.find(x) for x in range(n)))
 ```
+
 Is is also used in [[Kruskal algorithm]]
+

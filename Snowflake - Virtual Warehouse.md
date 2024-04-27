@@ -1,11 +1,12 @@
-#snowflake 
+#snowflake
+
 ## Overview
 
 - A virtual warehouse is a named abstraction for a Massively Parallel Processing (MPP) compute cluster (see [[Snowflake - Architecture]]).
 - Virtual warehouses constitute the compute layer
 - Virtual warehouses execute:
-  - DQL operations (SELECT)
-  - DML operations (UPDATE)
+  - DQL (Data Query Language) operations (SELECT)
+  - DML (Data Modification Language) operations (INSERT, UPDATE, DELETE)
   - Data loading operations (COPY INTO)
 - As a user, we only interact with the named warehouse, not the individual nodes
 - We can spin up an unlimited nb of warehouses and config can be changed on the fly
@@ -13,12 +14,12 @@
 
 ```sql
 -- creation
-CREATE WAREHOUSE MY_WH 
+CREATE WAREHOUSE MY_WH
 WAREHOUSE_SIZE='MEDIUM';
 -- deletion
 DROP WAREHOUSE MY_WH;
 -- update params
-ALTER WAREHOUSE MY_WH 
+ALTER WAREHOUSE MY_WH
 WAREHOUSE_SIZE='SMALL';
 
 -- get information on warehouses, such as nb of running and queued requests

@@ -4,6 +4,13 @@
 
 - `/var/lib/docker` for linux
 - in wsl go to `\\wsl$\docker-desktop-data\version-pack-data\community\docker`
+  https://docs.docker.com/desktop/faqs/linuxfaqs/#what-is-the-difference-between-docker-desktop-for-linux-and-docker-engine
+
+https://docs.docker.com/desktop/install/linux-install/
+`systemctl --user start docker-desktop` to start it
+`docker context ls` to see all possible contexts
+
+`docker init`: great for starting projects
 
 # Containers
 
@@ -763,7 +770,7 @@ Defines all elements of an app:
 Example :
 
 ```yml
-version: '3.7' # compose file format
+version: "3.7" # compose file format
 volumes:
   data: # volume data will be used by a service. By default we use a local driver
 networks: # definition of networks to isolate services
@@ -854,7 +861,7 @@ In a node.js code file:
 
 ```javascript
 // Mongodb connection string
-url = 'mongodb://db/todos'; // db is the name of the service
+url = "mongodb://db/todos"; // db is the name of the service
 ```
 
 Note that docker compose allows to define dependencies between services but does not allow to know that a service is available before launching a service that depends on it.

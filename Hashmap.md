@@ -9,7 +9,7 @@ reviewed: 2023-07-30
 
 ## Implementation
 
-- Hashmaps can be implemented using arrays under the hood.
+- Hashmaps (Hashtable) can be implemented using arrays under the hood.
   - When the hashmap is created, an array of given size is initialized and the memory is reserved.
   - Even when the hashmap is empty, the array still takes up memory
 

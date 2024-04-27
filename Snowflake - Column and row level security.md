@@ -32,10 +32,12 @@ USER_EMAIL SET MASKING POLICY EMAIL_MASK
 - Data masking policies are schema-level objects like tables and views
 - Creating and applying them can be done independently of object owners
 - Masking policies can be nested
-- A masking policy is applied no matter where the column is referenced in a SQL statement. If you try to do a join on masked data, it will be performed on the masked data not the underlying data
+- A masking policy is applied no matter where the column is referenced in a SQL statement. **If you try to do a join on masked data, it will be performed on the masked data** not the underlying data
 - It can be added at object creation or after object is created
 
 Masking policies can also use external tokenization. Unlike other form of data masking, data is directly stored tokenized in snowflake and will be detokenized at run time for authorized users by calling the external tokenization service.
+
+**Note: You can also use tags that you artach to columns and attach the security to the tag**
 
 ### Row level security
 
@@ -60,6 +62,8 @@ ALTER TABLE MYTABLE ADD ROW ACCESS POLICY RAP_ID ON (ACC_ID);
 - Most of the remarks on column data masking apply
 - NOTE: Adding a masking policy to a column fails if the column is referenced by a row access policy
 - Row access policies are evaluated before data masking policies
+
+**Possibility to use mapping table as well to store the roles**
 
 ### Worksheet example
 

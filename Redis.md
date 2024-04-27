@@ -2,6 +2,10 @@
 
 Redis stands for Remote dictionary server
 
+Easily run redis-stack: `docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest` then access redis-insights on port 8001
+
+Interview questions: https://medium.com/p/77d064e0d721
+
 # Getting started
 
 - https://university.redis.com/
@@ -536,4 +540,3 @@ For ex 50kb messages
 
 - Consumer groups make more sense if you need out of order processing, if you have CPU intensive workloads
 - In other cases, it is better to use a single consumers. Even if you need stream segmentation, this can be accomplished with a single consumer. To do that each consumer just needs to keep track of its own offset in the stream
-

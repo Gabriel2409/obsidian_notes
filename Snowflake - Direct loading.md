@@ -48,7 +48,7 @@ SELECT * FROM FILMS;
 -- Insert  rows from another table - only works if tables are structurally identical
 INSERT INTO FILMS_2000 SELECT * FROM FILMS WHERE RELASE_DATE > DATE('2000-01-01');
 
--- Truncages table (removes all rows) and then inserts statement
+-- Truncates table (removes all rows) and then inserts statement
 INSERT OVERWRITE INTO FILMS_2000 SELECT * FROM FILMS;
 
 ```

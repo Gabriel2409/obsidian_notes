@@ -1,11 +1,12 @@
 ---
-sr-due: 2023-08-10
-sr-interval: 43
+sr-due: 2024-12-05
+sr-interval: 316
 sr-ease: 250
 reviewed: 2023-07-26
 ---
 
 #sd
+
 ## Definition
 
 - REST states for REpresentation State Transfer.
@@ -14,6 +15,8 @@ reviewed: 2023-07-26
 - Most common format is JSON
 
 ## Design
+
 - When designing a public facing API, we must be careful to be backwards compatible when possible. For ex, when introducing a new parameter, we can make it Optional. If it is not possible, that's when versionning comes in.
 - Example endpoint: `https://api.twitter.com/v1.0/tweet - POST`
 - handle pagination with two parameters : limit and offset
+

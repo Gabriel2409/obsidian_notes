@@ -6,7 +6,6 @@ sr-ease: 230
 
 #snowflake
 
-
 ## Search optimization service
 
 - Snowflake is best suited for analytics workload
@@ -26,7 +25,7 @@ ALTER TABLE MYTABLE DROP SEARCH OPTIMIZATION;
 
 -- check search optimization column
 SHOW TABLES;
-SELECT "search_optimization", -- wheter service is enabled
+SELECT "search_optimization", -- whether service is enabled
 "search_optimization_progress", -- percentage of table optimized so far
 "search_optimization_bytes"
 FROM TABLE(result_scan(last_query_id()));

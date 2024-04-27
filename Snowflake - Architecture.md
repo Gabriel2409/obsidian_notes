@@ -19,7 +19,7 @@ Snowflake built a new architecture specifically for the cloud to do better than 
 
 Note: there is also a Cloud agnostic layer here to make sure snowflake works on any cloud provider
 
-Each layer are physically separated and communicate over a network via RESTful interfaces. For ex, the virtual warehouses are completely separate from the storage where we keep the long term data.
+Each layer are **physically separated** and communicate over a network via RESTful interfaces. For ex, the virtual warehouses are completely separate from the storage where we keep the long term data.
 Each layer is scaled independently
 
 ![[snowflake_multicluster.png.png]]
@@ -47,7 +47,7 @@ Each layer is scaled independently
   - can be paused or resumed (no billing when paused)
   - come in many sizes: small, medium, large, ... (from xs to 6xl)
 - We can create virtually unlimited virtual warehouses, each with its own config. Each warehouse is isolated from each other
-- All running virtual warehouses have **consistent** (see [[Consistency patterns]]) access to the same data in the storage layer. Snowflake is NOT eventually consistent, it uses strict ACID compliant processing, which is achieved thanks to the Transaction service in the Global service layer which synchronises data access
+- All running virtual warehouses have **consistent** (see [[Consistency patterns]]) access to the same data in the storage layer. **Snowflake is NOT eventually consistent, it us strongly consistent** (strict ACID compliant processing), which is achieved thanks to the Transaction service in the Global service layer which synchronises data access.
 
 ### Services layer
 
@@ -60,3 +60,4 @@ Each layer is scaled independently
   - security
 - Because the services layer is multi tenant, it allows snowflake to perform economies of scale and make features such as secure data sharing easier.
 - Behind the scenes, it works on cloud compute based instances similarly to virtual warehouses
+

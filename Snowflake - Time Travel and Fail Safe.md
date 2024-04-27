@@ -65,6 +65,17 @@ BEFORE(STATEMENT => '015476g-45gf-5fgf');
 CREATE TABLE MYTABLE2 CLONE MYTABLE
 AT(TIMESTAMP=> TO_TIMESTAMP('2023-01-01'));
 
+
+--- Note, possible to get the query id of a statement
+SET query_id = (
+SELECT TOP 1 query_id
+FROM TABLE(mydb.information_schema.query_history())
+WHERE query_type = 'UPDATE'
+AND query_text = '%SET...'
+ORDER BY ...
+)
+
+-- then use $query_id
 ```
 
 ## Fail safe

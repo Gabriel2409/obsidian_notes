@@ -36,3 +36,4 @@ $$
 - Aggregation
   - Macro: give each class the same weight in the final score
   - Weighted: weight each class by its support
+  - Micro: computer metrics globally
