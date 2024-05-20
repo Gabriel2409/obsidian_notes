@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-18
-sr-interval: 25
+sr-due: 2025-09-16
+sr-interval: 484
 sr-ease: 250
 reviewed: 2023-07-10
 ---
@@ -9,7 +9,7 @@ reviewed: 2023-07-10
 
 If we want to keep track of the median of a set of value, we can use an array. Retrieving the median is O(1) but inserting new elements is O(n).
 
-By using two heap, a min heap keeping track of the larges values, and a max heap keeping track of the smaller values, we can reduce insertion time to O(logn)
+By using two [[Heap (datastructure)|heaps]], a min heap keeping track of the larges values, and a max heap keeping track of the smaller values, we can reduce insertion time to O(logn)
 
 ## Implementation
 

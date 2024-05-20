@@ -1,3 +1,9 @@
+---
+sr-due: 2024-05-23
+sr-interval: 3
+sr-ease: 250
+---
+
 #dsa
 
 Not to be confused with stack in the context of [[Memory Allocation - Stack and heap|memory allocation]] although they share the LIFO principle

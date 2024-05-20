@@ -32,7 +32,7 @@ https://redis.io/docs/manual/keyspace/
 - up to 512 MB
 - in a flat key space (no automatic namespacing)
 
-Note: Redis also comes with logical databases that provide a way to organize data within the redis instance (serves as a sort of namespace). They still use the same underlying hardawre so don't provide real isolation
+Note: Redis also comes with logical databases that provide a way to organize data within the redis instance (serves as a sort of namespace). They still use the same underlying hardware so don't provide real isolation
 Logical db are 0 indexed.
 Many tools and frameworks assume database 0 is used. We will focus on only db 0 here
 
