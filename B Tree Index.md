@@ -1,6 +1,6 @@
 ---
-sr-due: 2024-09-28
-sr-interval: 270
+sr-due: 2026-03-28
+sr-interval: 675
 sr-ease: 250
 reviewed: 2023-07-14
 ---
@@ -18,7 +18,7 @@ Most widely used type of [[Index]], especially in SQL databases, using [[B Tree]
 
 ## Considerations
 
-- Constrary to [[SSTable and LSM Tree |LSM trees]], the basic underlying write operation is to overwrite a page on disk with new data. Some operations may require to overwrite several pages. A problem may arise if a crash occurs during a write operation => B Tree typically implement a **Write Ahead Log (WAL, also called redo log)** = append only file to which each modification must be written before it can be applied to the pages of the tree. The log can be used to restore the data after a crash
+- Contrary to [[SSTable and LSM Tree |LSM trees]], the basic underlying write operation is to overwrite a page on disk with new data. Some operations may require to overwrite several pages. A problem may arise if a crash occurs during a write operation => B Tree typically implement a [[Write Ahead Log]]
 - Additionnal complexity of updating in place is concurrency control. B Tree usually protect the tree data structure with **latches (lightweight locks)**
 - Instead of modifying in place it is possible to write a new page and update the references to point to the new page
 

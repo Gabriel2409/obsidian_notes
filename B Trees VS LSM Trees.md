@@ -1,6 +1,6 @@
 ---
-sr-due: 2024-09-29
-sr-interval: 271
+sr-due: 2026-03-31
+sr-interval: 678
 sr-ease: 250
 reviewed: 2023-07-18
 ---
@@ -14,7 +14,7 @@ LSM Trees are faster for writes but slower for reads as they have to check diffe
 ## Advantages of LSM Trees
 
 - Write amplification
-  - B tree writes every page of data at least twice: once to the write ahead log and once to the tree page itself. There is also overhead of writing the entire page even if a few bytes in that page changed
+  - B tree writes every page of data at least twice: once to the [[Write Ahead Log]] and once to the tree page itself. There is also overhead of writing the entire page even if a few bytes in that page changed
   - LSM Trees also rewrite data multiple times due to the repeated compaction and merging of SSTables. However, they are able to sustain higher throughput because the write amplication is lower
 - LSM Trees can be better compressed (smaller files on disk)
 

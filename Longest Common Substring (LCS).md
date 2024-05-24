@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-06-21
-sr-interval: 21
+sr-due: 2025-08-07
+sr-interval: 442
 sr-ease: 234
 reviewed: 2023-07-05
 ---
@@ -89,7 +89,7 @@ def bottomup(s1, s2):
 		cur = [0 for _ in range(m+1)]
 		for i2 in range(m):
 			if s1[i1] == s2[i2]:
-				cur[i2+1] = 1 + dp[i1][i2]
+				cur[i2+1] = 1 + dp[i2]
 			else:
 				cur[i2+1] = max(cur[i2], dp[i2+1])
 		dp = cur

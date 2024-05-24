@@ -23,7 +23,7 @@ def ispali(mystring):
 	while l < r:
 		if mystring[l] != mystring[r]:
 			return False
-		l -= 1
+		l += 1
 		r -= 1
 	return True
 ```

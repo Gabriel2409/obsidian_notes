@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-08-28
-sr-interval: 63
+sr-due: 2025-07-14
+sr-interval: 416
 sr-ease: 210
 reviewed: 2023-07-20
 ---
@@ -51,7 +51,7 @@ def bfs(src, target):
             for dest in adj[node]:
                 if dest not in visit:
                     q.append(dest)
-                    visit.append(dest)
+                    visit.add(dest)
         tot += 1
     return -1 # not reachable
 ```

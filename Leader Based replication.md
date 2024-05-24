@@ -71,7 +71,7 @@ Failover is the **process of promoting a follower to leader when the current lea
   - If statements use an autoincrementing column or if they depend on existing data, they MUST be executed in the same order
   - Potential problems with non deterministic side effects
 - Write ahead log shipping
-  - See [[SSTable and LSM Tree]] and [[B Tree Index]], we can use the WAL log (append only sequence of bytes) to build the replica on another node
+  - See [[SSTable and LSM Tree]] and [[B Tree Index]], we can use the [[Write Ahead Log]] (append only sequence of bytes) to build the replica on another node
   - Main disadvantage is that the log describes the data at a very low level (details of which byte changed on which disk blocks), which makes replication coupled to the storage engine
   - This prevents zero-downtime upgrades as leaders and followers must be on the same software version
 - Logical (row-based) log replication

@@ -113,7 +113,7 @@ Strongest isolation level which protects against all anomalies (in theory)
 
 - Optimistic approach
 - Built on top of snapshot isolation
-- Adds a layer of serialiazability for detecting conflicts **during the commit phase**, which then aborts the transaction
+- Adds a layer of serialiazability for detecting conflicts **during the commit phase**: it checks if the data it read has changed (i.e., if any other transactions have modified the data since it was read) and aborts the transaction if that is the case.
 
 ## Other guarantees
 
