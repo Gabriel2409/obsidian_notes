@@ -1,0 +1,151 @@
+---
+id: Postgres - Statements
+aliases: []
+tags: []
+---
+
+, #postgres
+
+Note: only shows statements where I can forget the syntax, so no need for SELECT
+
+- Insert syntax:
+
+```sql
+INSERT INTO users (username, email)
+VALUES ('myuser', 'myemail'), ('myuser2', 'myemail2')
+
+-- or from a select
+INSERT INTO temp_categories
+SELECT * FROM categories;
+```
+
+On sucess it shows, `INSERT 0 2`, which says that 2 rows were inserted.
+The first 0 is the oid of inserted row. In new versions of postgres, by default, tables are created without oid on the row, so it shows 0.
+
+- Update syntax:
+
+```sql
+UPDATE categories
+SET title = 'no title'
+WHERE description = 'Languages';
+```
+
+On success shows `UPDATE <num>` where num is the nb of updated rows
+
+- Delete syntax:
+
+```sql
+DELETE FROM categories
+WHERE description IS NULL;
+```
+
+On success shows `DELETE <num>` where num is the nb of updated rows
+
+- you can also truncate the table to remove all rows (very fast): `TRUNCATE TABLE temp_categories;`
+
+- `ORDER BY NULLS LAST` is the default for `ASC` and `NULLS FIRST` is the default for `DESC`
+
+- Pattern matching: <https://www.postgresql.org/docs/current/functions-matching.html>
+
+  - `LIKE` syntax: `WHERE desc LIKE '%disc_ss%'` (can also use `NOT LIKE`). `ILIKE` for case insensitive
+  - `SIMILAR TO`: uses sql regex instead (intersection between POSIX regex and LIKE notation). For ex, you can use `substring` like this `substring(<string> similar <pattern> escape <escpae-char>)` or like this `substring(<string>, <pattern>, <escape-char>)`
+  - There are also regex functions: `regexp_like`, `regex_match`, etc...
+
+- Use `COALESCE` to returns first non null value.
+- change NULL display: `\pset null (NULL)` => NULL display is "(NULL)"
+
+- pagination: `SELECT * FROM CATEGORIES ORDER BY pk OFFSET 1 LIMIT 2`
+- Copy a table structure: `CREATE TABLE new_categories as SELECT * FROM categories LIMIT 0`
+
+### Subqueries
+
+```sql
+-- IN subqueries, for filtering
+SELECT * FROM categories WHERE pk IN (1,2); -- (can also use NOT IN)
+SELECT * FROM posts WHERE category IN (
+  SELECT pk from categories where title = 'Database'
+);
+
+-- EXISTS subquery, check if subquery returns true or false
+SELECT * FROM posts WHERE EXISTS (
+  SELECT 1 FROM categories WHERE title='Database' AND posts.category=pk
+)
+```
+
+### Joins
+
+- INNER JOIN (default)
+- LEFT/ RIGHT / FULL OUTER JOINS
+
+```sql
+SELECT *
+FROM tbA JOIN tbB
+USING (col1, col2);
+-- equivalent to
+SELECT *
+FROM tbA JOIN tbB
+ON tbA.col1 = tbB.col1
+AND tbA.col2 = tbB.col2;
+-- equivalent to
+SELECT *
+FROM tbA NATURAL JOIN tbB
+-- only equivalent if tbA and tbB have only col1 and col2 in common
+-- pretty bad practice
+```
+
+A LATERAL JOIN allows to join a table with a subquery where the subquery is run for each row of the main table.
+The subquery is run BEFORE joining the rows and the result is used to join the rows. This allows to use information from one table to filter or process data from another table.
+
+```sql
+-- retrieves users who have at least one post with more than 2 likes
+SELECT u.* FROM users u WHERE EXISTS (
+  SELECT 1 FROM posts p where u.pk = p.author and likes >2
+);
+
+-- Now if we want to get all the posts with more than 2 likes
+SELECT u.* , q.likes FROM users
+LATERAL JOIN (
+  SELECT p.author, p.likes FROM posts p WHERE u.pk = p.author and likes > 2
+) as q ON TRUE;
+-- Note that this could be done with a standard join
+```
+
+### Combining queries
+
+- `UNION` Combines the resultset of two or more SELECT statements. Each statement must have the same nb of columns and they should have the same datatypes.
+- `INTERSECT` returns all rows that are both in first and second resultset.
+- `EXCEPT` returns all rows that are in first resultset but not in second.
+- For all commands, adding `ALL` allows to keep duplicates (they are removed by default)
+
+```sql
+SELECT tag as datalist FROM tags
+UNION SELECT title as datalist from titles
+```
+
+### UPSERT
+
+There is no UPSERT statement = performs an INSERT operation, but if a row already exists with a conflicting key, it updates the existing row instead of inserting a new one
+
+```sql
+INSERT INTO tablename (columnlist)
+VALUES (valueslist)
+  ON CONFLICT target_action;
+```
+
+ON CONFLICT means the record already exists (meaning a record with same primary key exists)
+We can also specify the conflict column `ON CONFLICT (colname)` but it is better to use a constraint
+`ON CONFLICT ON CONSTRAINT constraint_name`
+
+`target_action` could be `DO NOTHING`
+or we could do an update, for ex:
+
+```sql
+INSERT INTO j_posts_tags (post_pk, tag_pk) values (2,1)
+ON CONFLICT(tag_pk, post_pk)
+DO UPDATE set tag_pk=excluded.tag_pk +1;
+-- here excluded represents the values that would have been inserted
+-- if there was no conflict
+```
+
+Here, if there is a conflict, it is as if we replace `INSERT INTO j_posts_tags (post_pk, tag_pk) values (2,1)` with
+`UPDATE SET tag_pk=tag_pk+1 WHERE tag_pk=1 and post_pk=2`
