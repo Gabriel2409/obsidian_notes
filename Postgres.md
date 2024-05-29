@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-# todo #postgres
+#todo #postgres
 
 <https://docs.postgresql.fr/16/index.html>
 
@@ -17,3 +17,4 @@ tags: []
 - [[Postgres - Tables]]
 - [[Postgres - Statements]]
 - [[Postgres - Order of execution]]
+- [[Postgres - CTE]]

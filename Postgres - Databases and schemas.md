@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-# postgres
+#postgres
 
 - **DDL** (Data Definition Language): Commands used to manage databases
 - **DML** (Data Manipulation Language): Commands used to insert, delete, update and select
@@ -23,7 +23,7 @@ To use another db as template:
 CREATE DATABASE db2 template mydb
 ```
 
-- the exists keyword is useful when scripting. Instead of erroring, dbs that don't match the condition will be skipped
+- the **exists** keyword is useful when scripting. Instead of erroring, dbs that don't match the condition will be skipped
 
 ```sql
 CREATE DATABASE IF NOT EXISTS mydb
