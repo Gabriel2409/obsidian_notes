@@ -47,7 +47,7 @@ Note: use `RETURNING` keyword to get associated values (works with insert, updat
 
 - you can also truncate the table to remove all rows (very fast): `TRUNCATE TABLE temp_categories;`
 
-- `ORDER BY NULLS LAST` is the default for `ASC` and `NULLS FIRST` is the default for `DESC`
+- `ORDER BY NULLS LAST` is the default for `ASC` and `NULLS FIRST` is the default for `DESC` when using `ORDER BY`
 
 - Pattern matching: <https://www.postgresql.org/docs/current/functions-matching.html>
 
@@ -59,7 +59,6 @@ Note: use `RETURNING` keyword to get associated values (works with insert, updat
 - change NULL display: `\pset null (NULL)` => NULL display is "(NULL)"
 
 - pagination: `SELECT * FROM CATEGORIES ORDER BY pk OFFSET 1 LIMIT 2`
-- Copy a table structure: `CREATE TABLE new_categories as SELECT * FROM categories LIMIT 0`
 
 ### Subqueries
 
@@ -72,7 +71,9 @@ SELECT * FROM posts WHERE category IN (
 
 -- EXISTS subquery, check if subquery returns true or false
 SELECT * FROM posts WHERE EXISTS (
-  SELECT 1 FROM categories WHERE title='Database' AND posts.category=pk
+  SELECT 1 FROM categories
+  WHERE title='Database'
+  AND posts.category=pk
 )
 ```
 
@@ -103,13 +104,18 @@ The subquery is run BEFORE joining the rows and the result is used to join the r
 ```sql
 -- retrieves users who have at least one post with more than 2 likes
 SELECT u.* FROM users u WHERE EXISTS (
-  SELECT 1 FROM posts p where u.pk = p.author and likes >2
+  SELECT 1 FROM posts p
+  WHERE u.pk = p.author
+  AND likes >2
 );
 
 -- Now if we want to get all the posts with more than 2 likes
 SELECT u.* , q.likes FROM users
 LATERAL JOIN (
-  SELECT p.author, p.likes FROM posts p WHERE u.pk = p.author and likes > 2
+  SELECT p.author, p.likes
+  FROM posts p
+  WHERE u.pk = p.author
+  AND likes > 2
 ) as q ON TRUE;
 -- Note that this could be done with a standard join
 ```
@@ -123,12 +129,13 @@ LATERAL JOIN (
 
 ```sql
 SELECT tag as datalist FROM tags
-UNION SELECT title as datalist from titles
+UNION
+SELECT title as datalist from titles
 ```
 
 ### UPSERT
 
-There is no UPSERT statement = performs an INSERT operation, but if a row already exists with a conflicting key, it updates the existing row instead of inserting a new one
+There is no UPSERT statement = performs an INSERT operation, but if a row already exists with a conflicting key, it updates the existing row instead of inserting a new one. But there is an `ON CONFLICT` instruction
 
 ```sql
 INSERT INTO tablename (columnlist)
@@ -154,7 +161,6 @@ DO UPDATE set tag_pk=excluded.tag_pk +1;
 Here, if there is a conflict, it is as if we replace `INSERT INTO j_posts_tags (post_pk, tag_pk) values (2,1)` with
 `UPDATE SET tag_pk=tag_pk+1 WHERE tag_pk=1 and post_pk=2`
 
-
 ### UPDATE with another table
 
 We can update values in a table from another table.
@@ -165,42 +171,48 @@ CREATE TEMP TABLE c1(
    val int,
    txt VARCHAR(255)
 );
-INSERT INTO c1 VALUES (1, 'a'), (2, 'b'), (3,'c');
+INSERT INTO c1
+VALUES (1, 'a'), (2, 'b'), (3,'c');
 
 CREATE TEMP TABLE c2 AS
 SELECT * FROM c1 LIMIT 0;
-INSERT INTO c2 VALUES (2, 'b_1'), (2, 'b_2'), (3,'c_1'), (4, 'd_1');
+INSERT INTO c2
+VALUES (2, 'b_1'), (2, 'b_2'), (3,'c_1'), (4, 'd_1');
 
 UPDATE c1 SET
 txt = c2.txt
-FROM c2 
+FROM c2
 WHERE c1.val = c2.val
--- Final c1 is 
+-- Final c1 is
 -- 1 a
 -- 2 b_2
 -- 3 c
 ```
 
 It is also possible to use the `MERGE` keyword
+
 ```sql
 MERGE INTO c1
 USING c2 on c1.val = c2.val
 WHEN MATCHED THEN
-	UPDATE SET txt = c2.txt
+ UPDATE SET txt = c2.txt
 ```
+
 Note that it comes with an extra security.
-With the example above I get 
+With the example above I get
+
 ```txt
 SQL Error [21000]: ERROR: MERGE command cannot affect row a second time
 Hint: Ensure that not more than one source row matches any one target row.
 ```
 
 Let's look at a more advanced scenario
+
 ```sql
 CREATE TEMP TABLE c1(
-	pk int GENERATED ALWAYS AS IDENTITY,
-	txt VARCHAR(255),
-	PRIMARY KEY(pk)
+ pk int GENERATED ALWAYS AS IDENTITY,
+ txt VARCHAR(255),
+ PRIMARY KEY(pk)
 );
 INSERT INTO c1 (txt) VALUES ('a'), ('b'), ('c')
 
@@ -211,18 +223,20 @@ DELETE FROM c2 WHERE c2.pk = 3;
 MERGE INTO c1
 USING c2 on c1.pk = c2.pk
 WHEN MATCHED THEN
-	UPDATE SET txt = c2.txt
+ UPDATE SET txt = c2.txt
 WHEN NOT MATCHED THEN
-	INSERT (pk, txt) OVERRIDING SYSTEM VALUE
-	VALUES (c2.pk, c2.txt)
--- Final c1 is 
+ INSERT (pk, txt) OVERRIDING SYSTEM VALUE
+ VALUES (c2.pk, c2.txt)
+-- Final c1 is
 -- 1 a_1
 -- 2 b_1
 -- 3 c
 -- 4 d_1
 ```
-We used the OVERRIDING SYSTEM VALUE because we can't insert a primary key by default. 
-Note that the next time we try to insert a value in c1, we get an error saying that we can't insert a duplicate primary key. 
+
+We used the OVERRIDING SYSTEM VALUE because we can't insert a primary key by default.
+Note that the next time we try to insert a value in c1, we get an error saying that we can't insert a duplicate primary key.
+
 ```sql
 SELECT MAX(pk) FROM c1; -- returns 4
 SELECT nextval('c1_pk_seq'); -- returns 4 as well
