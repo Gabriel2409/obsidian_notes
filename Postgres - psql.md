@@ -22,7 +22,7 @@ Note: alternative: pgcli
 
 NOTE: while you can pass the password in the conn string (replace `<user>` with `<user>:<password>`), it is better to either type the password on connect or set the `PGPASSWORD` env var.
 
-In case of connection refused, in PGDATA dir, check `postgresql.conf` and `pg_hba.conf`, see [[Postgres - theory]]
+In case of connection refused, in PGDATA dir, check `postgresql.conf` and `pg_hba.conf`, see [[Postgres - Theory]]
 
 ### Other Useful flags with psql
 

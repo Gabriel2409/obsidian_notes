@@ -1,8 +1,7 @@
 ---
 id: Postgres - Order of execution
-aliases:
-  - Postgres - Order of execution
-tags: []
+aliases: []
+tags:
 ---
 
 #postgres

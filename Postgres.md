@@ -4,17 +4,20 @@ aliases: []
 tags: []
 ---
 
-#todo #postgres
+,#todo #postgres
 
 <https://docs.postgresql.fr/16/index.html>
 
 - [[Postgres - Installation]]
-- [[Postgres - cluster management]]
+- [[Postgres - Cluster management]]
 - [[Postgres - psql]]
-- [[Postgres - theory]]
-- [[Postgres - roles]]
+- [[Postgres - Theory]]
+- [[Postgres - Roles]]
 - [[Postgres - Databases and schemas]]
 - [[Postgres - Tables]]
 - [[Postgres - Statements]]
 - [[Postgres - Order of execution]]
 - [[Postgres - CTE]]
+- [[Postgres - Window Functions]]
+- [[Postgres - Data types]]
+- [[Postgres - Functions]]

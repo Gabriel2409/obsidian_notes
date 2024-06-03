@@ -66,7 +66,7 @@ SELECT pg_database_size('mydb')
 
 ### Relation with file system
 
-In [[Postgres - theory]], we saw that all postgres data is stored in the PGDATA dir.
+In [[Postgres - Theory]], we saw that all postgres data is stored in the PGDATA dir.
 
 ```sql
 -- in expanded mode

@@ -1,7 +1,7 @@
 ---
-id: Postgres - theory
-aliases: []
-tags: []
+id: Postgres - Theory
+aliases: 
+tags:
 ---
 
 #postgres
@@ -26,7 +26,16 @@ pstree -p postgres # shows all processes
 
 - **background writer**: push data out of memory to permanent storage in a background, asynchronous manner. Unlike the checkpointer, which triggers checkpoints at specific intervals, the background writer operates continuously in the background. The background writer does not necessarily flush all dirty pages during each cycle. Instead, it employs a **priority-based strategy to select which pages to flush**.
 
-- **walwriter**: Writes the [[Write Ahead Log]]. When a user transaction modifies data, the changes made by these transactions are logged in the Write-Ahead Log (WAL). The WAL writer process is responsible for flushing WAL records from the WAL buffer to the WAL files on disk buffer as WAL records. NOTE: the walwriter does not interact with the data.
+- **walwriter**: Writes the [[Write Ahead Log]]. When a user transaction modifies data, the changes made by these transactions are logged in the Write-Ahead Log (WAL). The WAL writer process is responsible for flushing WAL records from the WAL buffer to the WAL files on disk buffer as WAL records. NOTE: the walwriter does not interact with the data. IMPORTANT: in postgres, the WAL is only used for recovery!
+
+-----
+The drawing shows an example write. We see the data going from the connection memory to the shared buffers. It is also written to the WAL (i don't know if it occurs at the same time or after). Periodically we see the WAL flushing to disks. 
+When a checkpoint occurs, the checkpointer flushes data to disk, then writes a checkpoint record. Checkpoint is only valid once the walwriter flushes data to the disk.
+Note that the background writer process is not shown here. To see a very different workflow, see [[sqlite - journal modes]] 
+
+![[Postgres-write-dataflow.excalidraw]]
+
+
 
 Example sequence:
 
@@ -41,6 +50,7 @@ Example sequence:
 - **logical replication launcher**: manages logical replication subscriptions by launching and monitoring subscription workers
 
 When a client connects to the cluster, a backend process is spawned by the postmaster. This is postgres approach to concurrency (using processes and not threads)
+
 
 ## Init
 
