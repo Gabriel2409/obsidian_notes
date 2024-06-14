@@ -39,9 +39,17 @@ Running `\d myusers` Shows column types and indexes. Primary keys are implemente
 CREATE TABLE t2 AS
 SELECT * FROM t1 LIMIT 0;
 
--- also includes primary keys and constraints
+-- then add the necessary constraints
+ALTER TABLE t2 ALTER pk SET NOT NULL;
+ALTER TABLE t2 ADD CONSTRAINT 
+t2 PRIMARY KEY (pk);
+
+
+-- or you can include primary keys 
+-- and constraints directly 
 CREATE TABLE t2 
 (LIKE t1 INCLUDING ALL)
+
 ```
 ### special keywords
 
@@ -68,10 +76,10 @@ By adding the `UNLOGGED` keyword, we can have a very fast table but it is not cr
 ```sql
 SELECT oid, relname
 FROM pg_class
-WHERE relname = 'mydb';
+WHERE relname = 'mytable';
 ```
 
-Now in PGDATA dir, in `base/<mydb_oid>`, you should find a file whose name is the oid.
+Now in PGDATA dir, in `base/<db_oid>`, you should find a file whose name is the oid corresponding to mytable.
 Each table is stored as one or more file. If the table size is more than **1 GB**, it will be stored in several files, for ex `16389`, then `16389.1`, then `16389.2`, etc.
 
 ```bash

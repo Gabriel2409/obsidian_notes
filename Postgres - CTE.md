@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-,#postgres
+, #postgres
 
 Common table expression is a temporary result taken from a sql statement. Its lifetime is the lifetime of the query.
 
@@ -66,7 +66,8 @@ It is made by an auxiliary statement built on top of:
 
 - A non recursive statement, which works as a bootstrap statement
 - A recursive statement that references the bootstrap statement or itself
-  The two parts are joined with an UNION
+
+The two parts are joined with an UNION
 
 ```sql
 WITH RECURSIVE RecursiveCTE AS (

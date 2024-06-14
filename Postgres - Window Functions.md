@@ -126,7 +126,6 @@ Value functions such as `LEAD()`, `LAG()`, `FIRST_VALUE()`, and `LAST_VALUE()` c
 #### frame start and frame end examples
 
 We'll look at the effect of the frame clause on the sum column.
-Each query is launched independently but we'lll show all the results in the same table for comparison
 
 ```sql
 SELECT cat, num, row_number() OVER w, SUM(num) OVER w
@@ -151,7 +150,7 @@ RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING
 -- group_1p1f: takes current group of value and preceding
 GROUPS BETWEEN 1 PRECEDING AND 1 FOLLOWING
 -- range_12p: takes  and all values in range [val-12;val]
-RANGE BETWEEN 1 PRECEDING AND 1 FOLLOWING
+RANGE BETWEEN 12 PRECEDING AND CURRENT ROW
 ```
 
 We can run multiple partitions at once
@@ -170,10 +169,10 @@ FROM c
 ```txt
 cat|num|row_up|row_uf|row_1p1f|range_1p1f|group_1p1f|range_12p|
 ---+---+------+------+--------+----------+----------+---------+
-  0| 10|    10|   120|      20|        20|        20|       20|
-  0| 10|    20|   110|      40|        20|        20|       20|
-  1| 20|    40|   100|      50|        40|        60|       60|
-  1| 20|    60|    80|      70|        40|        60|       60|
+  0| 10|    10|   120|      20|        20|        60|       20|
+  0| 10|    20|   110|      40|        20|        60|       20|
+  1| 20|    40|   100|      50|        40|       120|       60|
+  1| 20|    60|    80|      70|        40|       120|       60|
   2| 30|    90|    60|      80|        60|       100|      100|
   2| 30|   120|    30|      60|        60|       100|      100|
 ```

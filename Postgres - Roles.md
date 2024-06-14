@@ -37,7 +37,7 @@ To drop a role
 
 ```sql
 -- deleting a group does not delete its members
-DROP ROLE IF EXIST authors
+DROP ROLE IF EXISTS authors
 ```
 
 Inspect roles
@@ -62,7 +62,7 @@ FROM pg_roles;
 ```
 
 NOTE: login role is not enough to connect. Postgres checks the incoming connection request agains a kind of firewall table formerly known as host-based access (**pg_hba.conf**). The connection is only granted if the file states that the role can connect to the specified database.  
-NOTE: when modifying pg_hba.conf, we need to reload the new rules via a HUP signal (`sudo -u postgres pg_ctl reload -D $PGDATA`). From within psql, you can also `SELECT pg_reload_conf();`
+NOTE: when modifying pg_hba.conf, we need to reload the new rules via a HUP (hangup) signal (`sudo -u postgres pg_ctl reload -D $PGDATA`). From within psql, you can also `SELECT pg_reload_conf();`
 
 ## pg_hba.conf
 

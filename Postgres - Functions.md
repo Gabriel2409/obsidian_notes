@@ -291,7 +291,7 @@ SELECT safe_div(5,0)
 ### Security definer
 
 Allows to execute a function as if we were its owner.
-This avoids <insufficient privilege> results
+This avoids `<insufficient privilege>` results
 
 As a super user:
 
