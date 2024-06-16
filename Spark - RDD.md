@@ -2,7 +2,7 @@
 reviewed: 2023-09-05
 ---
 
-#spark #sd
+#spark 
 
 Resilient Distributed Datasets, commonly known as RDDs, are a fundamental data structure in Apache [[Spark]]. RDDs are the building blocks that enable distributed data processing with fault tolerance. They offer a simple and efficient way to work with large datasets across a cluster of machines.
 

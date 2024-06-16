@@ -2,7 +2,7 @@
 reviewed: 2023-09-05
 ---
 
-#sd #spark #todo
+#spark #todo
 
 # Spark Overview
 

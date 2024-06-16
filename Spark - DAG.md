@@ -2,7 +2,7 @@
 reviewed: 2023-09-05
 ---
 
-#spark #sd
+#spark 
 
 ## What is a Spark DAG?
 

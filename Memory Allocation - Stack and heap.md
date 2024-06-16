@@ -1,3 +1,9 @@
+---
+sr-due: 2024-06-09
+sr-interval: 8
+sr-ease: 254
+---
+
 #sd
 
 Very good explanation in the context of rust: https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html

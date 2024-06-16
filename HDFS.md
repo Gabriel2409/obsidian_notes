@@ -2,7 +2,7 @@
 reviewed: 2023-07-13
 ---
 
-#hadoop #sd
+#hadoop 
 
 ## Overview
 

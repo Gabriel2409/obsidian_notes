@@ -2,7 +2,7 @@
 reviewed: 2023-09-06
 ---
 
-#sd #hadoop
+ #hadoop
 
 - see [[Hadoop]]
 - PIG proposes a high level programming language (Pig Latin) to interact with an [[Hadoop]] cluster

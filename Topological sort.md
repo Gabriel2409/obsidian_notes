@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-07-17
-sr-interval: 36
+sr-due: 2025-08-13
+sr-interval: 444
 sr-ease: 230
 reviewed: 2023-07-12
 ---
@@ -95,4 +95,5 @@ def dfs(node, adj, final, visit, path):
 		dfs(node)
 	path.remove(node) #
 	final.append(node)
+	return True #
 ```

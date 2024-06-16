@@ -2,7 +2,7 @@
 reviewed: 2023-09-06
 ---
 
-#Sd #hadoop
+ #hadoop
 
 - On [[Hadoop]] clusters, data is represented as files and the programming language [[Apache Pig]] does not allow us to see our data in a table structure. That is where **Apache Hive** comes in: it is a data warehouse infrastructure built on top of Hadoop, supporting multiple execution engines
 - you can create table like structures for your dataset and write SQL like queries with HiveQL to analyse your dataset

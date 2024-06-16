@@ -1,5 +1,8 @@
 ---
 reviewed: 2023-07-14
+sr-due: 2024-06-04
+sr-interval: 2
+sr-ease: 246
 ---
 
 #sd

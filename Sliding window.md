@@ -1,6 +1,6 @@
 ---
-sr-due: 2023-08-20
-sr-interval: 53
+sr-due: 2025-08-19
+sr-interval: 447
 sr-ease: 230
 reviewed: 2023-07-08
 ---

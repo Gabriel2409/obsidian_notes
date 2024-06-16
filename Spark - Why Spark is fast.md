@@ -2,7 +2,7 @@
 reviewed: 2023-09-05
 ---
 
-#sd #spark
+ #spark
 
 - **In-Memory Processing**: Unlike [[Hadoop]] [[MapReduce]], which frequently writes intermediate results to disk, Spark caches data in memory, reducing the overhead of reading and writing to disk. This dramatically improves processing speed, especially for **iterative algorithms and interactive data analysis**.
   - For iterative problems such as Finding the degree of separation of people in a social media graph, in Hadoop you would run several jobs, each time saving intermediary outputs to disk. On the other hand, Spark keep them in memory which makes computation faster

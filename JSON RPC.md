@@ -1,3 +1,9 @@
+---
+sr-due: 2024-06-06
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 https://www.jsonrpc.org/
