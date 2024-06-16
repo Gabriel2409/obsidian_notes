@@ -1,10 +1,9 @@
 ---
 id: Postgres - Theory
-aliases: 
-tags:
+aliases: []
+tags: []
 ---
-
-#postgres
+# postgres
 
 ## Intro
 
@@ -28,14 +27,13 @@ pstree -p postgres # shows all processes
 
 - **walwriter**: Writes the [[Write Ahead Log]]. When a user transaction modifies data, the changes made by these transactions are logged in the Write-Ahead Log (WAL). The WAL writer process is responsible for flushing WAL records from the WAL buffer to the WAL files on disk buffer as WAL records. NOTE: the walwriter does not interact with the data. IMPORTANT: in postgres, the WAL is only used for recovery!
 
------
-The drawing shows an example write. We see the data going from the connection memory to the shared buffers. It is also written to the WAL (i don't know if it occurs at the same time or after). Periodically we see the WAL flushing to disks. 
+---
+
+The drawing shows an example write. We see the data going from the connection memory to the shared buffers. It is also written to the WAL (i don't know if it occurs at the same time or after). Periodically we see the WAL flushing to disks.
 When a checkpoint occurs, the checkpointer flushes data to disk, then writes a checkpoint record. Checkpoint is only valid once the walwriter flushes data to the disk.
-Note that the background writer process is not shown here. To see a very different workflow, see [[sqlite - journal modes]] 
+Note that the background writer process is not shown here. To see a very different workflow, see [[sqlite - journal modes]]
 
 ![[Postgres-write-dataflow.excalidraw]]
-
-
 
 Example sequence:
 
@@ -50,7 +48,6 @@ Example sequence:
 - **logical replication launcher**: manages logical replication subscriptions by launching and monitoring subscription workers
 
 When a client connects to the cluster, a backend process is spawned by the postmaster. This is postgres approach to concurrency (using processes and not threads)
-
 
 ## Init
 
@@ -81,8 +78,11 @@ oid2name -d postgres -f 13414 # shows pg_toast_13411
 oid2name -s # contains at least pg_default and pg_global
 ```
 
+NOTE: as superuser, in psql, you can see tablespaces with: `\db+` or `SELECT * FROM pg_tablespace;`
+
 Note: files are at most 1GB so postgres will create new files (with suffix .1, .2, etc) if necessary
 
 Note: on Ubuntu, config may be stored outside. Find location with `SHOW config_file;` and `SHOW hba_file;`
 
 When systemd launches the service, it reads the conf file and is able to find location of pgdata
+

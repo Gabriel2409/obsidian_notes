@@ -25,4 +25,5 @@ tags: []
 - [[Postgres - Data types]]
 - [[Postgres - Functions]]
 - [[Postgres - Triggers and rules]]
+- [[Postgres - Partitioning]]
 
