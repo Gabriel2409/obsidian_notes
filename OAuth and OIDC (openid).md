@@ -104,12 +104,39 @@ curl -X POST https://myoauthserver.com/oauth/token \
 ```
 
 ## OAuth native apps (mobile)
+
  2 big differences with server side app:
+ 
  - No client secret: PKCE was invented in the first place for mobile apps.
  - Not from a browser: in modern apps, the app uses an in app browser to redirect to the authorization server. This browser is isolated from the app and shares cookies with the rest of the system. Before we only had a webview where the app could see everything but now there are APIs built in exactly for that to launch the browser in a secure way: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller and https://developer.chrome.com/docs/android/custom-tabs
 
 There is also an issue with the redirect: you are not exactly sure you go back to the app. Usually apps can launch when a url matching a specific scheme is used. However, there is no registry for that so multiple apps can claim a pattern. 
 For more security, we have to do **deep linking**: it is where an app claims a url pattern. To do so, a developper has to prove he owns the domain name so it is more secure but still not perfect.
+
+Finally to store the refresh token, there is no client secret so it is very important to store it securely. On the first request, we usually do a scope=offline_access to get the refresh token at the same time as the access token. Then it is stored using a secure API. To access it, the app has to prompt the user first (so for ex redo the schema on your phone).
+
+## Single page applications
+
+- This time we do it directly in the browser but in the frontend. 
+- Like native apps, no client secrets.
+- Flow is the same as server side app. The back channel final request is done from the app directly. WHICH MEANS the authorization server must implement the correct [[CORS]] headers so that the app can make requests to it
+
+Single page apps have imperfect options to protect the token they receive in the browser. One of the biggest risk is  [[XSS]]. If a user can run malicious code on your app, pretty much everything that is accessible to javascript is accessible to the attacker:
+- LocalStorage: Lets you store data that persists across sessions. Shared across tabs
+- SessionStorage: Only persists as long as that particular window is open. Not shared across tabs
+- Cookies (older option): not really meant for that. Normally it is used to have the browser automatically send the cookies on every request to the backend
+Note: even though storage is domain dependent, with XSS, if an attacker injects code in your app, it can read its local storage
+
+Alternatives:
+- keep token in memory: hard to steal but not great user experience
+- Service workers: more secure, a lot harder to build
+- WebCrypto api
+
+
+A more secure flow consists in using a backend as a proxy. The idea is to use the backend to do the oauth flow (backend is confidential client so it can have a client secret) then proxy all api requests through the backend.
+
+WHen the flow start, the browser is redirected to the authorization server and receives back the authorization code (same as usual). However, now, the js app delivers the authorization code to the backend app server which then sends it to the authorization server with a secure back channel and receives the access token. Instead of giving back the access token to the frontend, the backend gives it an http only cookie (not accessible by js). 
+When the frontend want to make an authenticated request, it will send that cookie, the backend will examine it and then use the access token to make an api request to the resource server before forwarding the response to the frontend. That way frontend never saw the access token
 
 ## Example openid flow with firebase
 
