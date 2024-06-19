@@ -2,7 +2,7 @@
 ## Introduction
 
 - Smallest applicative unit in kubernetes
-- Group of countainer in same isolation context
+- Group of container in same isolation context
 - Share network stack and volumes
 - Dedicated ip address, no NAT (network address translation) for communication between pods
 
@@ -29,7 +29,7 @@ spec:
 ```
 
 - launch a pod from a file: `kubectl apply -f <pod-specification.yaml>`
-- launch a pod directly from an image: `kubect run <pod-name> --image <image-name>`
+- launch a pod directly from an image: `kubectl run <pod-name> --image <image-name>`
 - list pods: `kubectl get pods`
 - describe a pod: `kubectl describe pod <pod_name>`
 - logs of a pod: `kubectl logs <pod-name> [-c <container-name>]` (no need to specify container-name if pod has only one container)
@@ -51,7 +51,7 @@ Note: generate a pod specification: `kubectl run db --image mongo:4.0 --dry-run=
 
 Example:
 
-```
+```bash
 kubect run www --image nginx:1.16-alpine --restart=Never
 kubectl describe pod www
 # the output shows that the default scheduler assigned default/www to a node
@@ -98,7 +98,7 @@ This effectively mimicks what the kube-scheduler does for us.
 A taint is added on a node and is repulsive. For a pod to be scheduled on this node,
 it must tolerate this taint
 
-```
+```yaml
 # example: on a master node, there is a taint to prevent scheduling
 $ kubectl get no master -o yaml
 ...
@@ -227,7 +227,7 @@ spec:
 
 - allows to schedule pods based on labels of other pods
 - different rules: `requiredDuringSchedulingIgnoredDuringExecution` and `preferredDuringSchedulingIgnoredDuringExecution` (same as nodeAffinity)
-- key `topologyKey` can be used to specify hostname, region, az, ... and specifies where the constraint must be applied. More generally, this key allows you to express constraints based on node topology domains, ensuring that pods are distributed or co-located in a way that aligns with your cluster's infrastructure setup.
+- key `topologyKey` can be used to specify hostname, region, az, ... and specifies where the constraint must be applied. More generally, this key allows you to express constraints based on node topology domains, ensuring that pods are distributed or co-located in a way that aligns with your cluster's infrastructure setup. 
 
 File specification example where pods will be preferrably scheduled on same availability zones.
 

@@ -87,7 +87,7 @@ NOTE: with multipass, if external IP is not visible, IP can be retrieved with a 
 
 Same as NodePort but allows to create a LoadBalancer which will be the entrypoint to
 access the infrastructure. Instead of accessing directly the port of a given machine,
-the traffic accesses the load balancer which is outside of the custer and will redirect
+the traffic accesses the load balancer which is outside of the cluster and will redirect
 the request to one of the machines of the cluster.
 
 ```yaml
