@@ -185,7 +185,7 @@ Note: If an exclusion makes it so that there is nothing left, value will be NULL
 
 - `EXCLUDE CURRENT ROW` excludes the current row from the frame. Useful with `ROW` frame clauses
 
-- `EXCLUDE GROUP` excludes the current row and its ordering peers from the frame. Useful with `ROW` and `RANGE` frame clauses
+- `EXCLUDE GROUP` excludes the current row and its ordering peers from the frame. Useful with `GROUP` and `RANGE` frame clauses
 
 - `EXCLUDE TIES` excludes any peers of the current row from the frame, but not the current row itself.  Will have no effect on a row frame clause as each row is considered independently
 

@@ -9,6 +9,9 @@ tags: []
 Blog version
 <https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc>
 
+Different flows:
+https://www.oauth.com/playground/
+
 - Recommendations of PKCE even in server side apps
 - Todo: authorization code injection attack
 
@@ -18,9 +21,9 @@ Blog version
 
 - **User-Agent:** device or application that acts on behalf of the user to interact with the client and authorization server. Example: A web browser used by the user to log into an application and authorize access.
 
-- **Resource server**: The server that hosts the user's protected resources. Example: An API server that hosts user data, such as a social media API
+- **Resource server (API server)**: The server that hosts the user's protected resources. Example: An API server that hosts user data, such as a social media API
 
-- **Authorization server:** the server responsible for issuing access tokens to the client after authenticating the user and obtaining their consent. Example: The server operated by a service provider (like Google or Facebook) that handles user authentication and authorization.
+- **Authorization server (Oauth server):** the server responsible for issuing access tokens to the client after authenticating the user and obtaining their consent. Example: The server operated by a service provider (like Google or Facebook) that handles user authentication and authorization.
 
 - **Client:** The application that requests access to the resources on the resource server on behalf of the user. Example: A third-party application (like a calendar app) that requests access to a user's social media profile data.
 
@@ -148,7 +151,7 @@ A more secure flow consists in using a backend as a proxy. The idea is to use th
 WHen the flow start, the browser is redirected to the authorization server and receives back the authorization code (same as usual). However, now, the js app delivers the authorization code to the backend app server which then sends it to the authorization server with a secure back channel and receives the access token. Instead of giving back the access token to the frontend, the backend gives it an http only cookie (not accessible by js).
 When the frontend want to make an authenticated request, it will send that cookie, the backend will examine it and then use the access token to make an api request to the resource server before forwarding the response to the frontend. That way frontend never saw the access token
 
-## Other flows TOTO
+## Other flows TODO
 
 - OAuth for IOT
 - Client credential flow
@@ -256,4 +259,30 @@ Note that even with the authorization code flow, if the application stores the t
 - **Authenticated requests**: Firebase gives back a token to the browser that stores it in Indexed DB (which is a more secure storage option than local storage because it's not accessible by other origins). The token can then be used in the authorization header to perform authenticated requests
 
 ## Oauth from the point of view of the API
+
+
+As access tokens don't have a mandatory structure, their format is left to the discrétion of the authorization server. Whatever the case, a client is never required to parse it, only send it to the resource server.
+
+On the other hand, The API server needs to be able to understand it.
+
+###  Reference token
+
+token is a random string that is a pointer to the info. For ex, it could refer to a key in a database. 
+- Advantage: impossible to access user info even when stealing the token
+- Drawback: Each use of the token necessitates to read from the storage, which adds latency. Moreover it is harder to scale.
+
+### Self encoded token
+
+Another solution is to include information directly in the token, for ex by making it a jwt token. 
+In this case you have several validation strategy for the API server
+- parse the jwt directly and check its validity
+- send it to an endpoint on through server to check if it is valid
+- hybrid approach: local validation for non sensitive routes and server validation over the network for sensitive routes.
+
+Note: local validation only tells us if the token was valid when it was created. If we want to know if it was revoked, we need the server validation. 
+
+
+
+
+
 
