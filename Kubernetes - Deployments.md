@@ -3,7 +3,8 @@
 ## Creation
 
 A deployment is a more high level resource that deals with an ensemble of identical pods
-and makes sure that there is a specific number of nodes that run in the cluster
+and makes sure that there is a specific number of nodes that run in the cluster.
+
 If one of the replicas crash, the deployment can restart one.
 A deployment deals with pod lifecycle:
 
@@ -13,6 +14,7 @@ A deployment deals with pod lifecycle:
 
 ReplicaSet = An intermediate resource between deployment and pod whose role is to make
 sure pod is working as intended and takes corrective measures if needed
+
 Note that we rarely manipulate ReplicaSet directly
 
 example:

@@ -45,10 +45,11 @@ HMACSHA256(
 Note: JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
 
 Once the signature is computed, you actually send
-`header.payload.signature` (all parts in b64 separated by a .)
+`header.payload.signature` (all parts in b64 separated by a `.`)
 
-Then the client will decode `header.payload` with the secret and check that it can correctly recompute the signature
+Then the client will decode `header.payload` and check that it can correctly recompute the signature with the method described in the header and its secret. 
 
+Note: remember that to get the payload you just need to decode it with b64url. Only the validation requires the secret (so if someone steals the token he can always get the payload information)
 ## Example of JWT
 
 With [[OAuth and OIDC (openid)| OpenId connect]], You can retrieve tokens that look like this. This is not the idToken sent by google.
