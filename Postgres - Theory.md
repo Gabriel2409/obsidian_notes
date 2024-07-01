@@ -3,6 +3,7 @@ id: Postgres - Theory
 aliases: []
 tags: []
 ---
+
 # postgres
 
 ## Intro
@@ -38,9 +39,10 @@ Note that the background writer process is not shown here. To see a very differe
 Example sequence:
 
 - A user initiates a transaction by executing commands to modify data in the database.
-- As part of the transaction, modifications are made to the data pages in the shared buffer cache. These changes are logged in the WAL buffer as WAL records.
-- walwriter periodically flushes the WAL records from the WAL buffer to the WAL files on disk, ensuring their durable storage. Note: if a crash occurs after a transaction is committed but before WAL records are flushed to disk, we may lose some data.
+- As part of the transaction, modifications are made to the data pages in the shared buffer cache. These changes are logged in the WAL buffer as WAL records. During the writing of the WALs, Postgres isolates itself from the outside world, disabling os signals so that it can not be interrupted.
+- walwriter periodically flushes the WAL records from the WAL buffer to the WAL files on disk, ensuring their durable storage. It does so by issuing fsync(2), an os call that forces the filesystem cache to flush data on disk. Note: if a crash occurs after a transaction is committed but before WAL records are flushed to disk, we may lose some data.
 - at some point, the background writer (or the checkpointer) Will flush the records to disk.
+- After a checkpoint, Postgres performs WAL recycling: the WAL segment is reused as an empty segment for the upcoming changes
 
 ---
 
@@ -63,7 +65,7 @@ Usually a fresh cluster also comes with a postgres db that allows to interact wi
 
 - **base**: directory containing all user data (db, tables, etc)
 - **global**: directory containing cluster wide objects
-- **pg_wal**: stores WAL files
+- **pg_wal**: stores WAL files. Each segment is 24 chars: 8 for the timeline of the cluster, 8 for the LSN, 8 for the offset within the LSN.
 - **pg_stat** and **pg_stat_tmp**: contain information about status and health of cluster
 - **pg_tblspc**: symbolic links to outside folders, allowing postgres to access data not in the PGDATA folder
 
@@ -85,4 +87,3 @@ Note: files are at most 1GB so postgres will create new files (with suffix .1, .
 Note: on Ubuntu, config may be stored outside. Find location with `SHOW config_file;` and `SHOW hba_file;`
 
 When systemd launches the service, it reads the conf file and is able to find location of pgdata
-
