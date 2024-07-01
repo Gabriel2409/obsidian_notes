@@ -83,6 +83,8 @@ Note:
 - Also called Repeatable reads in some db
 - Prevents non repeatable reads
 
+See [[Postgres - Transactions]]
+
 #### Preventing non repeatable reads
 
 - Snapshot Isolation uses Multi Version Concurrency Control: the database maintains **multiple versions** of the same row at a given point in time, due to multiple concurrent transactions.

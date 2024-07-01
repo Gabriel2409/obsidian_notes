@@ -26,4 +26,5 @@ tags: []
 - [[Postgres - Functions]]
 - [[Postgres - Triggers and rules]]
 - [[Postgres - Partitioning]]
+- [[Postgres - Transactions]]
 
