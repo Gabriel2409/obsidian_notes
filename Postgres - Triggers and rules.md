@@ -183,7 +183,8 @@ CREATE TABLE new_O_tags(
 -- first create a function that
 -- returns a trigger.
 -- it has access to OLD and NEW
-CREATE OR REPLACE FUNCTION f_tags() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION f_tags()
+RETURNS TRIGGER AS
 $$
 BEGIN
 -- check that first letter is o
@@ -220,7 +221,8 @@ Insert on new_tags  (cost=0.00..0.01 rows=0 width=0)|
   For ex, we could add logic for insert, delete and update in a single function
 
 ```sql
-CREATE OR REPLACE FUNCTION f_tags() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION f_tags()
+RETURNS TRIGGER AS
 $$
 BEGIN
 -- check that first letter is o

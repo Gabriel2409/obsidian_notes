@@ -53,9 +53,11 @@ txt VARCHAR(255)
 INSERT INTO posts (title, txt) VALUES
 ('Test', 'test'), ('Test', 'newtest'), ('Youpi', 'cool');
 
-CREATE OR REPLACE FUNCTION delete_posts(p_title varchar(255))
+CREATE OR REPLACE FUNCTION
+delete_posts(p_title varchar(255))
 RETURNS SETOF integer AS $$
-DELETE FROM posts WHERE title=p_title RETURNING pk;
+DELETE FROM posts
+WHERE title=p_title RETURNING pk;
 $$ LANGUAGE SQL;
 
 SELECT delete_posts('Test');
@@ -78,7 +80,8 @@ If we remove the `SETOF`, it only returns the first deleted row but still delete
 - Useful when we need a function that works with different data types
 
 ```sql
-CREATE OR REPLACE FUNCTION nvl(anyelement, anyelement)
+CREATE OR REPLACE FUNCTION
+nvl(anyelement, anyelement)
 RETURNS anyelement AS $$
 SELECT COALESCE ($1,$2) $$ LANGUAGE SQL;
 
@@ -95,7 +98,8 @@ SELECT nvl(NULL, 'a'::text);
 
 ```sql
 -- basic function
-CREATE OR REPLACE FUNCTION my_sum(x integer, y integer)
+CREATE OR REPLACE FUNCTION
+my_sum(x integer, y integer)
 RETURNS INTEGER AS
 $BODY$ -- we can put any string between the $ but it has to match at beginning and end
 DECLARE
@@ -122,7 +126,8 @@ Instead of returning parameters in the `BEGIN` block, we can define `IN/OUT` par
 
 ```sql
 -- basic function
-CREATE OR REPLACE FUNCTION my_sum(IN x integer, IN y integer, OUT z integer) AS
+CREATE OR REPLACE FUNCTION
+my_sum(IN x integer, IN y integer, OUT z integer) AS
 $BODY$
 BEGIN
   z:= x + y;
@@ -173,7 +178,8 @@ For best optimization results, you should label your functions with the strictes
 
 ```sql
 -- if statements
-CREATE OR REPLACE FUNCTION above_0(IN x integer, OUT y varchar) AS
+CREATE OR REPLACE FUNCTION
+above_0(IN x integer, OUT y varchar) AS
 $BODY$
 BEGIN
   IF x > 0 THEN   y:='positive';
@@ -185,7 +191,8 @@ $BODY$
 LANGUAGE 'plpgsql';
 
 -- case statement, match a var
-CREATE OR REPLACE FUNCTION case_int(IN x integer) RETURNS VARCHAR AS
+CREATE OR REPLACE FUNCTION
+case_int(IN x integer) RETURNS VARCHAR AS
 $BODY$
 BEGIN
   CASE x
@@ -199,7 +206,8 @@ $BODY$
 LANGUAGE 'plpgsql';
 
 -- case statement, search expr
-CREATE OR REPLACE FUNCTION case_int(IN x integer) RETURNS VARCHAR AS
+CREATE OR REPLACE FUNCTION
+case_int(IN x integer) RETURNS VARCHAR AS
 $BODY$
 BEGIN
   CASE
@@ -222,7 +230,8 @@ CREATE TYPE my_ret_type AS (
   record_data hstore
 );
 
-CREATE OR REPLACE FUNCTION myfun (p_id INTEGER)
+CREATE OR REPLACE FUNCTION
+myfun (p_id INTEGER)
 RETURNS SETOF my_ret_type AS
 $$
 DECLARE
@@ -258,7 +267,8 @@ and the results are returned only at the final RETURN statement.
 ### Exception handling
 
 ```sql
-CREATE OR REPLACE FUNCTION unsafe_div(IN x REAL, IN y REAL, OUT z REAL) AS
+CREATE OR REPLACE FUNCTION
+unsafe_div(IN x REAL, IN y REAL, OUT z REAL) AS
 $BODY$
 BEGIN
  z:= x/y;
@@ -268,7 +278,8 @@ LANGUAGE 'plpgsql'
 
 SELECT unsafe_div(5,0) -- returns ERROR: division by zero
 
-CREATE OR REPLACE FUNCTION safe_div(IN x REAL, IN y REAL, OUT z REAL) AS
+CREATE OR REPLACE FUNCTION
+safe_div(IN x REAL, IN y REAL, OUT z REAL) AS
 $BODY$
 BEGIN
   z:= x/y;

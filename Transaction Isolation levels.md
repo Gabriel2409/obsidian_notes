@@ -83,7 +83,7 @@ Note:
 - Also called Repeatable reads in some db
 - Prevents non repeatable reads
 
-See [[Postgres - Transactions]]
+See [[Postgres - Transactions]] to see real life application of MVCC. Note that the explanation below corresponds to REPEATABLE READ isolation level in postgres.
 
 #### Preventing non repeatable reads
 

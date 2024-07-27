@@ -78,7 +78,9 @@ sum|
 It is possible to use the **WINDOW** keyword
 
 ```sql
-SELECT cat, num, row_number() OVER w, SUM(num) OVER w
+SELECT cat, num,
+row_number() OVER w,
+SUM(num) OVER w
 FROM c
 WINDOW w AS (ORDER BY num)
 ```
@@ -128,7 +130,9 @@ Value functions such as `LEAD()`, `LAG()`, `FIRST_VALUE()`, and `LAST_VALUE()` c
 We'll look at the effect of the frame clause on the sum column.
 
 ```sql
-SELECT cat, num, row_number() OVER w, SUM(num) OVER w
+SELECT cat, num,
+row_number() OVER w,
+SUM(num) OVER w
 FROM c
 WINDOW w AS (
  ORDER BY num

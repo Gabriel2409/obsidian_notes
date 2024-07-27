@@ -15,7 +15,7 @@ Moreover, transactions are time-discrete: the time does not change during a tran
 
 ### Transactions identifiers
 
-Postgres implements MVCC.
+Postgres implements MVCC. 
 
 Any transaction is assigned a unique number called **transaction identifier** (or xid). The xid is automatically assigned and guarantees that no transactions with the same xid exist at the same time in the db.
 
@@ -55,7 +55,7 @@ SELECT *, xmin, xmax, cmin, cmax FROM names;
 ```
 
 - here the first insert has a transaction id of 800 (xmin)
-- then there is a complete transaction which inserts David, updates Alice to Adam and deletes charlie. This transaction has an id of 801. David is inserted with the first command (cmin == 0), Adam is updated with the second (cmin == 1)
+- then there is a complete transaction which inserts David, updates Alice to Adam and deletes Charlie. This transaction has an id of 801. David is inserted with the first command (cmin == 0), Adam is updated with the second (cmin == 1)
 - Alice and Charlie were deleted so we can't see them but they should have a xmax of 801. cmax for Charlie should be equal to 2 and 1 for Alice.
 
 - xid is a cyclical counter with a modulo 2^31 so that for any current values, there are 2^31 smaller values and 2^31 larger values.
@@ -75,8 +75,8 @@ Function `txid_current()` will always return a xid even in read only workload, w
 
 ### MVCC
 
-Multi Version Concurrency Control dictates that instead of modifying an existing tuple, the system has to replicate the tuple, apply the change and invalidate the original one. This allows to perform the snapshots that are used by all Postgres isolation levels.
-A snapshot is a time window in which a certain transaction is allowed to receive data. Use `txid_current_`snapshot() to see it.
+Multi Version Concurrency Control dictates that instead of modifying an existing tuple, the system has to replicate the tuple, apply the change and invalidate the original one. This allows to perform the **snapshots that are used by all Postgres isolation levels.**
+A snapshot is a time window in which a certain transaction is allowed to receive data. Use `txid_current_snapshot()` to see it.
 
 - `587:587`: sees the state of the db before the transaction started
 - `587:589`: also includes transaction 588 (upper bound is excluded)
@@ -322,7 +322,7 @@ Type of locks: <https://www.postgresql.org/docs/current/explicit-locking.html>
 
 ### Vacuum
 
-VACUUM analyses stored tuple versions and reove the ones that are no longer perceivable. It can be run agains a single table, a subset of columns or a full db.
+VACUUM analyses stored tuple versions and remove the ones that are no longer perceivable. It can be run agains a single table, a subset of columns or a full db.
 
 - plain `VACUUM` throws away dead tuples but does not defragment the table (no space reclaimed)
 - `VACUUM FULL` performs a full rewrite, throwing dead tuples and also reclaiming disk size

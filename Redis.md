@@ -152,7 +152,7 @@ https://redis.io/commands/?group=list
 - duplicates are allowed
 - typical usecase: activity stream, inter process communication
 - [LPUSH](https://redis.io/commands/lpush/) and [RPUSH](https://redis.io/commands/rpush/) to add elements
-- [LPOP](https://redis.io/commands/lpop/) and [LPOP](https://redis.io/commands/lpop/) to remove elements
+- [LPOP](https://redis.io/commands/lpop/) and [RPOP](https://redis.io/commands/rpop/) to remove elements
 - [LLEN](https://redis.io/commands/llen/) to get the length
 - [LINDEX](https://redis.io/commands/lindex/) to access element: `LINDEX mykey 0` accesses first element
 - [LRANGE](https://redis.io/commands/lrange/) : `LRANGE mykey 0 -1` retrieves all elements: contrary to python, we include last element
