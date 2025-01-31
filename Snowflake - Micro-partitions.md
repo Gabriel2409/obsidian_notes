@@ -21,3 +21,17 @@ Note: Within a micro-partition, all columns for each row are stored together, at
 - For ex, we keep track of the min value and max value of each column as well as the distinct values for every micro-partition, how many micro-partitions make up the table...
   - when doing a Min or Max query, we can use the metadata [[Snowflake - Caching|cache]] and get the result without spinning warehouses.
   - this also helps with micro-partition pruning where snowflake can optimize a query by first checking the min-max metadata of a column and discard micro-partitions from the query plan that are not required
+
+Note: because snowflake stores the min and max value for each column in a micro-partition:
+
+```sql
+SELECT * FROM MYTABLE
+WHERE NAME = 'MYNAME'
+```
+will scan less micropartitions than
+```sql
+SELECT * FROM MYTABLE
+WHERE UPPER(NAME)= 'MYNAME'
+```
+
+Indeed in the second version, the information on the value range can not be used

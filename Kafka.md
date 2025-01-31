@@ -4,6 +4,8 @@ https://kafka.apache.org/intro
 
 ## Overview
 
+see [[Message queues]]
+
 ### Very high level
 
 - Event streaming technology
@@ -40,7 +42,7 @@ https://kafka.apache.org/intro
 
 Acknowledgement (acks)
 
-- `acks=0`: producers consider messages as written successfully the moment the message was sent. If the broker goes offline or and exception happens, we can lose data. However, we have the highest throughput
+- `acks=0`: producers consider messages as written successfully the moment the message was sent. If the broker goes offline or an exception happens, we can lose data. However, we have the highest throughput
 - `acks=1`: producers consider messages as written successfully when it was acknowledged by the leader. Replication is not guaranteed if the broker goes offline before the replication. If the ack is not received, the producer retries the request
 - `acks=all (or acks=-1)`: safest kind of guarantee (default in kafka): message must be accepted by all in sync replicas: Producer sends data to leader. Leader sends to all ISR and wait for acknowledgement. Once it is received, leader responds to producer.
 - When using`acks=all`, you must also specify `min.insync.replicas`. For ex, if `min.insync.replicas=2`, the leader must wait for an ISR to ack before sending ack to producer. Note that `min.insync.replicas` must be lower than `replication.factor`

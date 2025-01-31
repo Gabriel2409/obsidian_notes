@@ -38,6 +38,10 @@ Now if we launch `snowsql -c example`, it will use the correct parameters
 
 NOTE: As password is stored in plan text, we must be careful with permissions. More secure connection options exist
 
+
+
+Use variables by passing `-D foo=bar -o variable_substitution=true`
+Then `SELECT '&foo'`
 #todo, add some commands
 
 ### Connectors, drivers and partnered tools

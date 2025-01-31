@@ -7,6 +7,23 @@ reviewed: 2023-07-18
 
 #sd
 
+## RPC
+
+RPC allows the execution of a procedure or command in a remote machine. In other words, you can write code that executes on another computer internally in the same way you write code that runs on the current machine. In this approach, the API is more thought of as an action or command. And it is easier to add these functions to extend the functionality.
+
+RPC - /placeAnOrder (OrderDetails order)  
+REST - POST /order/orderNumber={} |Order body|
+
+**Strengths:** It is more space efficient than REST, and it makes development easier since the code you write that requires communication to other computers does not require much special syntax.
+
+**Weaknesses:** It can be only used for internal communication. There are complications that can occur, such as timing issues, when you are communicating between machines, and RPC could make this distinction less clear, leading developers to miss corner cases that cause faults in the system.
+
+
+## gRPC
+
+Implementation of the RPC protocol by google
+
+
 https://grpc.io/
 
 - Built on top of HTTP / 2

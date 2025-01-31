@@ -1,6 +1,6 @@
 ---
-sr-due: 2024-07-30
-sr-interval: 210
+sr-due: 2026-02-06
+sr-interval: 521
 sr-ease: 229
 reviewed: 2023-07-13
 ---
@@ -26,7 +26,7 @@ This is typically the approach that is taken in highly available systems using a
 
 ### Strong consistency
 
-After a write, reads will see it. That means that a write is acknowledged only if all the replicas are successfully written to. Strong consistency works well in systems that need transaction but it makes the system less available.
+After a write, reads will see it. That means that a write is acknowledged only if all the replicas are successfully written to. Strong consistency works well in systems that need [[Transaction]] but it makes the system less available.
 
 
 ### Combining approaches

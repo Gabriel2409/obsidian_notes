@@ -114,6 +114,9 @@ ALTER MATERIALIZED VIEW MYVIEW RESUME;
 
 Check views with `SHOW VIEWS;` and `SHOW MATERIALIZED VIEWS`
 
+
+While a regular view is basically a saved SQL query that can be executed by users who have access to underlying data, a secure view does not require these permissions. Indeed the secure view's query is executed in the context of the owner account ans only the result is returned (underlying tables and metadata are hidden). This is why you can [[Snowflake - Secure data sharing|share]] secure views but not regular views
+
 ### Worksheet Example query - Database, schema, table, views
 
 - Navigate to worksheet and create a new worksheet

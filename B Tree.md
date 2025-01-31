@@ -4,6 +4,7 @@ reviewed: 2023-07-05
 
 #dsa #tree #todo
 
+Also see [[B Tree Index]]
 ## Overview
 
 - Generalisation of [[BST]] = self balancing tree which can handle large amount of data by sorting multiple keys per node

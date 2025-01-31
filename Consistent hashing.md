@@ -1,6 +1,6 @@
 ---
-sr-due: 2024-08-01
-sr-interval: 211
+sr-due: 2026-02-10
+sr-interval: 524
 sr-ease: 230
 reviewed: 2023-07-18
 ---
@@ -24,7 +24,7 @@ This can cause issues if the servers are not stateless (for ex if they all maint
 
 Consistent hashing minimizes the traffic change when the nb of servers change.
 The idea is to map the key to a position in a circle and also map each server to a position in the circle.
-When a key is hashed, you move clockwise until you encounter a server.
+When a key is hashed, you move clockwise until you encounter a server (under the hood, you use [[Binary search]] to find the node)
 
 To evenly distribute load in case of a server failure, you can put virtual nodes on the cercle (each mapped to an existing server)
 

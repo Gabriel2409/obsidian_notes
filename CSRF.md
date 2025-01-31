@@ -1,3 +1,9 @@
+---
+sr-due: 2024-09-07
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 **Purpose**: Cross-Site Request Forgery (CSRF) is a type of security vulnerability where an attacker tricks a victim into performing actions on a web application in which the victim is authenticated, without the victim's knowledge or consent

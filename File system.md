@@ -1,8 +1,8 @@
 ---
 reviewed: 2023-09-06
-sr-due: 2024-06-10
-sr-interval: 8
-sr-ease: 250
+sr-due: 2025-07-22
+sr-interval: 323
+sr-ease: 270
 ---
 
 #sd
@@ -35,6 +35,15 @@ Linux
 - XFS: 8EB / 8EB
 
 In Linux, check the FS by running `df -t`
+
+
+## High level Overview of ext4
+
+- System contains an inode table. An inode (index node) is a datastructure that stores metadata about the file/directory and a pointer to the contents
+- For small file, the inode points directly to the datablocks (or extents= continuous ranges of blocks)
+- For larger files, it points to a B+tree like datastructure that allows to manage datablocks more easily.
+- For directory, extents contains among other thing the list of child inodes number, for efficient retrieval in the inode table
+
 
 ## Example distributed file systems
 

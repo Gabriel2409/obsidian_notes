@@ -43,6 +43,33 @@ Stateless vs stateful:
 - stateful systems are harder to scale: we need to synchronise the state between the machines. This is why for smaller applications, it may make sense to keep a central database on one node. However, this may be not enough but larger applications.
 
 
+## More on scaling
+
+### Vertical scaling 
+- easiest way to scale initially because it does not require you to change your software architecture.
+- Benefit of reducing latency since the communication between different parts of your software architecture is done locally
+- However, due to physical hardware limitations, upgrading a computer's hardware past a certain level becomes very expensive or even impossible beyond a certain point
+- risk of the single system failing to create a single point of failure
+
+### Horizontal scaling 
+Relies on building systems that communicate between multiple computers to store and process information
+
+#### Database scaling
+When adding database [[Replication|replicas]] reaches its limit, you need to [[Sharding|shard]] a larger database into smaller databases
+
+#### Compute scaling
+
+Divide the problem into pieces and designate each piece as a job in a queue so that multiple computers can work together in parallel.
+
+
+### Choosing horizontal vs vertical
+
+While horizontal scaling seems to always be preferred, it is important to consider which services and processes would be more efficient within the same computer.
+For ex, with Gmail, there are many inexpensive processes per user. Rather than having each process on a different node, a single node contains a set of users based on geographic proximity. For [[Reliability]] purposes, backup nodes follow and duplicate the primary node in case it goes down.
+
+## Follow up
+
+
 - [[Shared memory architecture]]
 - [[Shared disk architecture]]
 - [[Shared nothing architecture]]

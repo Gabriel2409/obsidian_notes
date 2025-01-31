@@ -41,7 +41,7 @@ ALTER USER USER1 SET ALLOWS_CLIENT_MFA_CACHING=TRUE;
 ### Federated Authentication
 
 - enables users to connect to snowflake using secure SSO
-- Snowflake can delegate authentication responsibility to an SAML 2.0 compliant external identity provaider (IdP) with native support for Okta and ADFS IdPs
+- Snowflake can delegate authentication responsibility to an SAML 2.0 compliant external identity provider (IdP) with native support for Okta and ADFS IdPs
 - In a federated environment, snowflake is referred to as a Service Provider (SP)
 - This is done by creating an object called security integration
 
@@ -62,16 +62,19 @@ CREATE SECURITY INTEGRATION <name>
 - Then in snowflake:
 
 ```sql
-ALTER USER USER1 SET RSA_PUBLIC_KEY='xxxx';
+ALTER USER USER1 
+SET RSA_PUBLIC_KEY='-----BEGIN PUBLIC KEY...';
 ```
 
 - Configure key rotation
 
 ```sql
 ALTER USER USER1 SET RSA_PUBLIC_KEY_2='yyyy';
-ALTER USER USER1 UNSET RSA_PUBLIC_KEY='xxxx';
+ALTER USER USER1 UNSET RSA_PUBLIC_KEY;
 ```
+You can connect with either the key 1 or key2 so you can for ex unset key1 and replace it with another key but keep using key2 in the meantime
 
+For ex in snowsql, instead of password, you can specify private_key_path in the config 
 ### OAuth and SCIM
 
 - Snowflake supports the OAuth2 protocol with 2 pathways

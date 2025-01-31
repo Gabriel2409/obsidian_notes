@@ -120,7 +120,7 @@ MAX_CLUSTER_COUNT = 3 -- upper bound
 SCALING_POLICY=STANDARD;
 ```
 
-If MIN_CLUSTER_COUNT == MAX_CLUSTER_COUNT > 1, we are in MAXIMIZED mode. If nb are different, we are in AUTOSCALED mode
+If `MIN_CLUSTER_COUNT == MAX_CLUSTER_COUNT > 1`, we are in MAXIMIZED mode. If nb are different, we are in AUTOSCALED mode
 
 Scaling policy:
 

@@ -12,7 +12,7 @@ sr-ease: 230
 
 - Two ways:
   - **RBAC**: Privilege granted to a role granted to a user, similar to [[Azure - RBAC]],
-  - **DAC** (Discretionary access control): each object has its owner who in turn can grant access to that object
+  - **DAC** (Discretionary access control): each object has its owner (owner is a role, not a user) who in turn can grant access to that object
     - Every securable object is owned by a single role, which can be seen when running `SHOW ...`
     - the owner can grant and remove privileges, transfer ownership to another role,..
     - Access to objects is also defined by privileges granted to roles
@@ -20,7 +20,7 @@ sr-ease: 230
 ### Role
 
 - A role is an entity to which privileges on securable objects can be granted with`GRANT` or revoked with `REVOKE`: `GRANT USAGE ON DATABASE MYDB TO ROLE MYROLE;`
-- roles are assigned to users and a user can switch between roles within a snowflake session.
+- roles are assigned to users and a user can switch between roles within a snowflake session: `GRANT ROLE MYROLE TO USER MYUSER`
 - As roles are also securable objects, roles can be granted to other roles as well: `GRANT ROLE ROLE3 TO ROLE ROLE2`: parent roles inherit privileges of children roles
 
 - System roles hierarchy:

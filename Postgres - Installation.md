@@ -59,7 +59,7 @@ docker container run
 
 ### connect outside the container with a psql client
 
-- `psql -h <host> -p <port> -U <postgres_user>` : and then type password. More detail on [[Postgres - psql|psql]] section
+- `psql -h <host> -p <port> -U <postgres_user>` : and then type the password. More detail on [[Postgres - psql|psql]] section
 
 ## pgenv
 

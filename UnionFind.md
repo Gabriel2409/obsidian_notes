@@ -87,7 +87,7 @@ class UnionFind:
 		self.par = [i for i in range(n)]
 		self.rank = [0 for _ in range(n)]
 
-	def find(self, n):
+	def find(self, p):
 		while p != self.par[p]:
 			# path compression
 			self.par[p] = self.par[self.par[p]]

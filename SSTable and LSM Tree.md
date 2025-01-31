@@ -22,8 +22,7 @@ In summary:
 - Maintain an index similar to the one in standard hash indexes but no need to keep all
   of the keys. As they are sorted, the index can be sparse.
 - On write, add key:value to in memory tree (called memtable)
-- When memtable gets larger than threshold, write it to disk (this becomes the most recent
-  segment)
+- When memtable gets larger than threshold, write it to disk (this becomes the most recent  segment)
 - On read, first try to find key in memtable then on segments in reverse chronological
   order. Finding a key consists in finding the closest key before it in the index and
   scanning until the next key in the index (as the index is sparse) => Database is broken down into variable size segments

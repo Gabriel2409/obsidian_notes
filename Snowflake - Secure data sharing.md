@@ -12,6 +12,7 @@ reviewed: 2023-07-06
   - Grants on db objects
   - consumer account definitions
 - An account can share Tables, external tables, secure views, secure materialized views, secure UDFs
+- Regular views can NOT be shared as they require access to underlying objects contrary to secure views
 - Data consumers create a db from a SHARE which contains the read-only db granted by the data provider
 - Not available in VPS edition of snowflake
 

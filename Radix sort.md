@@ -1,8 +1,8 @@
 ---
 reviewed: 2023-10-12
-sr-due: 2024-06-07
-sr-interval: 3
-sr-ease: 250
+sr-due: 2024-10-26
+sr-interval: 46
+sr-ease: 230
 ---
 
 #dsa #sort

@@ -29,7 +29,7 @@ Note: GET request (see [[REST API]]) are easier to cache as they are supposed to
 
 Let's consider a basic server with an in memory key value datastore serving as cache (such as redis) and a database stored on disk. The server can cache database reads:
 
-- write-around cache: on write, skip cache. On read, if not in cache or stale (cache MISS), read from disk and store in cache.
+- write-around cache (also called cache aside): on write, skip cache. On read, if not in cache or stale (cache MISS), read from disk and store in cache.
 - write-through cache: on write, first write to cache then to disk (more work on write but less on read)
 - write-back cache: on write, only write to cache + have a background process periodically pushing latest cache entries to disk: faster but less reliable (data loss in case of crash)
 
@@ -39,6 +39,10 @@ See [[CDN]]
 
 ## Eviction policy
 
+**It’s a good practice to include a brief point about cache invalidation during system design interviews.**
+
 - FIFO: elements cached first are deleted first
 - [[LRU Cache]] (least recently used) cache: elements accessed the longest time ago are deleted first
 - LFU cache (least frequently used cache): elements accessed the least are removed first
+
+For most systems 20% of the data accounts for 80% of the reads. So using LRU will result in fewer cache misses.

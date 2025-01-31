@@ -1,3 +1,9 @@
+---
+sr-due: 2024-09-08
+sr-interval: 3
+sr-ease: 250
+---
+
 #sd
 
 **Purpose**: Cross Origin Resource Sharing (CORS) is a security feature implemented by browsers to control how web pages can request resources from a different domain than the one that served the web page. It is used to relax the same-origin policy (SOP).
