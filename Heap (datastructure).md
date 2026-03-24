@@ -79,20 +79,20 @@ The previous nodes (X) are not important. They may or may not satisfy the heap p
 ```
 Percolate up
 
-            1
+            0
          /      \
-        Y        6
+        Y        2
       /  \      / \
-     X   X     4   5
+     X   X     3   5
     / \ / \   /
-   X  X X  X 3
+   X  X X  X 1
 
-Here we want the node with the value 3 to satisfy the heap property.
+Here we want the node with the value 1 to satisfy the heap property.
 All the previous nodes already satisfy it. Note: Y represent nodes that are not important here that already satisfy the heap property
 The subsequent nodes (X) are not important. They may or may not satisfy the heap property
-3 is smaller than 4: swap
-3 is smaller than 6: swap
-3 is not smaller than 1: stop
+1 is smaller than 3: swap
+1 is smaller than 2: swap
+1 is not smaller than 0: stop
 
 ```
 

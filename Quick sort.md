@@ -43,7 +43,7 @@ Final array is sorted
 
 ```
 
-- Average time complexity: O(nlog n). Worst cast is if the pivot is always the smallest / greatest element => O(n^2)
+- Average time complexity: O(nlog n). Worst case is if the pivot is always the smallest / greatest element => O(n^2)
 - In place sort: Extra space complexity: O(1)
 - Not stable: it exchanges non adjascent elements
 

@@ -16,4 +16,8 @@ reviewed: 2023-08-30
 - cmd hist: `q:` or `<c-f>` from cmd mode
 - search hist: `q/`
 - `mes` show message hist
+- `<c-w>w`: Focus floating window
+
+
+
 

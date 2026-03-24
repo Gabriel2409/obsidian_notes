@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-, #postgres
+#postgres
 
 Common table expression is a temporary result taken from a sql statement. Its lifetime is the lifetime of the query.
 

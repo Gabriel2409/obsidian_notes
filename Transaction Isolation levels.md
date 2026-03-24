@@ -14,18 +14,41 @@ Usually stronger guarantees come at a performance cost
 
 ## Problems with concurrent transactions
 
+
 ### Dirty reads
 
 Happens when Transaction includes a series of write operations and another Transaction reads the values written by the first Transaction before it is **committed**
-
+```sql
+-- T1
+UPDATE mytable SET col=100 WHERE id=1;
+-- T2, before T1 commits
+SELECT col FROM mytable WHERE id=1;
+-- we see 100
+```
 ### Dirty writes
 
 Happens when there are two Transactions concurrently writing to the database to the same set of rows and if T1 executes write operations followed by T2 overwriting the values written by T1 before it is **committed**
+```sql
+-- T1
+UPDATE mytable SET col=100 WHERE id=1;
+-- T2, before T1 commits
+UPDATE mytable SET col=200 WHERE id=1;
+-- T1 commits, then T2 commits 
+-- We see 200 and lose the fact that T1 did something
+```
 
 ### Non repeatable reads (Read skew)
 
 Happens when, within a transaction, we read the same rows(s) multiple times and get different results for those rows.
 For ex we have two identical subqueries retrieving a field for a given row but by the time the second subquery is executed, the value was modified by another transaction
+
+```sql
+SELECT 
+(SELECT name FROM mytable WHERE id =1),
+(SELECT name FROM mytable WHERE id =1)
+
+-- between the 2 subqueries, another transaction updates the name of id 1 and commits. Second and first subquery dont see the same value
+```
 
 ### Lost update problem and write skew
 
@@ -42,6 +65,14 @@ Happens when a transaction reads objects that match some search condition. Anoth
 makes a write that affects the results of that search. Running the same query will return different rows.
 Phantom reads can happen even if you prevent non repeatable reads
 
+
+```sql
+SELECT 
+(SELECT COUNT(dates) FROM mytable WHERE year >=2022),
+(SELECT COUNT(dates) FROM mytable WHERE year >=2022)
+
+-- between the 2 subqueries, another transaction adds new rows. Second and first subquery dont see the same value
+```
 Example:
 Transaction 1 is launched.
 Transaction 2 is launched.

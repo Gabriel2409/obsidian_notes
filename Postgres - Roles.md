@@ -3,7 +3,7 @@ id: Postgres - Roles
 aliases: []
 tags: []
 ---
-# postgres
+#postgres
 
 ## Basics
 
@@ -87,6 +87,7 @@ each line of the file is
 - auth-method: deals with how the login credentials have to be checked: `scram-sha-256`, `md5` (old), `reject` to always reject, `trust` to always trust
 
 Note: if you lose access to the cluster, you can temporarily add a line at the top of the file to trust all connections from your user.
+`host    all     your_user     0.0.0.0/0   trust`
 
 The order of rules matter: the first that satisfies the logic is applied and others are skipped
 

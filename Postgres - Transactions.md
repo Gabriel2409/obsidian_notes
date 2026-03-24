@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-, #postgres
+ #postgres
 
 Postgres [[Transaction]] are [[ACID]] compliant.
 Each individual statement is automatically wrapped in a transaction but you can define `BEGIN [TRANSACTION]` and `COMMIT` to have more control (explicit transaction).
@@ -68,6 +68,7 @@ HINT: To avoid a database shutdown, execute a database-wide VACUUM in "forumdb"
 
 By default a larger xid means the transaction occured later. But when xid overflows, xid restarts. Postgres implements **tuple freezing**: once a tuple is frozen, its xmin is always considered in the past with regards to any other running transactions even if its xmin is larger. Postgres uses a status bit to indicate whether the tuple has been frozen.
 
+Note  more on xmax:https://www.cybertec-postgresql.com/en/whats-in-an-xmax/#:~:text=The%20two%20meanings%20of%20xmax,-I'll%20follow&text=xmax%20is%20actually%20used%20for,row%20locks%20on%20the%20tuple.
 ### Virtual xid
 
 in order to avoid wasting xid, Postgres first creates a virtual xid. This virtual xid is converted to a real xid only in non read workload.
@@ -203,7 +204,7 @@ VALUES ('Alice'), ('Bob'), ('Charlie'), ('David'), ('Eric');
 
 ```sql
 BEGIN TRANSACTION
--- ISOLATION LEVEL READ COMMITED; -- default
+-- ISOLATION LEVEL READ COMMITTED; -- default
 
 
 -- forces assignment of transaction id

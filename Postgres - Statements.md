@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-, #postgres
+#postgres
 
 ### Standard statements
 

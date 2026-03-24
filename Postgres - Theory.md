@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-# postgres
+#postgres
 
 ## Intro
 
@@ -16,6 +16,43 @@ Postgres keeps track of the tables' structures, indexes, functions and everythin
 
 Postgres also provides the information schema which is a standard across many db engines, but the catalog gives more information. Ex: `SELECT * FROM INFORMATION_SCHEMA.tables`
 
+
+## How connection is handled
+
+### Shared Buffers (Server-Side)
+
+- Location: Inside the PostgreSQL server's memory (RAM).
+- Purpose: Acts as a cache for frequently accessed data pages to reduce disk I/O.
+- Scope: Global—shared across all database connections.
+- Managed by: The PostgreSQL buffer manager.
+
+When a query needs a page, PostgreSQL first checks Shared Buffers. If the page is present (cache hit) → It is read from memory.
+
+If the page is not in Shared Buffers (cache miss) → It is read from disk and stored in Shared Buffers.
+
+Modified pages are called dirty pages and will be flushed to disk by the Checkpointer.
+### Connection Memory (Server-Side, Per Connection)
+
+- Location: Also on the server, but allocated per client connection.
+- Purpose: Stores per-query temporary data such as sorting, joins, function execution, and prepared statements.
+- Scope: Per-client connection—each active connection has its own memory.
+- Controlled by:
+    - work_mem → Memory per sort/hash operation.
+    - temp_buffers → Temporary table storage.
+    - maintenance_work_mem → Used for maintenance tasks like VACUUM.
+
+
+Each client connection gets a dedicated chunk of memory. Queries may use more memory if they involve sorting, hashing, or temporary tables. If memory is exceeded, PostgreSQL spills to disk, causing performance degradation.
+
+
+### Example query
+
+- The client sends a query to PostgreSQL.
+- The backend process (assigned to that client) checks Shared Buffers for the required pages.
+    - If the page is in Shared Buffers → It is used directly.
+    - If the page is not in Shared Buffers → It is read from disk into Shared Buffers.
+- The backend executes the query using Connection Memory for sorting, hashing, etc.
+- The final result set is stored in Connection Memory (backend process memory).
 ## Processes
 
 ```bash
@@ -28,7 +65,7 @@ pstree -p postgres # shows all processes
 
 - **walwriter**: Writes the [[Write Ahead Log]]. When a user transaction modifies data, the changes made by these transactions are logged in the Write-Ahead Log (WAL). The WAL writer process is responsible for flushing WAL records from the WAL buffer to the WAL files on disk buffer as WAL records. NOTE: the walwriter does not interact with the data. IMPORTANT: in postgres, the WAL is only used for recovery!
 
----
+
 
 The drawing shows an example write. We see the data going from the connection memory to the shared buffers. It is also written to the WAL (i don't know if it occurs at the same time or after). Periodically we see the WAL flushing to disks.
 When a checkpoint occurs, the checkpointer flushes data to disk, then writes a checkpoint record. Checkpoint is only valid once the walwriter flushes data to the disk.

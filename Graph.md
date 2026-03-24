@@ -85,3 +85,4 @@ adjMatrix = [[0, 0, 0],
              [1, 1, 0],
              [0, 0, 0]]
 ```
+Note: connecting a vertex to itself (adjMatrix[i][i]) is called a self-loop, rare in classic problems but valid in state machines or Markov chains.

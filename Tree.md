@@ -23,3 +23,5 @@ E-->G
 
 In a Tree, `E = V - 1` with `E` the nb of edges and `V` the nb of vertices
 
+Note: general formula for graph `E <= V^2`, is still valid as V-1<=V^2
+

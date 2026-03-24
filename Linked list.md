@@ -49,9 +49,7 @@ def lookup(root, val):
 next_node = root.next
 root.next = new_node
 new_node.next = next_node
-```
 
-```python
 # Deletion
 root.next = root.next.next
 ```

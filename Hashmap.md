@@ -10,7 +10,7 @@ reviewed: 2023-07-30
 ## Implementation
 
 - Hashmaps (Hashtable) can be implemented using arrays under the hood.
-  - When the hashmap is created, an array of given size is initialized and the memory is reserved.
+  - When the hashmap is created, an array of given size (fixed size array) is initialized and the memory is reserved.
   - Even when the hashmap is empty, the array still takes up memory
 
 ### Hashing
@@ -149,6 +149,8 @@ class Hashmap:
 - When a collision occurs, find the next empty spot in the array and store the value here (go back to beginning of array if necessary)
 - On deletion, put a sentinel value where the deletion occurs so that we don't stop searching too early for previously stored values
 - when resizing, discard the sentinels
+
+Note: when searching, we can not stop on first sentinel because the key might already exist and have been stored after.
 
 ```python
 

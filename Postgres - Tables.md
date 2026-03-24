@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-: #postgres
+#postgres
 
 3 types of tables:
 
